@@ -233,6 +233,13 @@
 		   <version>2.9.5</version>
 		</dependency>
 		
+		 <!-- java8 date/time -->
+		  <dependency>
+		      <groupId>com.fasterxml.jackson.datatype</groupId>
+		      <artifactId>jackson-datatype-jsr310</artifactId>
+		      <version>2.9.4</version>
+		  </dependency>
+		
 		<dependency>
 		   <groupId>net.sf.json-lib</groupId>
 		   <artifactId>json-lib</artifactId>
