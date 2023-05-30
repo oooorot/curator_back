@@ -35,7 +35,7 @@ public class HomeController {
 		
 		return "home";
 		
-		// 수정사항ㅠ  ㄹㄹㄹㄹㄹ
+		// 수정사항ㅠ  ㄹㄹㄹㄹㄹㄹㄹㄹㄹ
 	}
 	
 }
