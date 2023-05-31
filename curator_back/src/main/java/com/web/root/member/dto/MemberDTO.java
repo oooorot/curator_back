@@ -1,7 +1,5 @@
 package com.web.root.member.dto;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 public class MemberDTO {
 	
@@ -80,23 +78,19 @@ public class MemberDTO {
 	public int getMemberGrade() {
 		return memberGrade;
 	}
-
+	
 	public void setMemberGrade(int memberGrade) {
 		this.memberGrade = memberGrade;
-	}
-
-	public void setMemberDate(String memberDate) {
-		this.memberDate = memberDate;
 	}
 
 	public String getMemberDate() {
 		return memberDate;
 	}
 
-	public void setMemberDate(Timestamp memberDate) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
-		this.memberDate = dateFormat.format(memberDate);
+	public void setMemberDate(String memberDate) {
+		this.memberDate = memberDate;
 	}
+
 	
 
 

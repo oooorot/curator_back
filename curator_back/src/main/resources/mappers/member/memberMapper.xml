@@ -14,26 +14,37 @@
 		<result property="memberDate" column="member_date"/>
 	</resultMap>
 	
-	<select id="userCheck" resultMap="member">
-		SELECT member_seq, member_email, member_pw, member_grade FROM member_info WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
+	<select id="login" resultMap="member">
+		SELECT member_seq, member_email, member_pw, member_nickname, member_grade FROM member WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
 	</select>
 	
 	<select id="memberInfo" resultMap="member">
-		SELECT * FROM member_info
+		SELECT * FROM member WHERE member_email=#{memberEmail}
 	</select>
 	
-	<!-- 
-		private int memberSeq;
-	private String memberEmail;
-	private String memberPw;
-	private String memberNickname;
-	private String memberName;
-	private String memberPhone;
-	privat e String memberAddr;
-	private int memberGrade;
-	private String memberDate; -->
 	<insert id="register">
-		INSERT INTO member_info VALUES(member_info_seq.nextval,#{memberEmail},#{memberPw},#{memberNickname},#{memberName},#{memberPhone},#{memberAddr},#{memberGrade},current_date)
+		INSERT INTO member VALUES(member_seq.NEXTVAL,#{memberEmail},#{memberPw},#{memberNickname},#{memberName},#{memberPhone},#{memberAddr},#{memberGrade},current_date)
 	</insert>
+	
+	<update id="memberUpdate">
+		UPDATE member SET member_pw=#{memberPw},member_nickname=#{memberNickname},member_name=#{memberName},member_phone=#{memberPhone},member_addr=#{memberAddr} WHERE member_email=#{memberEmail}
+	</update>
+	
+	<delete id="memberDelete">
+		DELETE member WHERE member_email=#{loginEmail} 
+	</delete>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

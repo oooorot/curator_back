@@ -1,19 +1,20 @@
 package com.web.root.member.service;
 
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
-
+import com.web.root.member.dto.LoginDTO;
 import com.web.root.member.dto.MemberDTO;
 
 public interface MemberService {
 	
-	public MemberDTO userCheck(MemberDTO memberDTO);
+	public LoginDTO login(Map<String, Object> map);
 	
-	public List<MemberDTO> memberInfo(HttpSession session);
+	public MemberDTO memberInfo(Map<String, Object> map);
 	
-	public void register(Map<String, Object> map);
+	public int register(Map<String, Object> map);
+	
+	public int memberUpdate(Map<String, Object> map);
+	
+	public int memberDelete(String loginEmail);
 
 }
