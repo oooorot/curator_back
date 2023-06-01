@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.root.artist.dto.ArtistDTO;
-import com.web.root.bookmark.BookmarkDTO;
+import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
 
@@ -38,10 +38,18 @@ public class ArtistServiceImpl implements ArtistService{
 		ArtistDTO artDTO = new ArtistDTO();
 		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-			
-		
-		return null;
+		BookmarkDTO dto = mapper.bookmark(memDTO, artDTO);
+		return dto;	
 	}
+
+	@Override
+	public void artistUpdate(Map<String, Object> map) {
+		ArtistDTO artDTO = new ArtistDTO();
+		
+		
+	}
+	
+	
 	
 	
 	

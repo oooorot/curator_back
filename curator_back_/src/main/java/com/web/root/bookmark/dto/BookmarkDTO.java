@@ -1,4 +1,4 @@
-package com.web.root.bookmark;
+package com.web.root.bookmark.dto;
 
 public class BookmarkDTO {
 

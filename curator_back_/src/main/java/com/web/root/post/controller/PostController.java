@@ -34,7 +34,7 @@ public class PostController {
 		return service.PostView(map);
 	}
 	
-	@PostMapping(value = "file", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(value = "File", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public String fileTest(@RequestPart(value = "dto") PostDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
 		System.out.println(dto.getPostImageName());

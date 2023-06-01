@@ -29,12 +29,10 @@
 	</select>
 	
 	<insert id="commissionWrite">
-		INSERT INTO comm_title, comm_content, comm_image VALUES(comm_title=#{commTitle}, comm_content=#{commContent}, comm_image=#{commImage})
+		INSERT INTO commission VALUES(comm_seq.NEXTVAL, #{artistSeq}, #{memberSeq}, #{commTitle}, #{commContent}, #{commImage}, CURRENTDATE)
 	</insert>
 	
-	<insert id="saveImageFile">
-		INSERT INTO commission(comm_seq, comm_image) VALUES(comm_seq.NEXTVAL, comm_image=#{commImage})
-	</insert>
+	
 
 </mapper>
 

@@ -1,4 +1,4 @@
-package com.web.root.mybaitis.post;
+package com.web.root.mybatis.post;
 
 
 
