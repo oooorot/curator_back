@@ -1,6 +1,4 @@
-package com.web.root.mybaitis.post;
-
-
+package com.web.root.mybatis.post;
 
 
 import com.web.root.post.dto.PostDTO;

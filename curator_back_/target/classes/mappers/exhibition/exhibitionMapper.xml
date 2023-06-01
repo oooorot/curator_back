@@ -13,11 +13,11 @@
 	</resultMap>
 
 	<select id="ExhibitionList" resultMap="exhibition">
-		SELECT * FROM genre ORDER BY exhibitionSeq DESC
+		SELECT * FROM exhibition ORDER BY exhibition_seq DESC
 	</select>
 	
 	<select id="ExhibitionView" resultMap="exhibition">
-		SELECT * FROM genre WHERE exhibition_seq=#{exhibitionSeq}
+		SELECT * FROM exhibition WHERE exhibition_seq=#{exhibitionSeq}
 	</select>
 	
 	<insert id="saveData">

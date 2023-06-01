@@ -39,11 +39,11 @@ public class ExhibitionController {
 	
 	@GetMapping(value = "ExhibitionView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ExhibitionDTO ExhibitionView(@RequestParam Map<String, Object> map) {
-		return service.ExhibitionView(map);
+	public ExhibitionDTO ExhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) {
+		return service.ExhibitionView(exhibitionSeq);
 	}
 	
-	@PostMapping(value = "file", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(value = "EXfile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public String fileTest(@RequestPart(value = "dto") ExhibitionDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
 		System.out.println(dto.getExhibitionBanner());

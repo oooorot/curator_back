@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.root.genre.dto.GenreDTO;
 import com.web.root.mybatis.genre.GenreMapper;
+import com.web.root.post.dto.PostDTO;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -23,6 +24,12 @@ public class GenreServiceImpl implements GenreService {
 	public List<GenreDTO> GenreList() {
 		List<GenreDTO> list = mapper.GenreList();
 		return list;
+	}
+	
+	@Override
+	public List<PostDTO> GenreView(int genreSeq) {
+		List<PostDTO> dto = mapper.GenreView(genreSeq);
+		return dto;
 	}
 
 }
