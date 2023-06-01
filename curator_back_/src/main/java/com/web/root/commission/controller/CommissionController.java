@@ -18,13 +18,13 @@ import com.web.root.commission.dto.CommissionDTO;
 import com.web.root.commission.service.CommissionService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins="*", allowedHeaders = "*")
 public class CommissionController {
 
 	@Autowired
 	private CommissionService service; 
 	
-	@GetMapping(value = "commAllList", produces = "application/json; charset=utf8")
+	@GetMapping(value = "commAllList",  produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<CommissionDTO> commAllList(){
 		return service.commAllList();
