@@ -38,7 +38,7 @@ public class ArtistServiceImpl implements ArtistService{
 		ArtistDTO artDTO = new ArtistDTO();
 		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		
+			
 		
 		return null;
 	}
