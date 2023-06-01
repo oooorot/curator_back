@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.customer.CustomerMapping">
-	<resultMap type="com.web.root.customer.dto.CustomerDTO" id="purchase">
+	<resultMap type="com.web.root.customer.dto.PurchaseDTO" id="purchase">
 		<id property="purSeq" column="pur_seq"/>
 		<result property="memberSeq" column="member_seq" />
 		<result property="postSeq" column="post_seq" />
@@ -21,7 +21,7 @@
 		<result property="helpDate" column="help_date" />
 	</resultMap>
 
-	<resultMap type="com.web.root.reply.dto.ReplyDTO" id="helpReply">
+	<resultMap type="com.web.root.customer.dto.CustomerHelpDTO" id="helpReply">
 		<id property="helpSeq" column="help_seq"/>
 		<result property="memberSeq" column="member_seq" />	
 		<result property="helpTitle" column="help_title" />	
@@ -42,7 +42,7 @@
 	</select>
 	
 	<select id="customerReplyList" resultMap="helpReply">
-		SELECT * FROM reply WHERE member_seq=#{memberSeq} AND help_seq=#{helpSeq}
+		SELECT help.help_seq, help.member_seq, help_title, help_content, help_date, reply_title, reply_content, reply_date FROM help INNER JOIN reply ON help.help_seq=#{helpSeq} = reply.help_seq=#{helpSeq} AND help.member_seq=#{memberSeq} = reply.member_seq=#{memberSeq};
 	</select>
 	
 </mapper>
