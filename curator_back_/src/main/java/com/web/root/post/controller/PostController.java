@@ -30,8 +30,8 @@ public class PostController {
 	
 	@GetMapping(value = "PostView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public PostDTO PostView(@RequestParam Map<String, Object> map) {
-		return service.PostView(map);
+	public PostDTO PostView(@RequestParam("postSeq") int postSeq) {
+		return service.PostView(postSeq);
 	}
 	
 	@PostMapping(value = "File", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
