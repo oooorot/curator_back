@@ -212,6 +212,29 @@
 			<version>1.2</version>
 		</dependency>
 		
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>  
+		
+		<!-- mail api -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+				
+		
 		<!-- commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -232,6 +255,13 @@
 		   <artifactId>jackson-databind</artifactId>
 		   <version>2.9.5</version>
 		</dependency>
+		
+		 <!-- java8 date/time -->
+		  <dependency>
+		      <groupId>com.fasterxml.jackson.datatype</groupId>
+		      <artifactId>jackson-datatype-jsr310</artifactId>
+		      <version>2.9.4</version>
+		  </dependency>
 		
 		<dependency>
 		   <groupId>net.sf.json-lib</groupId>
