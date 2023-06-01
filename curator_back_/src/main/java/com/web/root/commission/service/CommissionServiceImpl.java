@@ -20,10 +20,7 @@ public class CommissionServiceImpl implements CommissionService{
 
 	@Autowired
 	private CommissionMapper mapper;
-	
-	private MemberDTO memDTO;
-	private ArtistDTO artDTO;
-	private CommissionDTO comDTO;
+
 	
 	@Override
 	public List<CommissionDTO> commAllList() {
@@ -32,22 +29,17 @@ public class CommissionServiceImpl implements CommissionService{
 	}
 
 	@Override
-	public int commissionWrite(Map<String, Object> map, MultipartFile multipartFile) {
+	public int commissionWrite(CommissionDTO dto, MultipartFile multipartFile) {
 			
-		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-		comDTO.setCommTitle(map.get("commTitle").toString());
-		comDTO.setCommContent(map.get("commContent").toString());
-		
-		if (multipartFile.getSize() != 0) {
+			if (multipartFile.getSize() != 0) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar calendar = Calendar.getInstance();
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			
-			comDTO.setCommImage(sysFileName);
+			dto.setCommImage(sysFileName);
 			
-			File saveFile = new File("C://testImage" + File.separator + sysFileName);
+			File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
 			
 			try {
 				multipartFile.transferTo(saveFile);
@@ -57,7 +49,7 @@ public class CommissionServiceImpl implements CommissionService{
 		}
 	//	comDTO.setCommImage(map.get("commImage").toString());
 
-		int res = mapper.commissionWrite(comDTO);
+		int res = mapper.commissionWrite(dto);
 		return res;
 	}
 	
@@ -66,10 +58,10 @@ public class CommissionServiceImpl implements CommissionService{
 	@Override
 	public void commissionUpdate(Map<String, Object> map) {
 		
-		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-		comDTO.setCommTitle(map.get("commTitle").toString());
-		comDTO.setCommContent(map.get("commContent").toString());
+//		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+//		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+//		comDTO.setCommTitle(map.get("commTitle").toString());
+//		comDTO.setCommContent(map.get("commContent").toString());
 		
 		
 	}

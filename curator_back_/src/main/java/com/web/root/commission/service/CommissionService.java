@@ -13,7 +13,7 @@ public interface CommissionService {
 
 	public List<CommissionDTO> commAllList();
 	
-	public int commissionWrite(Map<String, Object> map, MultipartFile multipartFile);
+	public int commissionWrite(CommissionDTO dto, MultipartFile multipartFile);
 	
 //	public String saveImageFile(CommissionDTO dto, MultipartFile multipartFile);
 	
