@@ -30,6 +30,9 @@ public class CommissionController {
 		return service.commAllList();
 	}
 	
+	// 게시글 불러오기
+	@GetMapping(value="commGetList/{commSeq}")
+	
 	@PostMapping(value="commissionWrite", produces="application/json; charset=utf8")
 	@ResponseBody
 	public void commissionWrite(@RequestBody Map<String, Object> map) {
@@ -42,4 +45,7 @@ public class CommissionController {
 		service.saveImageFile(dto, multipartFile);
 		return "success";
 	}
+	
+	
+	
 }
