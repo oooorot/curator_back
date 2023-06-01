@@ -3,6 +3,8 @@ package com.web.root.mybatis.artist;
 import java.util.List;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.member.dto.MemberDTO;
 import com.web.root.post.dto.PostDTO;
 
 public interface ArtistMapper {
@@ -13,6 +15,7 @@ public interface ArtistMapper {
 	
 	public List<PostDTO> ArtistView(int artistSeq);
 
+	public BookmarkDTO bookmark(MemberDTO memDTO, ArtistDTO artDTO);
 
 	
 }

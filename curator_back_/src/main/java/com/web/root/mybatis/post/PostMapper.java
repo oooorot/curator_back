@@ -1,6 +1,8 @@
 package com.web.root.mybatis.post;
 
 
+
+
 import com.web.root.post.dto.PostDTO;
 
 public interface PostMapper {

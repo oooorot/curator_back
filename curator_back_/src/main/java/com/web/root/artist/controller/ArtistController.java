@@ -6,13 +6,15 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artist.service.ArtistService;
-import com.web.root.bookmark.BookmarkDTO;
+import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.post.dto.PostDTO;
 
 @RestController
@@ -44,5 +46,10 @@ public class ArtistController {
 	@ResponseBody
 	public List<PostDTO> PostView(@RequestParam("artistSeq") int artistSeq) {
 		return service.ArtistView(artistSeq);
+	}
+		
+	@PutMapping(value = "test", produces = "application/json; charset=utf8")
+	public void artistUpdate(@RequestBody Map<String, Object> map) {
+		service.artistUpdate(map);
 	}
 }
