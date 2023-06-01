@@ -39,8 +39,8 @@ public class ExhibitionController {
 	
 	@GetMapping(value = "ExhibitionView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ExhibitionDTO ExhibitionView(@RequestParam Map<String, Object> map) {
-		return service.ExhibitionView(map);
+	public ExhibitionDTO ExhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) {
+		return service.ExhibitionView(exhibitionSeq);
 	}
 	
 	@PostMapping(value = "exFile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})

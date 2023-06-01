@@ -3,8 +3,6 @@ package com.web.root.artist.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +10,7 @@ import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
+import com.web.root.post.dto.PostDTO;
 
 @Service
 public class ArtistServiceImpl implements ArtistService{
@@ -50,6 +49,14 @@ public class ArtistServiceImpl implements ArtistService{
 	}
 	
 	
+	
+	@Override
+	public List<PostDTO> ArtistView(int artistSeq) {
+		List<PostDTO> list = mapper.ArtistView(artistSeq);		
+		System.out.println(list);
+		System.out.println(artistSeq);
+		return list;
+	}
 	
 	
 	

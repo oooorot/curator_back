@@ -15,7 +15,7 @@ public interface ExhibitionService {
 	
 	public List<ExhibitionDTO> ExhibitionList();
 	
-	public ExhibitionDTO ExhibitionView(Map<String, Object> map);
+	public ExhibitionDTO ExhibitionView(int exhibitionSeq);
 	
 	public String fileProcess(ExhibitionDTO dto, MultipartFile multipartFile);
 
