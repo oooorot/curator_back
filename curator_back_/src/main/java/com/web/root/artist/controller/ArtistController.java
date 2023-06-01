@@ -48,7 +48,7 @@ public class ArtistController {
 		return service.ArtistView(artistSeq);
 	}
 		
-	@PutMapping(value = "test", produces = "application/json; charset=utf8")
+	@PutMapping(value = "test2", produces = "application/json; charset=utf8")
 	public void artistUpdate(@RequestBody Map<String, Object> map) {
 		service.artistUpdate(map);
 	}
