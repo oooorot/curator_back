@@ -8,9 +8,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.root.genre.dto.GenreDTO;
+import com.web.root.post.dto.PostDTO;
 
 public interface GenreService {
 	
 	public List<GenreDTO> GenreList();
+	
+	public List<PostDTO> GenreView(int genreSeq);
+
 
 }

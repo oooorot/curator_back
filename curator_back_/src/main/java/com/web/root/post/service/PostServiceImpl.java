@@ -24,8 +24,8 @@ public class PostServiceImpl implements PostService {
 	
 
 	@Override
-	public PostDTO PostView(Map<String, Object> map) {
-		PostDTO dto = mapper.PostView(Integer.parseInt(map.get("postSeq").toString()));
+	public PostDTO PostView(int postSeq) {
+		PostDTO dto = mapper.PostView(postSeq);
 		return dto;
 	}
 	

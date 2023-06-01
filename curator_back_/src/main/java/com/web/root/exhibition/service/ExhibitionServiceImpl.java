@@ -31,8 +31,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 	
 	@Override
-	public ExhibitionDTO ExhibitionView(Map<String, Object> map) {
-		ExhibitionDTO dto = mapper.ExhibitionView(Integer.parseInt(map.get("postSeq").toString()));
+	public ExhibitionDTO ExhibitionView(int exhibitionSeq) {
+		ExhibitionDTO dto = mapper.ExhibitionView(exhibitionSeq);
 		return dto;
 	}
 	
