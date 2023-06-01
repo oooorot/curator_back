@@ -41,7 +41,7 @@ public class ArtistController {
 		return service.artistBookMark(map);
 	}
 	
-	@PutMapping(value = "test", produces = "application/json; charset=utf8")
+	@PutMapping(value = "artistUpdate", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public void artistUpdate(@RequestBody Map<String, Object> map) {
 		service.artistUpdate(map);
