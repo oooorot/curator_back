@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artist.service.ArtistService;
 import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.post.dto.PostDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -42,7 +43,14 @@ public class ArtistController {
 	}
 	
 	@PutMapping(value = "artistUpdate", produces = "application/json; charset=utf8")
+	
+	@GetMapping(value = "ArtistView", produces = "application/json; charset=utf8")
 	@ResponseBody
+	public List<PostDTO> PostView(@RequestParam("artistSeq") int artistSeq) {
+		return service.ArtistView(artistSeq);
+	}
+		
+	@PutMapping(value = "test", produces = "application/json; charset=utf8")
 	public void artistUpdate(@RequestBody Map<String, Object> map) {
 		service.artistUpdate(map);
 	}

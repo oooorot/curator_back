@@ -1,21 +1,33 @@
+
+
 package com.web.root.reply.dto;
 
 import java.sql.Timestamp;
 
 public class ReplyDTO {
 	
-	// Field
 	private int replySeq;
 	private int helpSeq;
 	private int memberSeq;
-	private String replyTile;
+	private String replyTitle;
 	private String replyContent;
 	private Timestamp replyDate;
 	
-	// Constructor
-	public ReplyDTO() {}
-	
-	// Getter Setter
+	public ReplyDTO() {
+		super();
+	}
+
+	public ReplyDTO(int replySeq, int helpSeq, int memberSeq, String replyTitle, String replyContent,
+			Timestamp replyDate) {
+		super();
+		this.replySeq = replySeq;
+		this.helpSeq = helpSeq;
+		this.memberSeq = memberSeq;
+		this.replyTitle = replyTitle;
+		this.replyContent = replyContent;
+		this.replyDate = replyDate;
+	}
+
 	public int getReplySeq() {
 		return replySeq;
 	}
@@ -40,12 +52,12 @@ public class ReplyDTO {
 		this.memberSeq = memberSeq;
 	}
 
-	public String getReplyTile() {
-		return replyTile;
+	public String getReplyTitle() {
+		return replyTitle;
 	}
 
-	public void setReplyTile(String replyTile) {
-		this.replyTile = replyTile;
+	public void setReplyTitle(String replyTitle) {
+		this.replyTitle = replyTitle;
 	}
 
 	public String getReplyContent() {
@@ -63,5 +75,8 @@ public class ReplyDTO {
 	public void setReplyDate(Timestamp replyDate) {
 		this.replyDate = replyDate;
 	}
+	
+	
+
 	
 }
