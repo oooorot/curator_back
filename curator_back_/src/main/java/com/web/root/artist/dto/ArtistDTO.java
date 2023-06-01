@@ -9,6 +9,10 @@ public class ArtistDTO {
 	private String artistImage;
 	private int artistHit;
 	
+	public ArtistDTO() {
+		super();
+	}
+	
 	public ArtistDTO(int artistSeq, String artistName, String artistProfile, String artistSns, String artistImage,
 			int artistHit) {
 		super();

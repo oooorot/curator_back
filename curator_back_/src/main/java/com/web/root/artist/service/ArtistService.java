@@ -6,10 +6,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.bookmark.BookmarkDTO;
 
 public interface ArtistService {
 	
 	public ArtistDTO artistInform(Map<String, Object> map);
 
 	public List<ArtistDTO> artistAllList();
+	
+	public BookmarkDTO artistBookMark(Map<String, Object> map);
 }
