@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.root.mybaitis.post.PostMapper;
+import com.web.root.mybatis.post.PostMapper;
 import com.web.root.post.dto.PostDTO;
 
 @Service
@@ -24,8 +24,8 @@ public class PostServiceImpl implements PostService {
 	
 
 	@Override
-	public PostDTO PostView(Map<String, Object> map) {
-		PostDTO dto = mapper.PostView(Integer.parseInt(map.get("postSeq").toString()));
+	public PostDTO PostView(int postSeq) {
+		PostDTO dto = mapper.PostView(postSeq);
 		return dto;
 	}
 	
