@@ -29,7 +29,7 @@
 	</select>
 	
 	<insert id="commissionWrite">
-		INSERT INTO commission VALUES(comm_seq.NEXTVAL, #{artistSeq}, #{memberSeq}, #{commTitle}, #{commContent}, #{commImage}, CURRENTDATE)
+		INSERT INTO commission VALUES(commission_seq.NEXTVAL, #{artistSeq}, #{memberSeq}, #{commTitle}, #{commContent}, #{commImage}, CURRENT_DATE)
 	</insert>
 	
 	
