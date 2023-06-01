@@ -1,13 +1,11 @@
 
 
 
-package com.web.root.exhibition.controller;
+package com.web.root.post.controller;
 
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,33 +18,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.root.exhibition.dto.ExhibitionDTO;
-import com.web.root.exhibition.service.ExhibitionService;
 import com.web.root.post.dto.PostDTO;
+import com.web.root.post.service.PostService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class ExhibitionController {
+public class PostController {
 	
 	@Autowired
-	private ExhibitionService service;
+	private PostService service;
 	
-	@GetMapping(value = "ExhibitionList", produces = "application/json; charset=utf8")
+	@GetMapping(value = "PostView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<ExhibitionDTO> ExhibitionList() {
-		return service.ExhibitionList();
-	}
-	
-	@GetMapping(value = "ExhibitionView", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public ExhibitionDTO ExhibitionView(@RequestParam Map<String, Object> map) {
-		return service.ExhibitionView(map);
+	public PostDTO PostView(@RequestParam Map<String, Object> map) {
+		return service.PostView(map);
 	}
 	
 	@PostMapping(value = "file", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
-	public String fileTest(@RequestPart(value = "dto") ExhibitionDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		System.out.println(dto.getExhibitionBanner());
+	public String fileTest(@RequestPart(value = "dto") PostDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
+		System.out.println(dto.getPostImageName());
 		System.out.println(multipartFile.getOriginalFilename());
 		service.fileProcess(dto, multipartFile);
 		
