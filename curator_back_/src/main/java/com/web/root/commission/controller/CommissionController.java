@@ -47,7 +47,7 @@ public class CommissionController {
 //		return "success";
 //	}
 	
-	@PutMapping(value = "test", produces = "application/json; charset=utf8")
+	@PutMapping(value = "test2", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public void commissionUpdate(@RequestBody Map<String, Object> map) {
 		service.commissionUpdate(map);
