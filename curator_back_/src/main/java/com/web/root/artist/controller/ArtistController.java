@@ -42,6 +42,8 @@ public class ArtistController {
 		return service.artistBookMark(map);
 	}
 	
+	@PutMapping(value = "artistUpdate", produces = "application/json; charset=utf8")
+	
 	@GetMapping(value = "ArtistView", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<PostDTO> PostView(@RequestParam("artistSeq") int artistSeq) {

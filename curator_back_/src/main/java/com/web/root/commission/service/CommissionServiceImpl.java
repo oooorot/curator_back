@@ -21,13 +21,13 @@ public class CommissionServiceImpl implements CommissionService{
 	@Autowired
 	private CommissionMapper mapper;
 	
-	@Autowired
+	
 	private MemberDTO memDTO;
 	
-	@Autowired
+	
 	private ArtistDTO artDTO;
 	
-	@Autowired
+	
 	private CommissionDTO comDTO;
 	
 	@Override
