@@ -12,7 +12,7 @@ import com.web.root.post.dto.PostDTO;
 
 public interface PostService {
 	
-	public PostDTO PostView(Map<String, Object> map);
+	public PostDTO PostView(int postSeq);
 	
 	public String fileProcess(PostDTO dto, MultipartFile multipartFile);
 
