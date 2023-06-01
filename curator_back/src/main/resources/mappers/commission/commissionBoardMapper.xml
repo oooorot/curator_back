@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.commission.CommissionMapper">
+
+	<resultMap type="com.web.root.commission.dto.CommissionDTO" id="comm">
+		<id property="commSeq" column="comm_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="commTitle" column="comm_title"/>
+		<result property="commContent" column="comm_content"/>
+		<result property="commImage" column="comm_image"/>
+		<result property="commDate" column="comm_date"/>
+	</resultMap>
+	
+	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
+		<id property="artistSeq" column="artist_seq"/>
+		<result property="artistName" column="artist_name"/>
+		<result property="artistProfile" column="artist_profile"/>
+		<result property="artistSns" column="artist_sns"/>
+		<result property="artistImage" column="artist_image"/>
+		<result property="artistHit" column="artist_hit"/>
+	</resultMap>
+	
+	
+	<select id="commAllList" resultMap="comm">
+		SELECT * FROM commission ORDER BY comm_seq DESC   
+	</select>
+	
+	<insert id="commissionWrite">
+		INSERT INTO comm_title, comm_content, comm_image VALUES(comm_title=#{commTitle}, comm_content=#{commContent}, comm_image=#{commImage})
+	</insert>
+	
+	<insert id="saveImageFile">
+		INSERT INTO commission(comm_seq, comm_image) VALUES(comm_seq.NEXTVAL, comm_image=#{commImage})
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
