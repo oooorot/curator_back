@@ -12,9 +12,17 @@
 		<result property="exhibitionBanner" column="exhibition_banner"/>	
 	</resultMap>
 
-	<select id="GenreList" resultMap="genre">
-		SELECT * FROM genre WHERE genre_seq=#{genreSeq}
+	<select id="ExhibitionList" resultMap="exhibition">
+		SELECT * FROM genre ORDER BY exhibitionSeq DESC
 	</select>
+	
+	<select id="ExhibitionView" resultMap="exhibition">
+		SELECT * FROM genre WHERE exhibition_seq=#{exhibitionSeq}
+	</select>
+	
+	<insert id="saveData">
+		INSERT INTO exhibition VALUES(exhibition_seq.NEXTVAL, #{exhibitionName}, CURRENT_DATE, #{exhibitionExplain}, #{exhibitionBanner})
+	</insert>
 
 	
 

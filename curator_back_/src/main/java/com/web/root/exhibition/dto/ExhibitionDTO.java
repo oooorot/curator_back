@@ -4,65 +4,69 @@ import java.sql.Timestamp;
 
 public class ExhibitionDTO {
 	
-	private int exhibition_seq;
-	private String exhibition_Name;
-	private Timestamp exhibition_Date;
-	private String exhibition_Explain;
-	private String exhibition_Banner;
+	private int exhibitionSeq;
+	private String exhibitionName;
+	private Timestamp exhibitionDate;
+	private String exhibitionExplain;
+	private String exhibitionBanner;
 	
 	public ExhibitionDTO() {
 		super();
 	}
 
-	public ExhibitionDTO(int exhibition_seq, String exhibition_Name, Timestamp exhibition_Date,
-			String exhibition_Explain, String exhibition_Banner) {
+	public ExhibitionDTO(int exhibitionSeq, String exhibitionName, Timestamp exhibitionDate, String exhibitionExplain,
+			String exhibitionBanner) {
 		super();
-		this.exhibition_seq = exhibition_seq;
-		this.exhibition_Name = exhibition_Name;
-		this.exhibition_Date = exhibition_Date;
-		this.exhibition_Explain = exhibition_Explain;
-		this.exhibition_Banner = exhibition_Banner;
+		this.exhibitionSeq = exhibitionSeq;
+		this.exhibitionName = exhibitionName;
+		this.exhibitionDate = exhibitionDate;
+		this.exhibitionExplain = exhibitionExplain;
+		this.exhibitionBanner = exhibitionBanner;
 	}
 
-	public int getExhibition_seq() {
-		return exhibition_seq;
+	public int getExhibitionSeq() {
+		return exhibitionSeq;
 	}
 
-	public void setExhibition_seq(int exhibition_seq) {
-		this.exhibition_seq = exhibition_seq;
+	public void setExhibitionSeq(int exhibitionSeq) {
+		this.exhibitionSeq = exhibitionSeq;
 	}
 
-	public String getExhibition_Name() {
-		return exhibition_Name;
+	public String getExhibitionName() {
+		return exhibitionName;
 	}
 
-	public void setExhibition_Name(String exhibition_Name) {
-		this.exhibition_Name = exhibition_Name;
+	public void setExhibitionName(String exhibitionName) {
+		this.exhibitionName = exhibitionName;
 	}
 
-	public Timestamp getExhibition_Date() {
-		return exhibition_Date;
+	public Timestamp getExhibitionDate() {
+		return exhibitionDate;
 	}
 
-	public void setExhibition_Date(Timestamp exhibition_Date) {
-		this.exhibition_Date = exhibition_Date;
+	public void setExhibitionDate(Timestamp exhibitionDate) {
+		this.exhibitionDate = exhibitionDate;
 	}
 
-	public String getExhibition_Explain() {
-		return exhibition_Explain;
+	public String getExhibitionExplain() {
+		return exhibitionExplain;
 	}
 
-	public void setExhibition_Explain(String exhibition_Explain) {
-		this.exhibition_Explain = exhibition_Explain;
+	public void setExhibitionExplain(String exhibitionExplain) {
+		this.exhibitionExplain = exhibitionExplain;
 	}
 
-	public String getExhibition_Banner() {
-		return exhibition_Banner;
+	public String getExhibitionBanner() {
+		return exhibitionBanner;
 	}
 
-	public void setExhibition_Banner(String exhibition_Banner) {
-		this.exhibition_Banner = exhibition_Banner;
+	public void setExhibitionBanner(String exhibitionBanner) {
+		this.exhibitionBanner = exhibitionBanner;
 	}
+	
+	
+
+	
 	
 	
 	
