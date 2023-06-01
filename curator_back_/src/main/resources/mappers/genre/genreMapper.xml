@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<select id="GenreList" resultMap="genre">
-		SELECT * FROM genre WHERE genre_seq=#{genreSeq}
+		SELECT * FROM genre ORDER BY genreSeq DESC
 	</select>
 
 	
