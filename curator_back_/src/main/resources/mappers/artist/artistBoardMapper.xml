@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.artist.ArtistMapper">
+
+	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
+		<id property="artistSeq" column="artist_seq"/>
+		<result property="artistName" column="artist_name"/>
+		<result property="artistProfile" column="artist_profile"/>
+		<result property="artistSns" column="artist_sns"/>
+		<result property="artistImage" column="artist_image"/>
+		<result property="artistHit" column="artist_hit"/>
+	</resultMap>
+	
+	<select id="artistInform" resultMap="artist">
+		
+	</select>
+	
+	<select id="artistAllList" resultMap="artist">
+		SELECT * FROM artist ORDER BY artist_seq DESC
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
