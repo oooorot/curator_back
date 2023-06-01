@@ -3,6 +3,8 @@ package com.web.root.artist.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.post.dto.PostDTO;
@@ -17,5 +19,12 @@ public interface ArtistService {
 	
 	public List<PostDTO> ArtistView(int artistSeq);
 	
-	public void artistUpdate(Map<String, Object> map);
+	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile);
+	
+	public int artistUpdate(Map<String, Object> map);
+	
+	public String fileProcess(ArtistDTO dto, MultipartFile multipartFile);
+
+	
+	
 }

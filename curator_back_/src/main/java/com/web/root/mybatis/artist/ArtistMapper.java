@@ -16,6 +16,13 @@ public interface ArtistMapper {
 	public List<PostDTO> ArtistView(int artistSeq);
 
 	public BookmarkDTO bookmark(MemberDTO memDTO, ArtistDTO artDTO);
+	
+	public int artistUpdate(ArtistDTO dto);
+	
+	public int ArtistWrite(ArtistDTO dto);
+	
+	public int saveData(ArtistDTO dto);
+
 
 	
 }
