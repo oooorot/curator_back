@@ -13,8 +13,47 @@
 		<result property="purDate" column="pur_date" />
 	</resultMap>
 	
+	<resultMap type="com.web.root.service.dto.ServiceDTO" id="help">
+		<id property="helpSeq" column="help_seq" />
+		<result property="memberSeq" column="member_seq" />
+		<result property="helpTitle" column="help_title" />
+		<result property="helpContent" column="help_content" />
+		<result property="helpDate" column="help_date" />
+	</resultMap>
+
+	<resultMap type="com.web.root.reply.dto.ReplyDTO" id="helpReply">
+		<id property="helpSeq" column="help_seq"/>
+		<result property="memberSeq" column="member_seq" />	
+		<result property="helpTitle" column="help_title" />	
+		<result property="helpContent" column="help_content" />	
+		<result property="helpDate" column="help_date" />	
+		<result property="replySeq" column="reply_seq" />	
+		<result property="replyTitle" column="reply_title" />	
+		<result property="replyContent" column="reply_content" />	
+		<result property="replyDate" column="reply_date" />	
+	</resultMap>
+	
 	<select id="purchaseProduct" resultMap="purchase">
 		SELECT * FROM purchase WHERE member_seq=#{memberSeq}
 	</select>
-
+	
+	<select id="customerHelpList" resultMap="help">
+		SELECT help_seq FROM help WHERE member_seq=#{memberSeq}
+	</select>
+	
+	<select id="customerReplyList" resultMap="helpReply">
+		SELECT * FROM reply WHERE member_seq=#{memberSeq} AND help_seq=#{helpSeq}
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@
 	</resultMap>
 
 	<select id="PostView" resultMap="post">
-		SELECT * FROM genre WHERE post_seq=#{postSeq}
+		SELECT * FROM post WHERE post_seq=#{postSeq}
 	</select>
 	
 	<insert id="saveData">
