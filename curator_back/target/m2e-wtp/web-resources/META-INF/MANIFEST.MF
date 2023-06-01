@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Administrator
 Build-Jdk: 11.0.19
+=======
+Built-By: orot
+Build-Jdk: 11.0.18
+>>>>>>> branch 'master' of https://github.com/leejunsam/curator_back-1.git
 Created-By: Maven Integration for Eclipse
 
