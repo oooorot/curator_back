@@ -1,12 +1,14 @@
 package com.web.root.commission.dto;
 
+import java.sql.Timestamp;
+
 public class CommissionPlusDTO {
 
-	private int memberSeq;
+	private int commSeq;
 	private String commTitle;
 	private String commContent;
 	private String commImage;
-	private String memberName;
+	private Timestamp commDate;
 	
 	//dd
 	
