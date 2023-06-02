@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artist.service.ArtistService;
-import com.web.root.post.dto.PostDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -30,21 +30,20 @@ public class ArtistController {
 	}
 	
 	// 작가 조회  
-	@GetMapping(value = "artistView", produces = "application/json; charset=utf8")
+	@GetMapping(value = "artistInform", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public PostDTO PostView(@RequestParam("artistSeq") int artistSeq) {
-		return service.ArtistView(artistSeq);
+	public ArtistDTO artistInform(@RequestParam("artistSeq") int artistSeq) {
+		return service.artistInform(artistSeq);
 	}
 	
 	
-	
-	// 북마크 등록?
+	// 북마크 등록
 	@PostMapping(value="artistBookmark", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public void artistBookmark(@RequestParam Map<String, Object> map){
-		service.artistBookmark(map);
+	public int artistBookmark(@RequestBody Map<String, Object> map){
+		return service.artistBookmark(map);
 	}
 	
-		
+	
 
 }

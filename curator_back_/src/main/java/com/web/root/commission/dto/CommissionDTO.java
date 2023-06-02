@@ -9,22 +9,20 @@ public class CommissionDTO {
 	private int memberSeq;
 	private String commTitle;
 	private String commContent;
-	private String commImage;
 	private Timestamp commDate;
 	
 	public CommissionDTO() {
 		super();
 	}
-	
+
 	public CommissionDTO(int commSeq, int artistSeq, int memberSeq, String commTitle, String commContent,
-			String commImage, Timestamp commDate) {
+			Timestamp commDate) {
 		super();
 		this.commSeq = commSeq;
 		this.artistSeq = artistSeq;
 		this.memberSeq = memberSeq;
 		this.commTitle = commTitle;
 		this.commContent = commContent;
-		this.commImage = commImage;
 		this.commDate = commDate;
 	}
 
@@ -68,14 +66,6 @@ public class CommissionDTO {
 		this.commContent = commContent;
 	}
 
-	public String getCommImage() {
-		return commImage;
-	}
-
-	public void setCommImage(String commImage) {
-		this.commImage = commImage;
-	}
-
 	public Timestamp getCommDate() {
 		return commDate;
 	}
@@ -83,7 +73,6 @@ public class CommissionDTO {
 	public void setCommDate(Timestamp commDate) {
 		this.commDate = commDate;
 	}
-	
 	
 	
 	

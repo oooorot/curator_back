@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
-import com.web.root.post.dto.PostDTO;
 
 @Service
 public class ArtistServiceImpl implements ArtistService{
@@ -25,24 +24,25 @@ public class ArtistServiceImpl implements ArtistService{
 	}
 
 	@Override
-	public PostDTO ArtistView(int artistSeq) {
-		PostDTO dto = mapper.ArtistView(artistSeq);		
+	public ArtistDTO artistInform(int artistSeq) {
+		ArtistDTO dto = mapper.artistInform(artistSeq);		
 		return dto;
 	}
 
 	@Override
 	public int artistBookmark(Map<String, Object> map) { 
-		int res = 0;
+		int res= 0;
 		try {
 			BookmarkDTO dto = new BookmarkDTO();
-			dto.setMarkSeq(Integer.parseInt(map.get("setMarkSeq").toString()));
-			dto.setMemberSeq(Integer.parseInt(map.get("setMemberSeq").toString()));
-			dto.setArtistSeq(Integer.parseInt(map.get("setAritstSeq").toString()));
+			dto.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+			dto.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
 			res = mapper.artistBookmark(dto);		
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
 		return res;
 	}	
+	
+
 	
 }

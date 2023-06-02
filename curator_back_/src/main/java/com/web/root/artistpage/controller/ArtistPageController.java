@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artistpage.service.ArtistPageService;
 import com.web.root.commission.dto.CommissionDTO;
-import com.web.root.member.dto.MemberDTO;
 import com.web.root.post.dto.PostDTO;
 
 @RestController
@@ -34,7 +34,7 @@ public class ArtistPageController {
 	// 작가회원정보
 	@PostMapping(value="artistMemberInfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public MemberDTO artistMemberInfo(@RequestBody Map<String, Object> map) {
+	public ArtistDTO artistMemberInfo(@RequestBody Map<String, Object> map) {
 		return artistPageService.artistMemberInfo(map);
 	}
 	// 작가회원정보 수정

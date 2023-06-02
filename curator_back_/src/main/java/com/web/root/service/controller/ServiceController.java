@@ -39,18 +39,18 @@ public class ServiceController {
 	public ServiceDTO helpView(@RequestParam("helpSeq") int helpSeq ) {
 		return service.helpView(helpSeq);
 	}
-	// 상담 게시글 등록 int res
+	// 상담 게시글 등록
 	@PostMapping(value="helpWrite", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int helpWrite(@RequestBody Map<String, Object> map) {
 		return service.helpWrite(map);
 	}
 	
-	// 수정할 글 불러오기 // helpSeq로 dto 요청
+	// 수정할 글 불러오기
 	@GetMapping(value="updateHelpView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ServiceDTO updateView(@RequestParam("helpSeq") int helpSeq ) {
-		return service.updateView(helpSeq);
+	public ServiceDTO updateHelpView(@RequestParam("helpSeq") int helpSeq ) {
+		return service.updateHelpView(helpSeq);
 	}
 	
 	//상담 게시글 수정 

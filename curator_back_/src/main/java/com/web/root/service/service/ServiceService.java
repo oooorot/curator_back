@@ -13,7 +13,7 @@ public interface ServiceService {
 	
 	public int helpWrite(Map<String, Object> map);
 	
-	public ServiceDTO updateView(int helpSeq);
+	public ServiceDTO updateHelpView(int helpSeq);
 	
 	public int helpUpdate(Map<String, Object> map);
 	
