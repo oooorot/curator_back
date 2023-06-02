@@ -9,6 +9,8 @@ public interface ServiceService {
 
 	public List<ServiceDTO> helpAllList();
 	
+	public int helpWritre(Map<String, Object> map);
+	
 	public ServiceDTO helpView(int helpSeq);
 	
 	public int helpWrite(Map<String, Object> map);

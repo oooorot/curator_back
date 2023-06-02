@@ -23,6 +23,11 @@ public class ServiceServiceImpl implements ServiceService{
 		return list;
 	}
 	
+	@Override
+	public int helpWritre(Map<String, Object> map) {
+		int res = mapper.helpWrite(map);
+		return res;
+	}
 	
 
 	@Override
