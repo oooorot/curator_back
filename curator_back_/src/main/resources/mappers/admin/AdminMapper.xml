@@ -15,8 +15,31 @@
 		<result property="memberDate" column="member_date"/>
 	</resultMap>
 	
-	<select id="AdminCustomerList" resultMap="member">
+	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
+		<id property="artistSeq" column="artist_seq"/>
+		<result property="artistName" column="artist_name"/>
+		<result property="artistProfile" column="artist_profile"/>
+		<result property="artistSns" column="artist_sns"/>
+		<result property="artistImage" column="artist_image"/>
+		<result property="artistHit" column="artist_hit"/>
+	</resultMap>
+	
+	<select id="adminCustomerList" resultMap="member">
 		SELECT member_seq,member_email,member_nickname,member_name,member_phone,member_addr,member_grade,member_date FROM member
+	</select>
+	
+	<select id="adminArtistList" resultMap="artist">
+		SELECT artist_seq,artist_name,artist_profile,artist_sns,artist_image,artist_hit FROM artist
 	</select>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+

@@ -3,16 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.artistpage.ArtistPageMapper">
-	<resultMap type="com.web.root.member.dto.MemberDTO" id="member">
-		<result property="memberSeq" column="member_seq"/>
-		<result property="memberEmail" column="member_email"/>
-		<result property="memberPw" column="member_pw"/>
-		<result property="memberNickname" column="member_nickname"/>
-		<result property="memberName" column="member_name"/>
-		<result property="memberPhone" column="member_phone"/>
-		<result property="memberAddr" column="member_addr"/>
-		<result property="memberGrade" column="member_grade"/>
-		<result property="memberDate" column="member_date"/>
+	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
+		<id property="artistSeq" column="artist_seq"/>
+		<result property="artistName" column="artist_name"/>
+		<result property="artistProfile" column="artist_profile"/>
+		<result property="artistSns" column="artist_sns"/>
+		<result property="artistImage" column="artist_image"/>
+		<result property="artistHit" column="artist_hit"/>
 	</resultMap>
 
 	<resultMap type="com.web.root.post.dto.PostDTO" id="post">
@@ -36,7 +33,7 @@
 		<result property="commDate" column="comm_date"/>
 	</resultMap>
    
-   	<select id="artistMemberInfo" resultMap="member">
+   	<select id="artistMemberInfo" resultMap="artist">
 		SELECT * FROM member WHERE member_seq=#{memberSeq}
 	</select>
 	
@@ -48,15 +45,15 @@
 		DELETE member WHERE member_seq=#{memberSeq} 
 	</delete>
    
-   <select id="artistPostList" resultMap="post">
-      SELECT * FROM post WHERE artist_seq=#{artistSeq}
-   </select>
+    <select id="artistPostList" resultMap="post">
+       SELECT * FROM post WHERE artist_seq=#{artistSeq}
+    </select>
+    
+    <insert id="artistPostUpdate">
+       INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
+    </insert>
    
-   <insert id="artistPostUpdate">
-      INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
-   </insert>
-   
-   <select id="PostCommissionList" resultMap="comm">
-      SELECT * FROM commission WHERE artist_seq=#{artistSeq}	
-   </select>
+    <select id="PostCommissionList" resultMap="comm">
+       SELECT * FROM commission WHERE artist_seq=#{artistSeq}	
+    </select>
 </mapper>

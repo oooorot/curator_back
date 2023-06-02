@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.commission.dto.CommissionDTO;
-import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.post.dto.PostDTO;
 
@@ -25,8 +25,8 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	
 	// 작가회원정보
 	@Override
-	public MemberDTO artistMemberInfo(Map<String, Object> map) {
-		MemberDTO memberDTO = artistPageMapper.artistMemberInfo(Integer.parseInt(map.get("MemberSeq").toString()));
+	public ArtistDTO artistMemberInfo(Map<String, Object> map) {
+		ArtistDTO memberDTO = artistPageMapper.artistMemberInfo(Integer.parseInt(map.get("artistSeq").toString()));
 		return memberDTO;  
 	}
 	
