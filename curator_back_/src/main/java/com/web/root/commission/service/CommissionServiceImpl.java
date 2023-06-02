@@ -1,18 +1,13 @@
 package com.web.root.commission.service;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.web.root.artist.dto.ArtistDTO;
+
 import com.web.root.commission.dto.CommissionDTO;
-import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.commission.CommissionMapper;
 
 @Service
@@ -20,7 +15,6 @@ public class CommissionServiceImpl implements CommissionService{
 
 	@Autowired
 	private CommissionMapper mapper;
-
 	
 	@Override
 	public List<CommissionDTO> commAllList() {
@@ -29,65 +23,65 @@ public class CommissionServiceImpl implements CommissionService{
 	}
 
 	@Override
-	public int commissionWrite(CommissionDTO dto, MultipartFile multipartFile) {
-			
-			if (multipartFile.getSize() != 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar calendar = Calendar.getInstance();
-			String sysFileName = sdf.format(calendar.getTime());
-			sysFileName += multipartFile.getOriginalFilename();
-			
-			dto.setCommImage(sysFileName);
-			
-			File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-		}
-	//	comDTO.setCommImage(map.get("commImage").toString());
+	public CommissionDTO commissionView(int commSeq) {
+		CommissionDTO dto = mapper.commissionView(commSeq);
+		return dto;
+	}
 
-		int res = mapper.commissionWrite(dto);
+
+	@Override
+	public int commissionWrite(CommissionDTO dto) {
+		
+		int res = 0;
+		try {
+			CommissionDTO commDTO = new CommissionDTO();
+			commDTO.setArtistSeq(dto.getArtistSeq());
+			commDTO.setMemberSeq(dto.getMemberSeq());
+			commDTO.setCommTitle(dto.getCommTitle());
+			commDTO.setCommContent(dto.getCommContent());
+			res = mapper.commissionWrite(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 		return res;
 	}
 	
 	
+	@Override
+	public CommissionDTO updateView(int commSeq) {
+		CommissionDTO dto = mapper.updateView(commSeq);
+		return dto;
+	}
+	
 
 	@Override
-	public void commissionUpdate(Map<String, Object> map) {
-		
-//		artDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-//		memDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-//		comDTO.setCommTitle(map.get("commTitle").toString());
-//		comDTO.setCommContent(map.get("commContent").toString());
-		
-		
+	public int commissionUpdate(CommissionDTO dto) {
+		updateView(dto.getCommSeq());
+		try {
+			if(dto.getCommTitle()!=null&dto.getCommContent()!=null) {
+				return mapper.commissionUpdate(dto);
+			} else
+				return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+
 	}
 
-//	@Override
-//	public String saveImageFile(CommissionDTO dto, MultipartFile multipartFile) {
-//		if (multipartFile.getSize() != 0) {
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-//			Calendar calendar = Calendar.getInstance();
-//			String sysFileName = sdf.format(calendar.getTime());
-//			sysFileName += multipartFile.getOriginalFilename();
-//			
-//			dto.setCommImage(sysFileName);
-//			
-//			File saveFile = new File("C://testImage" + File.separator + sysFileName);
-//			
-//			try {
-//				multipartFile.transferTo(saveFile);
-//			} catch (Exception e) {
-//				e.printStackTrace();			
-//			}
-//			mapper.saveImageFile(dto);
-//		
-//		}
-//		return "success";
-//
-//	}
+	@Override
+	public int commissionDelete(int commSeq) {
+		try {
+			int res = mapper.commissionDelete(commSeq);
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	
+	
+
+
 }
