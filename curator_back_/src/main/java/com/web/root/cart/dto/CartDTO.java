@@ -1,34 +1,48 @@
+
+
+
 package com.web.root.cart.dto;
 
 public class CartDTO {
-
+	
+	
 	private int cartSeq;
-   	private int postSeq;
-    private int memberSeq;
-   
-    public CartDTO() {}
+	   private int postSeq;
+	   private int memberSeq;
+	   
+	   public CartDTO() {
+	      super();
+	   }
 
-    public int getCartSeq() {
-       return cartSeq;
-    }
+	   public CartDTO(int cartSeq, int postSeq, int memberSeq) {
+	      super();
+	      this.cartSeq = cartSeq;
+	      this.postSeq = postSeq;
+	      this.memberSeq = memberSeq;
+	   }
 
-    public void setCartSeq(int cartSeq) {
-       this.cartSeq = cartSeq;
-    }
+	   public int getCartSeq() {
+	      return cartSeq;
+	   }
 
-    public int getPostSeq() {
-       return postSeq;
-    }
+	   public void setCartSeq(int cartSeq) {
+	      this.cartSeq = cartSeq;
+	   }
 
-    public void setPostSeq(int postSeq) {
-       this.postSeq = postSeq;
-    }
+	   public int getPostSeq() {
+	      return postSeq;
+	   }
 
-    public int getMemberSeq() {
-       return memberSeq;
-    }
+	   public void setPostSeq(int postSeq) {
+	      this.postSeq = postSeq;
+	   }
 
-    public void setMemberSeq(int memberSeq) {
-       this.memberSeq = memberSeq;
-    }
+	   public int getMemberSeq() {
+	      return memberSeq;
+	   }
+
+	   public void setMemberSeq(int memberSeq) {
+	      this.memberSeq = memberSeq;
+	   }
+
 }

@@ -17,7 +17,13 @@ public interface PostService {
 	
 	public int postWrite(PostDTO dto, MultipartFile multipartFile);
 	
+	public int postCart(Map<String, Object> map);
+	
+	public int postDelete(int postSeq);
+	
+	public int postUpdate(PostDTO dto, MultipartFile multipartFile);
 
+	public void deleteImage(String originalFileName);
 
 	
 
