@@ -34,8 +34,8 @@ public class GenreController {
 	
 	@GetMapping(value = "GenreView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<PostDTO> PostView(@RequestParam("genreSeq") int genreSeq ) {
-		return service.GenreView(genreSeq);
+	public List<PostDTO> PostView() {
+		return service.GenreView();
 	}
 
 }

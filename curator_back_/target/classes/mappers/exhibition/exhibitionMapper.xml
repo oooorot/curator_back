@@ -20,7 +20,7 @@
 		SELECT * FROM exhibition WHERE exhibition_seq=#{exhibitionSeq}
 	</select>
 	
-	<insert id="saveData">
+	<insert id="exhibitionWrite">
 		INSERT INTO exhibition VALUES(exhibition_seq.NEXTVAL, #{exhibitionName}, CURRENT_DATE, #{exhibitionExplain}, #{exhibitionBanner})
 	</insert>
 

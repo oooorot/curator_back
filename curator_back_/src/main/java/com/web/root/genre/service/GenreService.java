@@ -14,7 +14,7 @@ public interface GenreService {
 	
 	public List<GenreDTO> GenreList();
 	
-	public List<PostDTO> GenreView(int genreSeq);
+	public List<PostDTO> GenreView();
 
 
 }
