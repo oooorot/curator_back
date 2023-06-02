@@ -8,8 +8,14 @@ public interface CommissionMapper {
 
 	public List<CommissionDTO> commAllList();
 	
-	public int commissionWrite(CommissionDTO dto);
+	public CommissionDTO commissionView(int commSeq);
 	
-	public int saveImageFile(CommissionDTO dto);
+	public int commissionWrite(CommissionDTO CommDTO);
+	
+	public CommissionDTO updateView(int commSeq);
+	
+	public int commissionUpdate(CommissionDTO dto);
+	
+	public int commissionDelete(int commSeq);
 	
 }
