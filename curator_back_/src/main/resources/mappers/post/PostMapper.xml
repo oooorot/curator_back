@@ -23,6 +23,17 @@
 		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
 	</insert>
 
+	<insert id="postCart">
+		INSERT INTO cart VALUES(cart_seq.NEXTVAL, #{postSeq}, #{memberSeq})
+	</insert>
+	
+	<delete id="postDelete">
+		DELETE post WHERE post_seq=#{postSeq} 
+	</delete>
+	
+	<update id="postUpdate">
+		UPDATE post SET post_title=#{postTitle}, post_summary=#{postSummary}, post_content=#{postContent}, post_image_name=#{postImageName}, post_price=#{postPrice}, CURRENT_DATE
+	</update>
 	
 
 </mapper>

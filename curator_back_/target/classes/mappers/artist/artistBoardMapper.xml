@@ -39,7 +39,7 @@
 	</select>
 	
 	<select id="ArtistView" resultMap="post">
-		SELECT * FROM post WHERE artist_seq=#{genreSeq}
+		SELECT * FROM post WHERE artist_seq=#{artistSeq}
 	</select>
 	
 	<insert id="bookmark">
