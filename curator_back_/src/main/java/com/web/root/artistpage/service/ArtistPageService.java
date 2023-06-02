@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.commission.dto.CommissionDTO;
-import com.web.root.member.dto.MemberDTO;
 import com.web.root.post.dto.PostDTO;
 
 public interface ArtistPageService {
 	
 	// 작가회원정보
-	public MemberDTO artistMemberInfo(Map<String, Object> map);
+	public ArtistDTO artistMemberInfo(Map<String, Object> map);
 	
 	// 작가회원정보 수정
 	public int artistMemberUpdate(Map<String, Object> map);

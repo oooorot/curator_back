@@ -25,6 +25,12 @@
 		<result property="purDate" column="pur_date" />
 	</resultMap>
 	
+	<resultMap type="com.web.root.bookmark.dto.BookmarkDTO" id="bookmark">
+		<id property="markSeq" column="mark_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+	</resultMap>
+	
 	<resultMap type="com.web.root.service.dto.ServiceDTO" id="help">
 		<result property="helpSeq" column="help_seq" />
 		<result property="memberSeq" column="member_seq" />
@@ -32,14 +38,14 @@
 		<result property="helpContent" column="help_content" />
 		<result property="helpDate" column="help_date" />
 	</resultMap>
-
+	
 	<resultMap type="com.web.root.reply.dto.ReplyDTO" id="reply">
-		<id property="replySeq" column="reply_seq" />	
+		<id property="replySeq" column="reply_seq"/>
 		<result property="helpSeq" column="help_seq"/>
-		<result property="memberSeq" column="member_seq" />	
-		<result property="replyTitle" column="reply_title" />	
-		<result property="replyContent" column="reply_content" />	
-		<result property="replyDate" column="reply_date" />	
+		<result property="memberSeq" column="member_seq"/>
+		<result property="replyTitle" column="reply_title"/>
+		<result property="replyContent" column="reply_content"/>
+		<result property="replyDate" column="reply_date"/>
 	</resultMap>
 	
 	<select id="memberInfo" resultMap="member">
@@ -54,27 +60,28 @@
 		DELETE member WHERE member_seq=#{memberSeq} 
 	</delete>
 	
+	<select id="cartList" resultMap="cart">
+        SELECT * FROM cart WHERE member_Seq=${memberSeq}
+   	</select>
+   
+   	<delete id="cartDelect">
+   		DELETE FROM cart WHERE mark_seq=#{markSeq}
+   	</delete>
+	
 	<select id="purchaseProduct" resultMap="purchase">
 		SELECT * FROM purchase WHERE member_seq=#{memberSeq}
+	</select>
+	
+	<select id="bookmarkArtistList" resultMap="bookmark">
+		SELECT * FROM bookmark WHERE member_seq=#{memberSeq}
 	</select>
 	
 	<select id="customerHelpList" resultMap="help">
 		SELECT * FROM help WHERE member_seq=#{memberSeq}
 	</select>
 	
-	<select id="customerReplyList" resultMap="Reply">
-		SELECT * FROM reply WHERE help_seq=#{helpSeq} AND member_seq=#{memberSeq}
+	<select id="customerReply" resultMap="reply">
+		SELECT * FROM reply WHERE member_seq=#{memberSeq} AND help_seq=#{helpSeq} AND reply_seq=#{replySeq}
 	</select>
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-

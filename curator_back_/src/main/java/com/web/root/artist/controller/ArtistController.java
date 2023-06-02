@@ -36,13 +36,11 @@ public class ArtistController {
 		return service.ArtistView(artistSeq);
 	}
 	
-	
-	
-	// 북마크 등록?
+	// 북마크 등록
 	@PostMapping(value="artistBookmark", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public void artistBookmark(@RequestParam Map<String, Object> map){
-		service.artistBookmark(map);
+	public int artistBookmark(@RequestParam Map<String, Object> map){
+		return service.artistBookmark(map);
 	}
 	
 		

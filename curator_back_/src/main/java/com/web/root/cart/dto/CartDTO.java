@@ -6,7 +6,6 @@ package com.web.root.cart.dto;
 public class CartDTO {
 	
 	
-	
 	private int cartSeq;
 	   private int postSeq;
 	   private int memberSeq;
