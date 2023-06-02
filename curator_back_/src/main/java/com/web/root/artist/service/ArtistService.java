@@ -19,11 +19,11 @@ public interface ArtistService {
 	
 	public List<PostDTO> ArtistView(int artistSeq);
 	
-	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile);
+	public int artistUpdate(ArtistDTO dto, MultipartFile multipartFile);
 	
-	public int artistUpdate(Map<String, Object> map);
+//	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile);
 	
-	public String fileProcess(ArtistDTO dto, MultipartFile multipartFile);
+	public void deleteImage(String originalFileName);
 
 	
 	

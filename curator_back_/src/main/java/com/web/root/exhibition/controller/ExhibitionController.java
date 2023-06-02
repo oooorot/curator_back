@@ -43,14 +43,11 @@ public class ExhibitionController {
 		return service.ExhibitionView(exhibitionSeq);
 	}
 	
-	@PostMapping(value = "exFile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-	@ResponseBody
-	public String fileTest(@RequestPart(value = "dto") ExhibitionDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		System.out.println(dto.getExhibitionBanner());
-		System.out.println(multipartFile.getOriginalFilename());
-		service.fileProcess(dto, multipartFile);
-		
-		return "success";
-	}
+//	@PostMapping(value = "ExhibitionWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+//	@ResponseBody
+//	public String exhibitionWrite(@RequestPart(value = "dto") ExhibitionDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
+//		service.exhibitionWrite(dto, multipartFile);
+//		return "success";
+//	}
 
 }

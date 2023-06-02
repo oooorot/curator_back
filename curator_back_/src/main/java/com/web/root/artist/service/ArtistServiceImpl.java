@@ -45,44 +45,58 @@ public class ArtistServiceImpl implements ArtistService{
 		return dto;	
 	}
 	
-	@Override
-	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile)
-	{
-		if (multipartFile.getSize() != 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar calendar = Calendar.getInstance();
-			String sysFileName = sdf.format(calendar.getTime());
-			sysFileName += multipartFile.getOriginalFilename();
-			
-			dto.setArtistImage(sysFileName);
-			
-			File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-		}
-		
-		int res = mapper.ArtistWrite(dto);
-		return res;
-	}
+//	@Override
+//	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile) {
+//			if (multipartFile.getSize() != 0) {
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+//				Calendar calendar = Calendar.getInstance();
+//				String sysFileName = sdf.format(calendar.getTime());
+//				sysFileName += multipartFile.getOriginalFilename();
+//				
+//				dto.setArtistImage(sysFileName);
+//				
+//				File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+//				
+//				try {
+//					multipartFile.transferTo(saveFile);
+//				} catch (Exception e) {
+//					e.printStackTrace();			
+//				}
+//		}
+//		
+//		int res = mapper.ArtistWrite(dto);
+//		return res;
+//	}
 
 	@Override
-	public int artistUpdate(Map<String, Object> map) {
-		ArtistDTO dto = new ArtistDTO();
-		dto.setArtistName(map.get("artistName").toString());
-		dto.setArtistProfile(map.get("artistProfile").toString());
-		dto.setArtistSns(map.get("artistSns").toString());
-		dto.setArtistImage(map.get("artistImage").toString());
-		dto.setArtistHit(Integer.parseInt(map.get("artistHit").toString()));
-		int res = mapper.artistUpdate(dto);
-		if(res != 0) {
-			
-		}
-		return 1;
-	}	
+	public int artistUpdate(ArtistDTO dto, MultipartFile multipartFile) {
+		
+		if(multipartFile.getSize() != 0) {
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+	         Calendar calendar = Calendar.getInstance();
+	         String sysFileName = sdf.format(calendar.getTime());
+	         sysFileName += multipartFile.getOriginalFilename();
+	         deleteImage(sysFileName);
+	         dto.setArtistImage(sysFileName);
+	         
+	         File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+	         
+	         try {
+	            multipartFile.transferTo(saveFile);
+	         } catch (Exception e) {
+	            e.printStackTrace();         
+	         }
+	      }
+	      int res = mapper.artistUpdate(dto);
+	      return res;
+	   }
+	
+	@Override
+	   public void deleteImage(String originalFileName) {
+	      File deleteFile = new File("C://PleaseImage" + File.separator + originalFileName);
+	      deleteFile.delete();
+	   }
+
 	
 	@Override
 	public List<PostDTO> ArtistView(int artistSeq) {
@@ -90,31 +104,6 @@ public class ArtistServiceImpl implements ArtistService{
 		System.out.println(list);
 		System.out.println(artistSeq);
 		return list;
-	}
-	
-	@Override
-	public String fileProcess(ArtistDTO dto, MultipartFile multipartFile) {
-		if (multipartFile.getSize() != 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar calendar = Calendar.getInstance();
-			String sysFileName = sdf.format(calendar.getTime());
-			sysFileName += multipartFile.getOriginalFilename();
-			
-			dto.setArtistImage(sysFileName);
-			
-			File saveFile = new File("C:\\sts-bundle\\Spring-image" + File.separator + sysFileName);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-
-			mapper.saveData(dto);
-		
-		}
-		return "success";
-
 	}
 	
 	

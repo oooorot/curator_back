@@ -27,8 +27,8 @@ public class GenreServiceImpl implements GenreService {
 	}
 	
 	@Override
-	public List<PostDTO> GenreView(int genreSeq) {
-		List<PostDTO> dto = mapper.GenreView(genreSeq);
+	public List<PostDTO> GenreView() {
+		List<PostDTO> dto = mapper.GenreView();
 		return dto;
 	}
 

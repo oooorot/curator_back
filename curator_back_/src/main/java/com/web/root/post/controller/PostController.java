@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.post.dto.PostDTO;
 import com.web.root.post.service.PostService;
 
@@ -34,14 +35,6 @@ public class PostController {
 		return service.PostView(postSeq);
 	}
 	
-	@PostMapping(value = "File", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-	@ResponseBody
-	public String fileTest(@RequestPart(value = "dto") PostDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		System.out.println(dto.getPostImageName());
-		System.out.println(multipartFile.getOriginalFilename());
-		service.fileProcess(dto, multipartFile);
-		
-		return "success";
-	}
+
 
 }

@@ -36,30 +36,27 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		return dto;
 	}
 	
-	@Override
-	public String fileProcess(ExhibitionDTO dto, MultipartFile multipartFile) {
-		if (multipartFile.getSize() != 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar calendar = Calendar.getInstance();
-			String sysFileName = sdf.format(calendar.getTime());
-			sysFileName += multipartFile.getOriginalFilename();
-			
-			dto.setExhibitionBanner(sysFileName);
-			
-			File saveFile = new File("C:\\sts-bundle\\Spring-image" + File.separator + sysFileName);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-			 
-		
-			mapper.saveData(dto);
-		
-		}
-		return "success";
-
-	}
+//	@Override
+//	public int exhibitionWrite(ExhibitionDTO dto, MultipartFile multipartFile) {
+//			if (multipartFile.getSize() != 0) {
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+//				Calendar calendar = Calendar.getInstance();
+//				String sysFileName = sdf.format(calendar.getTime());
+//				sysFileName += multipartFile.getOriginalFilename();
+//				
+//				dto.setExhibitionBanner(sysFileName);
+//						
+//				File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+//				
+//				try {
+//					multipartFile.transferTo(saveFile);
+//				} catch (Exception e) {
+//					e.printStackTrace();			
+//				}
+//		}
+//		
+//		int res = mapper.exhibitionWrite(dto);
+//		return res;
+//	}
 
 }

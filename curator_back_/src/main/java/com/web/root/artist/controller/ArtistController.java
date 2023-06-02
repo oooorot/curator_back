@@ -28,11 +28,6 @@ public class ArtistController {
 	@Autowired
 	private ArtistService service;
 	
-	@GetMapping(value="artistInform", produces="application/json; charset=utf8")
-	@ResponseBody
-	public ArtistDTO artistInform(@RequestParam Map<String, Object> map) {
-		return service.artistInform(map);
-	}
 	
 	@GetMapping(value="artistAllList", produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -53,25 +48,18 @@ public class ArtistController {
 		return service.ArtistView(artistSeq);
 	}
 	
-	@PostMapping(value = "ArtistWrite", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public int ArtistWrite(ArtistDTO dto, MultipartFile multipartFile) {
-		return service.ArtistWrite(dto, multipartFile);
-	}
 		
 	@PutMapping(value = "ArtistUpdate", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int artistUpdate(@RequestBody Map<String, Object> map) {
-		return service.artistUpdate(map);
+	public int artistUpdate(ArtistDTO dto, MultipartFile multipartFile) {
+		return service.artistUpdate(dto, multipartFile);
 	}
 	
-	@PostMapping(value = "Artistfile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-	@ResponseBody
-	public String fileTest(@RequestPart(value = "dto") ArtistDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		System.out.println(dto.getArtistImage());
-		System.out.println(multipartFile.getOriginalFilename());
-		service.fileProcess(dto, multipartFile);
-		
-		return "success";
-	}
+//	@PostMapping(value = "ArtistWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+//	@ResponseBody
+//	public String ArtistWrite(@RequestPart(value = "dto") ArtistDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
+//		service.ArtistWrite(dto, multipartFile);
+//		
+//		return "success";
+//	}
 }
