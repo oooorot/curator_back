@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
 import com.web.root.member.dto.MemberDTO;
+import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 @RestController
@@ -47,6 +50,20 @@ public class CustomerController {
 		return customerService.memberDelete(MemberSeq);
 	}
 	
+	// 장바구니
+	@GetMapping(value="cartList", produces = "application/json; charset=utf8")
+    @ResponseBody
+    public List<CartDTO> cartList(@RequestParam("memberSeq") int memberSeq) {
+       return customerService.cartList(memberSeq);
+    }
+	
+	// 장바구니 삭제
+	@DeleteMapping(value="cartDelect", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public int cartDelect(@RequestParam("carSeq") int carSeq) {
+		return customerService.cartDelect(carSeq);
+	}
+	
 	// 구매내역
 	@GetMapping(value="purchaseProduct", produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -54,10 +71,12 @@ public class CustomerController {
 		return customerService.purchaseProduct(map); 
 	}
 
-//	// 즐겨찾는 작가
-//	@PostMapping(value="bookmarkProduct", produces = "application/json; charset=utf-8")
-//	@ResponseBody 
-//	public 
+	// 즐겨찾기(북마크 등록한 작가)
+	@GetMapping(value="bookmarkArtistList", produces = "application/json; charset=utf-8")
+	@ResponseBody 
+	public List<BookmarkDTO> bookmarkArtistList(@RequestBody Map<String, Object> map){
+		return customerService.bookmarkArtistList(map);
+	}
 	
 	// 나의문의
 	@GetMapping(value="customerHelpList", produces = "application/json; charset=utf-8")
@@ -66,10 +85,10 @@ public class CustomerController {
 		 return customerService.customerHelpList(memberSeq);
 	 }
 	
-	// 답변
+	// 답변보기
 	@PutMapping(value="cutomerReply", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int customerReply(@RequestBody Map<String, Object> map){
+	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map){
 		return customerService.customerReply(map);
 	}
 }

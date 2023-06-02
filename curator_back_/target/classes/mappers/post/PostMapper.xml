@@ -19,8 +19,8 @@
 		SELECT * FROM post WHERE post_seq=#{postSeq}
 	</select>
 	
-	<insert id="saveData">
-		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postImageName}, #{postPrice}, CURRENT_DATE)
+	<insert id="postWrite">
+		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
 	</insert>
 
 	

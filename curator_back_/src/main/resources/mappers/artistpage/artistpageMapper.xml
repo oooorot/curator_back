@@ -45,15 +45,15 @@
 		DELETE member WHERE member_seq=#{memberSeq} 
 	</delete>
    
-   <select id="artistPostList" resultMap="post">
-      SELECT * FROM post WHERE artist_seq=#{artistSeq}
-   </select>
+    <select id="artistPostList" resultMap="post">
+       SELECT * FROM post WHERE artist_seq=#{artistSeq}
+    </select>
+    
+    <insert id="artistPostUpdate">
+       INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
+    </insert>
    
-   <insert id="artistPostUpdate">
-      INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
-   </insert>
-   
-   <select id="PostCommissionList" resultMap="comm">
-      SELECT * FROM commission WHERE artist_seq=#{artistSeq}	
-   </select>
+    <select id="PostCommissionList" resultMap="comm">
+       SELECT * FROM commission WHERE artist_seq=#{artistSeq}	
+    </select>
 </mapper>

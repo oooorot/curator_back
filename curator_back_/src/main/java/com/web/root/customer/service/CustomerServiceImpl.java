@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
+import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 @Service
@@ -48,12 +51,31 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 		
 	}
+	
+	//장바구니
+	@Override
+    public List<CartDTO> cartList(int memberSeq) {
+       return customerMapper.cartList(memberSeq);
+    }
+
+	// 장바구니 삭제
+	@Override
+	public int cartDelect(int carSeq) {
+		return customerMapper.cartDelect(carSeq);
+	}
 
 	// 구매내역
 	@Override
 	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map) {
 		List<PurchaseDTO> purchaseList = customerMapper.purchaseProduct(map);
 		return purchaseList;
+	}
+	
+	// 즐겨찾기
+	@Override
+	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map) {
+		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+		return customerMapper.bookmarkArtistList(memberSeq);
 	}
 
 	// 나의문의
@@ -62,10 +84,14 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerMapper.customerHelpList(memberSeq);
 	}
 	
-	// 답변
+	// 답변보기
 	@Override
-	public int customerReply(@RequestBody Map<String, Object> map) {
-		return customerMapper.customerReply(map);
+	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map) {
+		ReplyDTO replyDTO = new ReplyDTO();
+		replyDTO.setReplySeq(Integer.parseInt(map.get("replySeq").toString()));
+		replyDTO.setHelpSeq(Integer.parseInt(map.get("helpSeq").toString()));
+		replyDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+		return customerMapper.customerReply(replyDTO);
 	}
 	
 }

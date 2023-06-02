@@ -13,6 +13,10 @@ public class BookmarkDTO {
 		this.artistSeq = artistSeq;
 	}
 
+	public BookmarkDTO() {
+		
+	}
+
 	public int getMarkSeq() {
 		return markSeq;
 	}
