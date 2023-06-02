@@ -26,7 +26,7 @@ public class GenreController {
 	@Autowired
 	private GenreService service;
 	
-	@GetMapping(value = "GenreList", produces = "application/json; charset=utf8")
+	@GetMapping(value = "genreList", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<GenreDTO> GenreList() {
 		return service.GenreList();

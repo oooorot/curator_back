@@ -5,10 +5,38 @@
 <mapper namespace="com.web.root.mybatis.service.ServiceMapper">
 
 	
+<resultMap type="com.web.root.mybatis.service.ServiceMapper" id="service">
+	<id property="helpSeq" column="help_seq"/>
+	<result property="memberSeq" column="member_seq"/>
+	<result property="hepTitle" column="help_title"/>
+	<result property="helpContent" column="help_content"/>
+	<result property="helpDate" column="help_date"/>
+</resultMap>
+
+<select id="helpAllList" resultMap="service">
+	SELECT * FROM help ORDER BY help_seq DESC
+</select>
+
+<select id="helpView" resultMap="service">
+	SELECT * FROM help WHERE help_seq=#{helpSeq}
+</select>
 
 
+<insert id="helpWrite">
+	INSERT INTO help VALUES(help_seq.NEXTVAL, memberSeq, helpTitle, helpContent, CURRENT_DATE)
+</insert>
 
+<select id="updateView" resultMap="service">
+	SELECT * FROM help WHERE help_seq=#{helpSeq}
+</select>
 	
+<update id="helpUpdate">
+	UPDATE help SET help_title=#{helpTitle}, help_Content=#{helpContent} WHERE help_seq=help_seq.NEXTVAL
+</update>
+
+<delete id="helpDelete">
+	DELETE FROM commission WHERE help_seq=#{helpSeq}
+</delete>
 
 </mapper>
 
