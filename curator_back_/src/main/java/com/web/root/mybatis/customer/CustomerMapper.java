@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 public interface CustomerMapper {
@@ -26,6 +25,6 @@ public interface CustomerMapper {
 	public List<ServiceDTO> customerHelpList(int memberSeq);
 	
 	// 답변
-	public List<ReplyDTO> customerReplyList(int helpSeq, int memberSeq);
+	public int customerReply(Map<String, Object> map);
 
 }

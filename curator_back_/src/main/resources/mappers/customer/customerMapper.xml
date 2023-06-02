@@ -32,15 +32,6 @@
 		<result property="helpContent" column="help_content" />
 		<result property="helpDate" column="help_date" />
 	</resultMap>
-
-	<resultMap type="com.web.root.reply.dto.ReplyDTO" id="reply">
-		<id property="replySeq" column="reply_seq" />	
-		<result property="helpSeq" column="help_seq"/>
-		<result property="memberSeq" column="member_seq" />	
-		<result property="replyTitle" column="reply_title" />	
-		<result property="replyContent" column="reply_content" />	
-		<result property="replyDate" column="reply_date" />	
-	</resultMap>
 	
 	<select id="memberInfo" resultMap="member">
 		SELECT * FROM member WHERE member_seq=#{memberSeq}
@@ -62,9 +53,9 @@
 		SELECT * FROM help WHERE member_seq=#{memberSeq}
 	</select>
 	
-	<select id="customerReplyList" resultMap="Reply">
-		SELECT * FROM reply WHERE help_seq=#{helpSeq} AND member_seq=#{memberSeq}
-	</select>
+	<insert id="customerReply">
+		INSERT INTO reply VALUES(reply_seq.NEXTVAL,#{helpSeq},#{memberSeq},#{replyTitle},#{replyContent},CURRENT_DATE)
+	</insert>
 	
 </mapper>
 

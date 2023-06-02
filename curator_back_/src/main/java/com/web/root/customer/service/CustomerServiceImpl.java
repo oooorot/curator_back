@@ -5,11 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
-import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 @Service
@@ -64,8 +64,8 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	// 답변
 	@Override
-	public List<ReplyDTO> customerReplyList(int helpSeq, int memberSeq) {
-		return customerMapper.customerReplyList(helpSeq, memberSeq);
+	public int customerReply(@RequestBody Map<String, Object> map) {
+		return customerMapper.customerReply(map);
 	}
 	
 }

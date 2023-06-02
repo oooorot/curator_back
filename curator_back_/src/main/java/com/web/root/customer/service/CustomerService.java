@@ -3,9 +3,10 @@ package com.web.root.customer.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 public interface CustomerService {
@@ -26,6 +27,6 @@ public interface CustomerService {
 	public List<ServiceDTO> customerHelpList(int memberSeq);
 	
 	// 답변
-	public List<ReplyDTO> customerReplyList(int helpSeq, int memberSeq);
+	public int customerReply(@RequestBody Map<String, Object> map);
 	
 }

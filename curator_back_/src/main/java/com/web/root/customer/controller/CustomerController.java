@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
 import com.web.root.service.dto.ServiceDTO;
 
 @RestController
@@ -54,13 +53,11 @@ public class CustomerController {
 	public List<PurchaseDTO> purchaseProduct(@RequestBody Map<String, Object> map) {
 		return customerService.purchaseProduct(map); 
 	}
-	
 
 //	// 즐겨찾는 작가
 //	@PostMapping(value="bookmarkProduct", produces = "application/json; charset=utf-8")
 //	@ResponseBody 
 //	public 
-
 	
 	// 나의문의
 	@GetMapping(value="customerHelpList", produces = "application/json; charset=utf-8")
@@ -70,10 +67,10 @@ public class CustomerController {
 	 }
 	
 	// 답변
-	@GetMapping(value="cutomerReplyList", produces = "application/json; charset=utf-8")
+	@PutMapping(value="cutomerReply", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<ReplyDTO> customerReplyList(@RequestParam("helpSeq") int helpSeq, @RequestParam("memberSeq") int memberSeq){
-		return customerService.customerReplyList(helpSeq, memberSeq);
+	public int customerReply(@RequestBody Map<String, Object> map){
+		return customerService.customerReply(map);
 	}
 }
 
