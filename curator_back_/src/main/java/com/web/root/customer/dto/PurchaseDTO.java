@@ -1,6 +1,6 @@
 package com.web.root.customer.dto;
 
-public class CustomerDTO {
+public class PurchaseDTO {
 
 	// Field
 	private int purSeq;
@@ -12,7 +12,7 @@ public class CustomerDTO {
 	private String purDate;
 	
 	// Constructor
-	public CustomerDTO() {}
+	public PurchaseDTO() {}
 	
 	// Getter Setter
 	public int getPurSeq() {
