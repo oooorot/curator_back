@@ -13,46 +13,24 @@
 		<result property="artistHit" column="artist_hit"/>
 	</resultMap>
 	
-	<resultMap type="com.web.root.post.dto.PostDTO" id="post">
-		<id property="postSeq" column="post_seq"/>
-		<result property="genreSeq" column="genre_seq"/>
-		<result property="artistSeq" column="artist_seq"/>	
-		<result property="postTitle" column="post_title"/>	
-		<result property="postSummary" column="post_summary"/>	
-		<result property="postImageName" column="post_image_name"/>	
-		<result property="postPrice" column="post_price"/>	
-		<result property="postDate" column="post_date"/>	
-	</resultMap>
-	
 	<resultMap type="com.web.root.bookmark.dto.BookmarkDTO" id="bookmark">
 		<id property="markSeq" column="mark_seq"/>
 		<result property="memberSeq" column="member_seq"/>
 		<result property="artistSeq" column="artist_seq"/>
 	</resultMap>
 	
-	<select id="artistInform" resultMap="artist">
-		
-	</select>
 	
 	<select id="artistAllList" resultMap="artist">
 		SELECT * FROM artist ORDER BY artist_seq DESC
 	</select>
 	
-	<select id="ArtistView" resultMap="post">
-		SELECT * FROM post WHERE artist_seq=#{artistSeq}
+	<select id="artistView" resultMap="artist">
+		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	
-	<insert id="bookmark">
-		Insert INTO bookmark VALUES(mark_seq.NEXTVAL, #{member_seq}, #{artist_seq})
+	<insert id="artistBookmark">
+		INSERT INTO bookmark VALUES(mark_seq.NEXTVAL,#{memberSeq},#{artistSeq})
 	</insert>
-	
-	<insert id="ArtistWrite">
-		INSERT INTO artist VALUES(artist_seq.NEXTVAL, #{artistName}, #{artistProfile}, #{artistSns}, #{artistImage}, #{artistHit})
-	</insert>
-	
-	<update id="updateTest">
-		UPDATE artist SET artist_name=#{artistName}, artist_profile=#{artistProfile}, artist_sns=#{artistSns}, artist_image=#{artistImage}, artist_hit=#{artistHit}
-	</update>
 
 </mapper>
 

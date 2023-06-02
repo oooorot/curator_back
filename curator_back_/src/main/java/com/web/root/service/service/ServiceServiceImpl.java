@@ -23,11 +23,6 @@ public class ServiceServiceImpl implements ServiceService{
 		return list;
 	}
 	
-	@Override
-	public int helpWritre(Map<String, Object> map) {
-		int res = mapper.helpWrite(map);
-		return res;
-	}
 	
 
 	@Override
@@ -54,17 +49,20 @@ public class ServiceServiceImpl implements ServiceService{
 	}
 	
 	@Override
-	public ServiceDTO updateView(int helpSeq) {
-		ServiceDTO dto = mapper.updateView(helpSeq);
+	public ServiceDTO updateHelpView(int helpSeq) {
+		ServiceDTO dto = mapper.updateHelpView(helpSeq);
 		return dto;
 	}
 
 
 	@Override
 	public int helpUpdate(Map<String, Object> map) {
-		updateView(Integer.parseInt(map.get("helpSeq").toString()));
+		ServiceDTO dto = new ServiceDTO();
+		dto = mapper.updateHelpView(Integer.parseInt(map.get("helpSeq").toString()));
 		try {
-			if(map.get("helpTitle")!=null & map.get("helpContent") != null) {
+			if(dto.getHelpTitle() !=null && dto.getHelpContent() != null) {
+				dto.setHelpTitle(map.get("helpTitle").toString());
+				dto.setHelpContent(map.get("helpContent").toString());
 				return mapper.helpUpdate(map);
 			} else
 				return 0;

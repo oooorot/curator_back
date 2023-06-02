@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,25 +33,24 @@ public class ServiceController {
 		return service.helpAllList();
 	}
 	
-	
 	// 상담 게시글 조회 
 	@GetMapping(value="helpView",produces = "application/json; charset=utf8")
 	@ResponseBody
 	public ServiceDTO helpView(@RequestParam("helpSeq") int helpSeq ) {
 		return service.helpView(helpSeq);
 	}
-	
+	// 상담 게시글 등록
 	@PostMapping(value="helpWrite", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int helpWrite(@RequestBody Map<String, Object> map) {
 		return service.helpWrite(map);
 	}
 	
-	// 수정할 글 불러오기 // helpSeq로 dto 요청
+	// 수정할 글 불러오기
 	@GetMapping(value="updateHelpView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ServiceDTO updateView(@RequestParam("helpSeq") int helpSeq ) {
-		return service.updateView(helpSeq);
+	public ServiceDTO updateHelpView(@RequestParam("helpSeq") int helpSeq ) {
+		return service.updateHelpView(helpSeq);
 	}
 	
 	//상담 게시글 수정 

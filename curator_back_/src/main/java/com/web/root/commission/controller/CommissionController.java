@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class CommissionController {
 	// 의뢰 게시글 등록
 	@PostMapping(value="commissionWrite", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int commissionWrite(@RequestParam("dto") CommissionDTO dto) {
+	public int commissionWrite(@RequestBody CommissionDTO dto) {
 		return service.commissionWrite(dto);
 	}
 	
@@ -54,7 +55,7 @@ public class CommissionController {
 	// 의뢰 게시글 수정
 	@PutMapping(value="commissionUpdate", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int commissionUpdate(@RequestParam("dto") CommissionDTO dto) {
+	public int commissionUpdate(@RequestBody CommissionDTO dto) {
 		return service.commissionUpdate(dto);
 	}
 	

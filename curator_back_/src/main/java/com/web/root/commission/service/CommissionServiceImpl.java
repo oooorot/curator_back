@@ -38,7 +38,7 @@ public class CommissionServiceImpl implements CommissionService{
 			commDTO.setArtistSeq(dto.getArtistSeq());
 			commDTO.setMemberSeq(dto.getMemberSeq());
 			commDTO.setCommTitle(dto.getCommTitle());
-			commDTO.setCommContent(dto.getCommContent());
+			commDTO.setCommContent(dto.getCommContent());			
 			res = mapper.commissionWrite(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,9 +57,12 @@ public class CommissionServiceImpl implements CommissionService{
 
 	@Override
 	public int commissionUpdate(CommissionDTO dto) {
-		updateView(dto.getCommSeq());
+		CommissionDTO commDTO = new CommissionDTO();
+		commDTO = mapper.updateView(dto.getCommSeq());
 		try {
 			if(dto.getCommTitle()!=null&dto.getCommContent()!=null) {
+				commDTO.setCommTitle(dto.getCommTitle());
+				commDTO.setCommContent(dto.getCommContent());
 				return mapper.commissionUpdate(dto);
 			} else
 				return 0;
