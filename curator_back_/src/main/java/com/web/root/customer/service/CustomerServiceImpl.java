@@ -6,29 +6,67 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.web.root.customer.dto.CustomerHelpDTO;
 import com.web.root.customer.dto.PurchaseDTO;
-import com.web.root.mybatis.customer.CustomerMapping;
+import com.web.root.member.dto.MemberDTO;
+import com.web.root.mybatis.customer.CustomerMapper;
+import com.web.root.reply.dto.ReplyDTO;
+import com.web.root.service.dto.ServiceDTO;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
 	@Autowired
-	private CustomerMapping customerMapper;
+	public CustomerMapper customerMapper;
 	
+	// 회원정보
+	@Override
+	public MemberDTO memberInfo(Map<String, Object> map) {
+		MemberDTO memberDTO = customerMapper.memberInfo(Integer.parseInt(map.get("MemberSeq").toString()));
+		return memberDTO; 
+	}
+
+	// 회원정보 수정
+	@Override
+	public int memberUpdate(Map<String, Object> map) {
+		try {
+			if(map.get("memberPw")!=null&map.get("memberNickname")!=null&map.get("memberName")!=null&map.get("memberPhone")!=null&map.get("memberAddr")!=null) {
+				return customerMapper.memberUpdate(map);
+			} else return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	// 회원탈퇴
+	@Override
+	public int memberDelete(int MemberSeq) {
+		try {
+			return customerMapper.memberDelete(MemberSeq);
+		} catch (Exception e) {
+			return 0;
+		}
+		
+	}
+
+	// 구매내역
 	@Override
 	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map) {
 		List<PurchaseDTO> purchaseList = customerMapper.purchaseProduct(map);
 		return purchaseList;
 	}
 
+	// 나의문의
 	@Override
-	public List<CustomerHelpDTO> customerHelpList(int memberSeq) {
-		int helpSeq = customerMapper.customerHelpList(memberSeq);
-		return customerMapper.customerReplyList(memberSeq, helpSeq);
+	public List<ServiceDTO> customerHelpList(int memberSeq) { 
+		return customerMapper.customerHelpList(memberSeq);
 	}
 	
-	
+	// 답변
+	@Override
+	public List<ReplyDTO> customerReplyList(int helpSeq, int memberSeq) {
+		return customerMapper.customerReplyList(helpSeq, memberSeq);
+	}
 	
 }
 

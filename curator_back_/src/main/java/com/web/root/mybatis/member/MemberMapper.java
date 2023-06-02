@@ -6,13 +6,12 @@ import com.web.root.member.dto.MemberDTO;
 
 public interface MemberMapper {
 	
+	// 로그인
 	public MemberDTO login(MemberDTO memberDTO);
 	
-	public MemberDTO memberInfo(String email);
+	// 이메일 중복체크
+	public String emailCheck(String InsertEmail);
 	
+	// 회원가입
 	public int register(Map<String, Object> map);
-	
-	public int memberUpdate(Map<String, Object> map);
-	
-	public int memberDelete(String loginEmail);
 }

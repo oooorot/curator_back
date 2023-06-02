@@ -26,7 +26,6 @@ public class MemberServiceImpl implements MemberService{
 		if(memberDTO != null) {
 			loginDTO.setMemberSeq(memberDTO.getMemberSeq());
 			loginDTO.setMemberEmail(memberDTO.getMemberEmail());
-			loginDTO.setMemberPw(memberDTO.getMemberPw());
 			loginDTO.setMemberNickname(memberDTO.getMemberNickname());
 			loginDTO.setMemberGrade(memberDTO.getMemberGrade());
 			String message = loginDTO.getMemberNickname() + " 님 로그인"; 
@@ -35,35 +34,41 @@ public class MemberServiceImpl implements MemberService{
 			String message = "아이디 또는 비밀번호가 맞는지 확인하세요";
 			loginDTO.setLoginMessage(message);
 		}
-		
 		return loginDTO;
 	}
-
-	// 회원정보
-	@Override
-	public MemberDTO memberInfo(Map<String, Object> map) {
-		MemberDTO memberDTO = memberMapper.memberInfo(map.get("memberEmail").toString());
-		return memberDTO;
-	}
 	
-	// 회원등록
+	// 인증코드 확인
 	@Override
-	public int register(Map<String, Object> map) {
+	public int registerCodeResult(Map<String, Object> map) {
 		String insertCode = map.get("insertCode").toString(); 
 		String registerCode = map.get("registerCode").toString();
+		if(insertCode.equals(registerCode)) {
+			return 1;
+		} else return 0;
+	}
+	
+	// 이메일 중복 확인
+	@Override
+	public int emailCheck(String InsertEmail) {
+		if(memberMapper.emailCheck(InsertEmail).equals(InsertEmail)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	// 회원가입
+	@Override
+	public int register(Map<String, Object> map) {
 		try {
-			if(insertCode.equals(registerCode)) {
-				MemberDTO memberDTO = new MemberDTO();
-				memberDTO.setMemberEmail(map.get("memberEmail").toString());
-				memberDTO.setMemberPw(map.get("memberPw").toString());
-				memberDTO.setMemberNickname(map.get("memberNickname").toString());
-				memberDTO.setMemberName(map.get("memberName").toString());
-				memberDTO.setMemberPhone(map.get("memberPhone").toString());
-				memberDTO.setMemberAddr(map.get("memberAddr").toString());
-				memberDTO.setMemberGrade(Integer.parseInt(map.get("memberGrade").toString()));
-				return memberMapper.register(map);
-			}
-			return 0;
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setMemberEmail(map.get("memberEmail").toString());
+			memberDTO.setMemberPw(map.get("memberPw").toString());
+			memberDTO.setMemberNickname(map.get("memberNickname").toString());
+			memberDTO.setMemberName(map.get("memberName").toString());
+			memberDTO.setMemberPhone(map.get("memberPhone").toString());
+			memberDTO.setMemberAddr(map.get("memberAddr").toString());
+			memberDTO.setMemberGrade(Integer.parseInt(map.get("memberGrade").toString()));
+			return memberMapper.register(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -71,29 +76,7 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
-	// 회원정보 수정
-	@Override
-	public int memberUpdate(Map<String, Object> map) {
-		try {
-			if(map.get("memberPw")!=null&map.get("memberNickname")!=null&map.get("memberName")!=null&map.get("memberPhone")!=null&map.get("memberAddr")!=null) {
-				return memberMapper.memberUpdate(map);
-			} else return 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	
-	// 회원탈퇴
-	@Override
-	public int memberDelete(String loginEmail) {
-		try {
-			return memberMapper.memberDelete(loginEmail);
-		} catch (Exception e) {
-			return 0;
-		}
-		
-	}
+
 
 	
 	
