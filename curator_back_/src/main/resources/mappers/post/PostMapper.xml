@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.post.PostMapper">
+
+	<resultMap type="com.web.root.post.dto.PostDTO" id="post">
+		<id property="postSeq" column="post_seq"/>
+		<result property="genreSeq" column="genre_seq"/>
+		<result property="artistSeq" column="artist_seq"/>	
+		<result property="postTitle" column="post_title"/>	
+		<result property="postSummary" column="post_summary"/>	
+		<result property="postImageName" column="post_image_name"/>	
+		<result property="postPrice" column="post_price"/>	
+		<result property="postDate" column="post_date"/>	
+	</resultMap>
+
+	<select id="PostView" resultMap="post">
+		SELECT * FROM post WHERE post_seq=#{postSeq}
+	</select>
+	
+	<insert id="postWrite">
+		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
+	</insert>
+
+	<insert id="postCart">
+		INSERT INTO cart VALUES(cart_seq.NEXTVAL, #{postSeq}, #{memberSeq})
+	</insert>
+	
+	<delete id="postDelete">
+		DELETE post WHERE post_seq=#{postSeq} 
+	</delete>
+	
+	<update id="postUpdate">
+		UPDATE post SET post_title=#{postTitle}, post_summary=#{postSummary}, post_content=#{postContent}, post_image_name=#{postImageName}, post_price=#{postPrice}, CURRENT_DATE
+	</update>
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
