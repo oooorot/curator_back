@@ -21,9 +21,9 @@ public class ReplyController {
 	public ReplyService service;
 	
 	
-	@GetMapping(value = "ReplyView", produces = "application/json; charset=utf8")
+	@GetMapping(value = "replyView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ReplyDTO ReplyView(@RequestParam("helpSeq") int helpSeq) {
+	public ReplyDTO replyView(@RequestParam("helpSeq") int helpSeq) {
 		return service.ReplyView(helpSeq);
 	}
 	
