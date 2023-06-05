@@ -49,11 +49,15 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 이메일 중복 확인
 	@Override
-	public int emailCheck(String InsertEmail) {
-		if(memberMapper.emailCheck(InsertEmail).equals(InsertEmail)) {
-			return 1;
+	public int emailCheck(String insertEmail) throws Exception{
+		try {
+			if(memberMapper.emailCheck(insertEmail) != null) {
+				return 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return 0;
+		return 1;
 	}
 
 	// 회원가입
@@ -68,7 +72,7 @@ public class MemberServiceImpl implements MemberService{
 			memberDTO.setMemberPhone(map.get("memberPhone").toString());
 			memberDTO.setMemberAddr(map.get("memberAddr").toString());
 			memberDTO.setMemberGrade(Integer.parseInt(map.get("memberGrade").toString()));
-			return memberMapper.register(map);
+			return memberMapper.register(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<select id="emailCheck" resultMap="member">
-		SELECT member_seq FROM member 
+		SELECT memberEmail FROM member WHERE memberEmail=#{insertEmail}
 	</select>
 	
 	<select id="login" resultMap="member">
