@@ -71,14 +71,15 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+			File artistPostFile = new File("C://gukbi_lee_jun_sam/spring_origin/resource/image_repo" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistPostFile);
+				return artistPageMapper.artistPostUpdate(postDTO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return artistPageMapper.artistPostUpdate(postDTO);
+		return 0;
 	}
 
 	// 의뢰내역
