@@ -48,6 +48,11 @@
 		<result property="replyDate" column="reply_date"/>
 	</resultMap>
 	
+	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
+		<id property="cartSeq" column="cart_seq"/>
+		<result property=""/>
+	</resultMap>
+	
 	<select id="memberInfo" resultMap="member">
 		SELECT * FROM member WHERE member_seq=#{memberSeq}
 	</select>
