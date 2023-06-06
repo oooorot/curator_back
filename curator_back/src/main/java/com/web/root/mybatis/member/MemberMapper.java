@@ -8,7 +8,7 @@ public interface MemberMapper {
 	public MemberDTO login(MemberDTO memberDTO);
 	
 	// 이메일 중복체크
-	public String emailCheck(String insertEmail);
+	public MemberDTO checkEmail(String memberEmail);
 	
 	// 회원가입
 	public int register(MemberDTO memberDTO);
