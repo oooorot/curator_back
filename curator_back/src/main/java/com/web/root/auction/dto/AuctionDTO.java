@@ -1,21 +1,30 @@
+
+
+
 package com.web.root.auction.dto;
 
 public class AuctionDTO {
 	
-	// Field
+	
 	private int aucSeq;
 	private int memberSeq;
 	private int artistSeq;
 	private int postSeq;
-	private String auc_Nickname;
-	private int auc_price;
+	private String aucNickName;
+	private int aucPrice;
 	
-	// Constructor
-	public AuctionDTO() {}
+	public AuctionDTO() {
+		super();
+	}
 
-	// Getter Setter
-	public int getMemberSeq() {
-		return memberSeq;
+	public AuctionDTO(int aucSeq, int memberSeq, int artistSeq, int postSeq, String aucNickName, int aucPrice) {
+		super();
+		this.aucSeq = aucSeq;
+		this.memberSeq = memberSeq;
+		this.artistSeq = artistSeq;
+		this.postSeq = postSeq;
+		this.aucNickName = aucNickName;
+		this.aucPrice = aucPrice;
 	}
 
 	public int getAucSeq() {
@@ -24,6 +33,14 @@ public class AuctionDTO {
 
 	public void setAucSeq(int aucSeq) {
 		this.aucSeq = aucSeq;
+	}
+
+	public int getMemberSeq() {
+		return memberSeq;
+	}
+
+	public void setMemberSeq(int memberSeq) {
+		this.memberSeq = memberSeq;
 	}
 
 	public int getArtistSeq() {
@@ -42,28 +59,22 @@ public class AuctionDTO {
 		this.postSeq = postSeq;
 	}
 
-	public String getAuc_Nickname() {
-		return auc_Nickname;
+	public String getAucNickName() {
+		return aucNickName;
 	}
 
-	public void setAuc_Nickname(String auc_Nickname) {
-		this.auc_Nickname = auc_Nickname;
+	public void setAucNickName(String aucNickName) {
+		this.aucNickName = aucNickName;
 	}
 
-	public int getAuc_price() {
-		return auc_price;
+	public int getAucPrice() {
+		return aucPrice;
 	}
 
-	public void setAuc_price(int auc_price) {
-		this.auc_price = auc_price;
-	}
-
-	public void setMemberSeq(int memberSeq) {
-		this.memberSeq = memberSeq;
+	public void setAucPrice(int aucPrice) {
+		this.aucPrice = aucPrice;
 	}
 	
 	
 
-
-	
 }

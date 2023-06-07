@@ -12,17 +12,100 @@
 		<result property="postSummary" column="post_summary"/>	
 		<result property="postImageName" column="post_image_name"/>	
 		<result property="postPrice" column="post_price"/>	
+		<result property="postAuction" column="post_auction"/>	
+		<result property="postExhibition" column="post_exhibition"/>	
 		<result property="postDate" column="post_date"/>	
 	</resultMap>
-
+	
+	<resultMap type="com.web.root.exhibition.dto.ExhibitionDTO" id="exhibition">
+		<id property="exhibitionSeq" column="exhibition_seq"/>
+		<result property="exhibitionName" column="exhibition_name"/>
+		<result property="exhibitionDate" column="exhibition_date"/>	
+		<result property="exhibitionExplain" column="exhibition_explain"/>	
+		<result property="exhibitionBanner" column="exhibition_banner"/>	
+	</resultMap>
+	
+	<resultMap type="com.web.root.auction.dto.AuctionDTO" id="auction">
+		<id property="aucSeq" column="auc_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="aucNickName" column="auc_nick_name"/>
+		<result property="aucPrice" column="auc_price"/>
+	</resultMap>
+	
+	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
+		<id property="cartSeq" column="cart_seq"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+	</resultMap>
+	
+	<resultMap type="com.web.root.postauction.dto.PostAuctionDTO" id="postauction">
+		<id property="postSeq" column="post_seq"/>
+		<result property="genreSeq" column="genre_seq"/>
+		<result property="artistSeq" column="artist_seq"/>	
+		<result property="postTitle" column="post_title"/>	
+		<result property="postSummary" column="post_summary"/>	
+		<result property="postContent" column="post_content"/>	
+		<result property="postImageName" column="post_image_name"/>	
+		<result property="postPrice" column="post_price"/>	
+		<result property="postAuction" column="post_auction"/>	
+		<result property="postExhibition" column="post_exhibition"/>	
+		<result property="postDate" column="post_date"/>	
+		<result property="aucSeq" column="auc_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="aucNickName" column="auc_nick_name"/>
+		<result property="aucPrice" column="auc_price"/>
+	</resultMap>
+	
+	<resultMap type="com.web.root.postExhibition.dto.PostExhibitionDTO" id="postexhibition">
+		<id property="postSeq" column="post_seq"/>
+		<result property="genreSeq" column="genre_seq"/>
+		<result property="artistSeq" column="artist_seq"/>	
+		<result property="postTitle" column="post_title"/>	
+		<result property="postSummary" column="post_summary"/>	
+		<result property="postImageName" column="post_image_name"/>	
+		<result property="postPrice" column="post_price"/>	
+		<result property="postAuction" column="post_auction"/>	
+		<result property="postExhibition" column="post_exhibition"/>	
+		<result property="postDate" column="post_date"/>
+		<result property="exhibitionSeq" column="exhibition_seq"/>
+		<result property="exhibitionName" column="exhibition_name"/>
+		<result property="exhibitionDate" column="exhibition_date"/>	
+		<result property="exhibitionExplain" column="exhibition_explain"/>	
+		<result property="exhibitionBanner" column="exhibition_banner"/>	
+	</resultMap>
+	
+	<select id="postList" resultMap="post">
+		SELECT * FROM post ORDER BY post_seq DESC
+	</select>
+	
 	<select id="PostView" resultMap="post">
 		SELECT * FROM post WHERE post_seq=#{postSeq}
+	</select>
+	
+	<select id="postExhibition1" resultMap="postexhibition">
+		SELECT * FROM(SELECT * FROM post,exhibition) WHERE post_exhibition=#{postExhibition}
+	</select>
+	
+	<select id="ViewExhibition" resultMap="postexhibition">
+		SELECT * FROM post WHERE post_exhibition=#{postExhibition}
+	</select>
+	
+	<select id="postAuction" resultMap="postauction">
+		SELECT p.*, a.auc_seq, a.member_seq, a.auc_nickname, a.auc_price FROM post p LEFT JOIN auction a ON p.post_seq = a.post_seq AND p.artist_seq = a.artist_seq
+	</select>
+	
+	<select id="ViewAuction" resultMap="postauction">
+		SELECT * FROM post WHERE post_auction=#{postAuction}
 	</select>
 	
 	<insert id="postWrite">
 		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
 	</insert>
-
+	
 	<insert id="postCart">
 		INSERT INTO cart VALUES(cart_seq.NEXTVAL, #{postSeq}, #{memberSeq})
 	</insert>

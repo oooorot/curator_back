@@ -1,5 +1,6 @@
 package com.web.root.artist.service;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,14 +20,26 @@ public class ArtistServiceImpl implements ArtistService{
 
 	@Override
 	public List<ArtistDTO> artistAllList() {
-		List<ArtistDTO> list = mapper.artistAllList();
-		return list;
+		
+		try {
+			List<ArtistDTO> list = mapper.artistAllList();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public ArtistDTO artistInform(int artistSeq) {
-		ArtistDTO dto = mapper.artistInform(artistSeq);		
+		
+		try {
+			ArtistDTO dto = mapper.artistInform(artistSeq);		
 		return dto;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -36,12 +49,18 @@ public class ArtistServiceImpl implements ArtistService{
 			BookmarkDTO dto = new BookmarkDTO();
 			dto.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 			dto.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-			res = mapper.artistBookmark(dto);		
+			res = mapper.artistBookmark(dto);
+			updateHit(dto.getArtistSeq());
+			
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
 		return res;
 	}	
+	
+	public void updateHit(int artistSeq) {
+		mapper.updateHit(artistSeq); 
+	}
 	
 
 	

@@ -14,14 +14,16 @@ public class PostDTO {
 	private String postContent;
 	private String postImageName;
 	private int postPrice;
-	private Timestamp postDate;
+	private int postAuction;
+	private int postExhibition;
+	private String postDate;
 	
 	public PostDTO() {
 		super();
 	}
 
 	public PostDTO(int postSeq, int genreSeq, int artistSeq, String postTitle, String postSummary, String postContent,
-			String postImageName, int postPrice, Timestamp postDate) {
+			String postImageName, int postPrice, int postAuction, int postExhibition, String postDate) {
 		super();
 		this.postSeq = postSeq;
 		this.genreSeq = genreSeq;
@@ -31,6 +33,8 @@ public class PostDTO {
 		this.postContent = postContent;
 		this.postImageName = postImageName;
 		this.postPrice = postPrice;
+		this.postAuction = postAuction;
+		this.postExhibition = postExhibition;
 		this.postDate = postDate;
 	}
 
@@ -98,13 +102,38 @@ public class PostDTO {
 		this.postPrice = postPrice;
 	}
 
-	public Timestamp getPostDate() {
+	public int getPostAuction() {
+		return postAuction;
+	}
+
+	public void setPostAuction(int postAuction) {
+		this.postAuction = postAuction;
+	}
+
+	public int getPostExhibition() {
+		return postExhibition;
+	}
+
+	public void setPostExhibition(int postExhibition) {
+		this.postExhibition = postExhibition;
+	}
+
+	public String getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Timestamp postDate) {
+	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
+
+	
+
+	
+	
+	
+	
+
+	
 	
 	
 	

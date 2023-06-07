@@ -8,13 +8,13 @@ public class ServiceDTO {
 	private int memberSeq;
 	private String helpTitle;
 	private String helpContent;
-	private Timestamp helpDate;
+	private String helpDate;
 	
 	public ServiceDTO() {
 		super();
 	}
 
-	public ServiceDTO(int helpSeq, int memberSeq, String helpTitle, String helpContent, Timestamp helpDate) {
+	public ServiceDTO(int helpSeq, int memberSeq, String helpTitle, String helpContent, String helpDate) {
 		super();
 		this.helpSeq = helpSeq;
 		this.memberSeq = memberSeq;
@@ -55,13 +55,16 @@ public class ServiceDTO {
 		this.helpContent = helpContent;
 	}
 
-	public Timestamp getHelpDate() {
+	public String getHelpDate() {
 		return helpDate;
 	}
 
-	public void setHelpDate(Timestamp helpDate) {
+	public void setHelpDate(String helpDate) {
 		this.helpDate = helpDate;
 	}
+	
+	
+
 
 	
 	
