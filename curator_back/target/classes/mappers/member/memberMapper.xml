@@ -14,8 +14,13 @@
 		<result property="memberDate" column="member_date"/>
 	</resultMap>
 	
+
 	<select id="emailCheck" resultType="String">
 		SELECT member_email FROM member WHERE member_email=#{insertEmail} 
+	</select>
+
+	<select id="checkEmail" resultMap="member">
+		SELECT member_seq, member_email, member_nickname, member_name, member_grade FROM member WHERE member_email=#{memberEmail}
 	</select>
 	
 	<select id="login" resultMap="member">

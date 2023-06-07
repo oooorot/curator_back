@@ -1,7 +1,5 @@
 package com.web.root.mybatis.member;
 
-import java.util.Map;
-
 import com.web.root.member.dto.MemberDTO;
 
 public interface MemberMapper {
@@ -10,8 +8,10 @@ public interface MemberMapper {
 	public MemberDTO login(MemberDTO memberDTO);
 	
 	// 이메일 중복체크
-	public String emailCheck(String InsertEmail);
+	public String emailCheck(String memberEmail);
+	
+	public MemberDTO checkEmail(String memberEmail);
 	
 	// 회원가입
-	public int register(Map<String, Object> map);
+	public int register(MemberDTO memberDTO);
 }

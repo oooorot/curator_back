@@ -1,13 +1,18 @@
 package com.web.root.member.service;
 
+
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.web.root.member.dto.LoginDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.member.MemberMapper;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -15,27 +20,80 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	public MemberMapper memberMapper;
 	
+	//secret key
+	private final String ACCESS_SECRET = "keyactivatetoken";
+	private final String REFRESH_SECRET = "keyrefreshtoken";
+
 	// 로그인
 	@Override
-	public LoginDTO login(Map<String, Object> map) {
-		MemberDTO memberDTO = new MemberDTO();
-		LoginDTO loginDTO = new LoginDTO();
-		memberDTO.setMemberEmail(map.get("memberEmail").toString());
-		memberDTO.setMemberPw(map.get("memberPw").toString());
-		memberDTO = memberMapper.login(memberDTO);
-		if(memberDTO != null) {
-			loginDTO.setMemberSeq(memberDTO.getMemberSeq());
-			loginDTO.setMemberEmail(memberDTO.getMemberEmail());
-			loginDTO.setMemberNickname(memberDTO.getMemberNickname());
-			loginDTO.setMemberGrade(memberDTO.getMemberGrade());
-			String message = loginDTO.getMemberNickname() + " 님 로그인"; 
-			loginDTO.setLoginMessage(message);
-		} else {
-			String message = "아이디 또는 비밀번호가 맞는지 확인하세요";
-			loginDTO.setLoginMessage(message);
-		}
-		return loginDTO;
+	public String getAccessToken(Map<String, String> map) {
+		//가져온 로그인 정보 변수 저장
+		String email = map.get("memberEmail");
+		String pwd = map.get("memberPw");
+		
+		System.out.println(email);
+		
+		// email을 통해 나머지 정보 select
+		MemberDTO dto = memberMapper.checkEmail(email);
+    	String nickname = dto.getMemberNickname();
+    	int seq = dto.getMemberSeq();
+    	int grade = dto.getMemberGrade();
+    	
+        //JWT Header 작성
+        Map<String, Object> jwtHeader = new HashMap<>();
+        jwtHeader.put("typ", "JWT");
+        jwtHeader.put("alg", "HS256");
+        jwtHeader.put("regDate", System.currentTimeMillis());
+
+        //JWT Payloder 작성
+        Map<String, Object> claim = new HashMap<>();
+        claim.put("email", email);
+        claim.put("nickname", nickname);
+        claim.put("seq", seq);
+        claim.put("grade", grade);
+        claim.put("username", "curator");
+
+        String token = Jwts.builder()
+                .setSubject(email)
+                .setHeader(jwtHeader)
+                .setClaims(claim)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 600000 * 1000))
+                .signWith(SignatureAlgorithm.HS256, ACCESS_SECRET)
+                .compact();
+        
+		return token;
 	}
+	
+	//refreshToken
+	@Override
+	public String getRefreshToken(Map<String, String> map) {
+		//가져온 로그인 정보 변수 저장
+		String email = map.get("memberEmail");
+    	
+        //JWT Header 작성
+        Map<String, Object> jwtHeader = new HashMap<>();
+        jwtHeader.put("typ", "JWT");
+        jwtHeader.put("alg", "HS256");
+        jwtHeader.put("regDate", System.currentTimeMillis());
+
+        //JWT Payloder 작성
+        Map<String, Object> claim = new HashMap<>();
+        claim.put("email", email);
+        claim.put("username", "curator");
+
+        String token = Jwts.builder()
+                .setSubject(email)
+                .setHeader(jwtHeader)
+                .setClaims(claim)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1200 * 1000))
+                .signWith(SignatureAlgorithm.HS256, REFRESH_SECRET)
+                .compact();
+        
+		return token;
+	}
+	
 	
 	// 인증코드 확인
 	@Override
@@ -73,7 +131,7 @@ public class MemberServiceImpl implements MemberService{
 			memberDTO.setMemberPhone(map.get("memberPhone").toString());
 			memberDTO.setMemberAddr(map.get("memberAddr").toString());
 			memberDTO.setMemberGrade(Integer.parseInt(map.get("memberGrade").toString()));
-			return memberMapper.register(map);
+			return memberMapper.register(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
