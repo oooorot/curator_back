@@ -37,7 +37,7 @@ public class MemberRegisterMailImpl implements MemberRegisterMail{
                     mailHelper.setText(content, true);
                     
                     FileSystemResource file = new FileSystemResource(new File("/Users/Administrator/Desktop/0531.txt")); 
-                    mailHelper.addAttachment("0531.txt", file);
+//                    mailHelper.addAttachment("0531.txt", file);
                 }
             };
             mailSender.send(preparator);

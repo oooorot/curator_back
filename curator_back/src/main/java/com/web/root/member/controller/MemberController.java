@@ -33,9 +33,10 @@ public class MemberController {
 	}		
 	
 	// 인증코드 발송
-	@PostMapping(value="registerCode", produces = "application/json; charset=utf-8")
+	@GetMapping(value="registerCode", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String registerCode(@RequestParam String memberEmail) throws Exception {
+	public String registerCode(@RequestParam("insertEmail") String memberEmail) throws Exception {
+		System.out.println(memberEmail);
 		return memberRegisterMail.registerCode(memberEmail);
 	}
 	
@@ -49,8 +50,15 @@ public class MemberController {
 	// 이메일 중복확인
 	@GetMapping(value="emailCheck", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int emailCheck(@RequestParam("insertEmail") String InsertEmail) {
-		return memberService.emailCheck(InsertEmail);
+	public int emailCheck(@RequestParam("insertEmail") String InsertEmail) throws Exception {
+		try {
+			if(memberService.emailCheck(InsertEmail) == 0) {
+				return 0;
+			} else return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 	
 	// 회원가입

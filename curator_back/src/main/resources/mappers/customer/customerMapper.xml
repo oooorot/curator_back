@@ -31,6 +31,12 @@
 		<result property="artistSeq" column="artist_seq"/>
 	</resultMap>
 	
+	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
+		<id property="cartSeq" column="cart_seq"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+	</resultMap>
+	
 	<resultMap type="com.web.root.service.dto.ServiceDTO" id="help">
 		<result property="helpSeq" column="help_seq" />
 		<result property="memberSeq" column="member_seq" />

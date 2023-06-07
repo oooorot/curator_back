@@ -49,11 +49,16 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 이메일 중복 확인
 	@Override
-	public int emailCheck(String InsertEmail) {
-		if(memberMapper.emailCheck(InsertEmail).equals(InsertEmail)) {
+	public int emailCheck(String insertEmail) throws Exception {
+		try {
+			if(memberMapper.emailCheck(insertEmail) == null) {
+				return 0;
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
 			return 1;
 		}
-		return 0;
+		return 1;
 	}
 
 	// 회원가입
