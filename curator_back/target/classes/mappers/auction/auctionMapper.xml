@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.auction.AuctionMapper">
+	<resultMap type="com.web.root.auction.dto.AuctionDTO" id="auction">
+		<id property="memberSeq" column="member_seq"/>
+		<result property="memberNickname" column="member_nickname"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="auctionAccount" column="auction_account"/>
+	</resultMap>
+	
+	<select id="auctionView" resultMap="auction">
+		SELECT ROWNUM B.* FROM(SELECT memberNickname,auctionAccount FROM auction ORDER BY auction_account DESC) B WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+
+	<insert id="auctionBid">
+		INSERT INTO auction VALUES(#{memberSeq},#{memberNickname},#{postSeq},#{artistSeq},#{auctionAccount})
+	</insert>
+	
+</mapper>
