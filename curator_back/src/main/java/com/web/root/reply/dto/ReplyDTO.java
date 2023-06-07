@@ -11,14 +11,14 @@ public class ReplyDTO {
 	private int memberSeq;
 	private String replyTitle;
 	private String replyContent;
-	private Timestamp replyDate;
+	private String replyDate;
 	
 	public ReplyDTO() {
 		super();
 	}
 
 	public ReplyDTO(int replySeq, int helpSeq, int memberSeq, String replyTitle, String replyContent,
-			Timestamp replyDate) {
+			String replyDate) {
 		super();
 		this.replySeq = replySeq;
 		this.helpSeq = helpSeq;
@@ -68,13 +68,15 @@ public class ReplyDTO {
 		this.replyContent = replyContent;
 	}
 
-	public Timestamp getReplyDate() {
+	public String getReplyDate() {
 		return replyDate;
 	}
 
-	public void setReplyDate(Timestamp replyDate) {
+	public void setReplyDate(String replyDate) {
 		this.replyDate = replyDate;
 	}
+
+	
 	
 	
 

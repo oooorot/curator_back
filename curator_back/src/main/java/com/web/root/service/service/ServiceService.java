@@ -9,14 +9,6 @@ public interface ServiceService {
 
 	public List<ServiceDTO> helpAllList();
 	
-	public ServiceDTO helpView(int helpSeq);
-	
-	public int helpWrite(Map<String, Object> map);
-	
-	public ServiceDTO updateHelpView(int helpSeq);
-	
-	public int helpUpdate(Map<String, Object> map);
-	
-	public int helpDelete(Map<String, Object> map);
+	public int helpWritre(Map<String, Object> map);
 
 }

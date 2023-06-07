@@ -5,7 +5,6 @@ package com.web.root.genre.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import com.web.root.genre.dto.GenreDTO;
 import com.web.root.post.dto.PostDTO;

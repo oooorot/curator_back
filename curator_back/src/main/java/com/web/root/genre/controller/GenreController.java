@@ -5,13 +5,10 @@ package com.web.root.genre.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +23,16 @@ public class GenreController {
 	@Autowired
 	private GenreService service;
 	
-	@GetMapping(value = "genreList", produces = "application/json; charset=utf8")
+	//장르 리스트
+	@GetMapping(value = "GenreList", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<GenreDTO> GenreList() {
 		return service.GenreList();
 	}
 	
-	@GetMapping(value = "genreView", produces = "application/json; charset=utf8")
+	
+	// 장르 조회
+	@GetMapping(value = "GenreView", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<PostDTO> PostView() {
 		return service.GenreView();

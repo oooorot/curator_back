@@ -12,6 +12,9 @@ public interface ArtistMapper {
 	public ArtistDTO artistInform(int artistSeq);
 
 	public int artistBookmark(BookmarkDTO dto);
+	
+	public void updateHit(int artistSeq);
+
 
 	
 }
