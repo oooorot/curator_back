@@ -98,6 +98,7 @@ public class CustomerServiceImpl implements CustomerService{
       return null;
    }
 
+<<<<<<< HEAD
    // 나의문의
    @Override
    public List<HelpDTO> customerHelpList(int memberSeq) { 
@@ -124,6 +125,34 @@ public class CustomerServiceImpl implements CustomerService{
       return null;
    }
    
+=======
+	// 나의문의
+	@Override
+	public List<HelpDTO> customerHelpList(int memberSeq) { 
+		try {
+			return customerMapper.customerHelpList(memberSeq);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// 답변보기
+	@Override
+	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map) {
+		try {
+			ReplyDTO replyDTO = new ReplyDTO();
+			replyDTO.setReplySeq(Integer.parseInt(map.get("replySeq").toString()));
+			replyDTO.setHelpSeq(Integer.parseInt(map.get("helpSeq").toString()));
+			replyDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+			return customerMapper.customerReply(replyDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+>>>>>>> branch 'main' of https://github.com/LeeBumS/curator_back.git
 }
 
 
