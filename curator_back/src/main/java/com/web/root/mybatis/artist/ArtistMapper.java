@@ -14,7 +14,7 @@ public interface ArtistMapper {
 	public ArtistDTO artistInform(int artistSeq);
 
 	// 북마크 등록
-	public int artistBookmark(BookmarkDTO dto);
+	public int artistBookmark(BookmarkDTO bookmarkDTO);
 
 	
 }

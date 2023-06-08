@@ -1,8 +1,8 @@
-package com.web.root.service.dto;
+package com.web.root.help.dto;
 
 import java.sql.Timestamp;
 
-public class ServiceDTO {
+public class HelpDTO {
 
 	private int helpSeq;
 	private int memberSeq;
@@ -10,11 +10,11 @@ public class ServiceDTO {
 	private String helpContent;
 	private Timestamp helpDate;
 	
-	public ServiceDTO() {
+	public HelpDTO() {
 		super();
 	}
 
-	public ServiceDTO(int helpSeq, int memberSeq, String helpTitle, String helpContent, Timestamp helpDate) {
+	public HelpDTO(int helpSeq, int memberSeq, String helpTitle, String helpContent, Timestamp helpDate) {
 		super();
 		this.helpSeq = helpSeq;
 		this.memberSeq = memberSeq;

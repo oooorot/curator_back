@@ -13,19 +13,19 @@ import com.web.root.nonmember.dto.NonmemberDTO;
 public class NonmemberServiceImpl implements NonmemberService{
 
 	@Autowired
-	private NonmemberMapper mapper;
+	private NonmemberMapper nonmemberMapper;
 	
 
 	// 비회원 정보 가져오기
 	@Override
 	public NonmemberDTO getNonmember(int nonSeq) {
-		NonmemberDTO dto = new NonmemberDTO();
+		NonmemberDTO nonmemberDTO = new NonmemberDTO();
 		try {
-			dto = mapper.getNonmember(nonSeq);
+			nonmemberDTO = nonmemberMapper.getNonmember(nonSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
+		return nonmemberDTO;
 	}
 
 	
@@ -35,13 +35,13 @@ public class NonmemberServiceImpl implements NonmemberService{
 		int res = 0;
 		try {
 			String RevCode = RandomStringUtils.random(8, false, true);
-			NonmemberDTO dto = new NonmemberDTO();
-			dto.setNonCode(RevCode.toString());
-			dto.setNonEmail(map.get("nonEmail").toString());
-			dto.setNonName(map.get("nonName").toString());
-			dto.setNonPhone(map.get("nonPhone").toString());
-			dto.setNonAddr(map.get("nonAddr").toString());
-			res = mapper.nonmemberInform(dto);
+			NonmemberDTO nonmemberDTO = new NonmemberDTO();
+			nonmemberDTO.setNonCode(RevCode.toString());
+			nonmemberDTO.setNonEmail(map.get("nonEmail").toString());
+			nonmemberDTO.setNonName(map.get("nonName").toString());
+			nonmemberDTO.setNonPhone(map.get("nonPhone").toString());
+			nonmemberDTO.setNonAddr(map.get("nonAddr").toString());
+			res = nonmemberMapper.nonmemberInform(nonmemberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

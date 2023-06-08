@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.web.root.mybatis.service.ServiceMapper">
+<mapper namespace="com.web.root.mybatis.help.HelpMapper">
 
 	
-<resultMap type="com.web.root.service.dto.ServiceDTO" id="service">
+<resultMap type="com.web.root.help.dto.HelpDTO" id="help">
 	<id property="helpSeq" column="help_seq"/>
 	<result property="memberSeq" column="member_seq"/>
 	<result property="helpTitle" column="help_title"/>
@@ -13,11 +13,11 @@
 	<result property="helpDate" column="help_date"/>
 </resultMap>
 
-<select id="helpAllList" resultMap="service">
+<select id="helpAllList" resultMap="help">
 	SELECT * FROM help ORDER BY help_seq DESC
 </select>
 
-<select id="helpView" resultMap="service">
+<select id="helpView" resultMap="help">
 	SELECT * FROM help WHERE help_seq=#{helpSeq}
 </select>
 
@@ -35,7 +35,7 @@
 </update>
 
 <delete id="helpDelete">
-	DELETE FROM commission WHERE help_seq=#{helpSeq}
+	DELETE FROM help WHERE help_seq=#{helpSeq}
 </delete>
 
 </mapper>

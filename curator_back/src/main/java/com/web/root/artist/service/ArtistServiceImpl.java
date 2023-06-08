@@ -14,29 +14,44 @@ import com.web.root.mybatis.artist.ArtistMapper;
 public class ArtistServiceImpl implements ArtistService{
 
 	@Autowired
-	private ArtistMapper mapper;
+	private ArtistMapper artistMapper;
 
 
+	// 작가 리스트 불러오기
 	@Override
 	public List<ArtistDTO> artistAllList() {
-		List<ArtistDTO> list = mapper.artistAllList();
-		return list;
+		try {
+			List<ArtistDTO> list = artistMapper.artistAllList();
+			return list;		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
+	
+	// 작가 조회
 	@Override
 	public ArtistDTO artistInform(int artistSeq) {
-		ArtistDTO dto = mapper.artistInform(artistSeq);		
-		return dto;
+		try {
+			ArtistDTO artistDTO = artistMapper.artistInform(artistSeq);		
+			return artistDTO;	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
+	
+	// 북마크 등록
 	@Override
 	public int artistBookmark(Map<String, Object> map) { 
 		int res= 0;
 		try {
-			BookmarkDTO dto = new BookmarkDTO();
-			dto.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-			dto.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-			res = mapper.artistBookmark(dto);		
+			BookmarkDTO bookmarkDTO = new BookmarkDTO();
+			bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+			bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+			res = artistMapper.artistBookmark(bookmarkDTO);		
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}

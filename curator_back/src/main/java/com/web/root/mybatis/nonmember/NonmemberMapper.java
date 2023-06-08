@@ -6,6 +6,6 @@ public interface NonmemberMapper {
 
 	public NonmemberDTO getNonmember(int nonSeq);
 
-	public int nonmemberInform(NonmemberDTO dto);
+	public int nonmemberInform(NonmemberDTO nonmemberDTO);
 	
 }

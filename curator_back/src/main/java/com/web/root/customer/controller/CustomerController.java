@@ -18,9 +18,9 @@ import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
+import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -81,7 +81,7 @@ public class CustomerController {
 	// 나의문의
 	@GetMapping(value="customerHelpList", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<ServiceDTO> customerHelpList(@RequestParam("memberSeq") int memberSeq){
+	public List<HelpDTO> customerHelpList(@RequestParam("memberSeq") int memberSeq){
 		 return customerService.customerHelpList(memberSeq);
 	 }
 	

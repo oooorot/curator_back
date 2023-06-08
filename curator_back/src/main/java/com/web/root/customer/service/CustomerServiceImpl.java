@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
+import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
 import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 나의문의
 	@Override
-	public List<ServiceDTO> customerHelpList(int memberSeq) { 
+	public List<HelpDTO> customerHelpList(int memberSeq) { 
 		return customerMapper.customerHelpList(memberSeq);
 	}
 	
