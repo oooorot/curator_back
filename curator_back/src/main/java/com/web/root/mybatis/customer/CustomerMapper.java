@@ -3,12 +3,13 @@ package com.web.root.mybatis.customer;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.CustomerHelpReplyDTO;
 import com.web.root.customer.dto.PurchaseDTO;
-import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
 
 public interface CustomerMapper {
 	
@@ -33,10 +34,8 @@ public interface CustomerMapper {
 	// 즐겨찾기
 	public List<BookmarkDTO> bookmarkArtistList(int memberSeq);
 	
-	// 나의문의
-	public List<HelpDTO> customerHelpList(int memberSeq);
+	// 나의문의 및 답변
+	public List<CustomerHelpReplyDTO> customerHelpReplyList(@Param("memberSeq") int memberSeq, @Param("helpSeq") int helpSeq);
 	
-	// 답변보기
-	public List<ReplyDTO> customerReply(ReplyDTO replyDTO);
 
 }

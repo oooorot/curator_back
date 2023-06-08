@@ -31,6 +31,18 @@
 		<result property="artistSeq" column="artist_seq"/>
 	</resultMap>
 	
+	<resultMap type="com.web.root.customer.dto.CustomerHelpReplyDTO" id="helpReply">
+		<result property="helpSeq" column="help_seq" />
+		<result property="memberSeq" column="member_seq" />
+		<result property="helpTitle" column="help_title" />
+		<result property="helpContent" column="help_content" />
+		<result property="helpDate" column="help_date" />
+		<result property="replySeq" column="reply_seq"/>
+		<result property="replyTitle" column="reply_title"/>
+		<result property="replyContent" column="reply_content"/>
+		<result property="replyDate" column="reply_date"/>
+	</resultMap>
+	
 	<resultMap type="com.web.root.service.dto.ServiceDTO" id="help">
 		<result property="helpSeq" column="help_seq" />
 		<result property="memberSeq" column="member_seq" />
@@ -51,7 +63,7 @@
 	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
 		<id property="cartSeq" column="cart_seq"/>
 		<result property="postSeq" column="post_seq"/>
-		<result property="memberSeq" column="member_seq"/>	
+		<result property="memberSeq" column="member_seq"/>
 	</resultMap>
 	
 	<select id="memberInfo" resultMap="member">
@@ -59,11 +71,11 @@
 	</select>
 
 	<update id="memberUpdate">
-		UPDATE member SET member_pw=#{memberPw},member_nickname=#{memberNickname},member_name=#{memberName},member_phone=#{memberPhone},member_addr=#{memberAddr} WHERE member_email=#{memberEmail}
+		UPDATE member SET member_pw=#{memberPw},member_nickname=#{memberNickname},member_name=#{memberName},member_phone=#{memberPhone},member_addr=#{memberAddr} WHERE member_email=#{memberEmail} AND help_seq=#{helpSeq}
 	</update>
 		
 	<delete id="memberDelete">
-		DELETE member, commission, bookbark, cart WHERE member_seq=#{memberSeq} 
+		DELETE member WHERE member_seq=#{memberSeq} 
 	</delete>
 	
 	<select id="cartList" resultMap="cart">
@@ -80,6 +92,10 @@
 	
 	<select id="bookmarkArtistList" resultMap="bookmark">
 		SELECT * FROM bookmark WHERE member_seq=#{memberSeq}
+	</select>
+	
+	<select id="customerHelpReplyList" resultMap="helpReply">
+		SELECT h.*, r.reply_seq, r.reply_title, r.reply_content, r.reply_date FROM help h LEFT JOIN reply r ON h.help_seq = r.help_seq AND h.member_seq = r.member_seq WHERE h.member_seq=#{memberSeq} AND h.help_seq=#{helpSeq}
 	</select>
 	
 	<select id="customerHelpList" resultMap="help">

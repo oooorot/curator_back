@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.CustomerHelpReplyDTO;
 import com.web.root.customer.dto.PurchaseDTO;
-import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
 
 public interface CustomerService {
 	
@@ -35,10 +34,7 @@ public interface CustomerService {
 	// 즐겨찾기
 	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map);
 	
-	// 나의문의
-	public List<HelpDTO> customerHelpList(int memberSeq);
-	
-	// 답변보기
-	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map);
+	// 나의문의 및 답변
+	public List<CustomerHelpReplyDTO> customerHelpReplyList(@RequestBody Map<String, Object> map);
 	
 }
