@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.commission.CommissionMapper">
+
+	<resultMap type="com.web.root.commission.dto.CommissionDTO" id="comm">
+		<id property="commSeq" column="comm_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="commTitle" column="comm_title"/>
+		<result property="commContent" column="comm_content"/>
+		<result property="commDate" column="comm_date"/>
+	</resultMap>
+		
+	
+	<select id="commAllList" resultMap="comm">
+		SELECT * FROM commission ORDER BY comm_seq DESC   
+	</select>
+	
+	<select id="commissionView" resultMap="comm">
+		SELECT * FROM commission WHERE comm_seq=#{commSeq}
+	</select>
+	
+	<insert id="commissionWrite">
+		INSERT INTO commission VALUES(commission_seq.NEXTVAL, #{artistSeq}, #{memberSeq}, #{commTitle}, #{commContent}, CURRENT_DATE)
+	</insert>
+	
+	<select id="updateView" resultMap="comm">
+		SELECT * FROM commission WHERE comm_seq=#{commSeq}
+	</select>
+	
+	<update id="commissionUpdate">
+		UPDATE commission SET comm_title=#{commTitle}, comm_content=#{commContent}, WHERE comm_seq=#{commSeq}
+	</update>
+	
+	<delete id="commissionDelete">
+		DELETE commission WHERE comm_seq=#{commSeq}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

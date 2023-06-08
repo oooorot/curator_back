@@ -5,6 +5,11 @@ import java.util.List;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.bookmark.dto.BookmarkDTO;
 
+
+
+
+
+
 public interface ArtistMapper {
 
 	public List<ArtistDTO> artistAllList();

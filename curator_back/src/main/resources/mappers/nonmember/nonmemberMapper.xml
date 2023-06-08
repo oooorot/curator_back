@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.root.mybatis.nonmember.NonmemberMapper">
+
+<resultMap type="com.web.root.nonmember.dto.NonmemberDTO" id="nonmember">
+	<id property="nonSeq" column="non_seq"/>
+	<result property="nonCode" column="non_code"/>
+	<result property="nonEmail" column="non_email"/>
+	<result property="nonName" column="non_name"/>
+	<result property="nonPhone" column="non_phone"/>
+	<result property="nonAddr" column="non_addr"/>
+	<result property="nonDate" column="non_date"/>
+</resultMap>
+
+<select id="getNonmember" resultMap="nonmember">
+	SELECT * FROM nonmember WHERE non_seq=#{nonSeq}
+</select>
+	
+<insert id="nonmemberInform">
+	INSERT INTO nonmember VALUES(non_seq.NEXTVAL, #{nonCode}, #{nonEmail}, #{nonName}, #{nonPhone}, #{nonAddr}, CURRENT_DATE)  
+</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
