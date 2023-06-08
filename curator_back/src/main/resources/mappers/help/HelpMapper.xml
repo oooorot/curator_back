@@ -23,7 +23,7 @@
 		INSERT INTO help VALUES(help_seq.NEXTVAL, memberSeq, helpTitle, helpContent, CURRENT_DATE)
 	</insert>
 	
-	<select id="updateHelpView" resultMap="service">
+	<select id="updateHelpView" resultMap="help">
 		SELECT * FROM help WHERE help_seq=#{helpSeq}
 	</select>
 		
