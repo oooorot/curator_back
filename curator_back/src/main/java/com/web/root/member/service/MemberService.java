@@ -2,7 +2,6 @@ package com.web.root.member.service;
 
 import java.util.Map;
 
-import com.web.root.member.dto.LoginDTO;
 
 public interface MemberService {
 	

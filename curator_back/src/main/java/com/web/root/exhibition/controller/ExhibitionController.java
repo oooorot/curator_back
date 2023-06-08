@@ -21,18 +21,18 @@ import com.web.root.exhibition.service.ExhibitionService;
 public class ExhibitionController {
 	
 	@Autowired
-	private ExhibitionService service;
+	private ExhibitionService exhibitionService;
 	
-	@GetMapping(value = "ExhibitionList", produces = "application/json; charset=utf8")
+	@GetMapping(value = "exhibitionList", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<ExhibitionDTO> ExhibitionList() {
-		return service.ExhibitionList();
+	public List<ExhibitionDTO> exhibitionList() {
+		return exhibitionService.exhibitionList();
 	}
 	
-	@GetMapping(value = "ExhibitionView", produces = "application/json; charset=utf8")
+	@GetMapping(value = "exhibitionView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ExhibitionDTO ExhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) {
-		return service.ExhibitionView(exhibitionSeq);
+	public ExhibitionDTO exhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) {
+		return exhibitionService.exhibitionView(exhibitionSeq);
 	}
 	
 //	@PostMapping(value = "ExhibitionWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})

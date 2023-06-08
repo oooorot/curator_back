@@ -17,44 +17,44 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;
+import com.web.root.post.dto.PostExhibitionDTO;
 import com.web.root.post.service.PostService;
-import com.web.root.postExhibition.dto.PostExhibitionDTO;
-import com.web.root.postauction.dto.PostAuctionDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 	
 	@Autowired
-	private PostService service;
+	private PostService postService;
 	
 	// 그림게시판 조회
-	@GetMapping(value = "PostView", produces = "application/json; charset=utf8")
+	@GetMapping(value = "postView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public PostDTO PostView(@RequestParam("postSeq") int postSeq) {
-		return  service.PostView(postSeq);		 	
+	public PostDTO postView(@RequestParam("postSeq") int postSeq) {
+		return  postService.postView(postSeq);		 	
 	}
 	
 	//그림게시판 리스트
 	@GetMapping(value = "postList", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<PostDTO> postList() {
-		return service.postList();
+		return postService.postList();
 	}
 	
 	// 그림게시판 경매 조회
 	@GetMapping(value = "postAuction", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<PostAuctionDTO> postAuction(@RequestParam("postAuction") int postAuction) {
-		return  service.postAuction(postAuction);		 	
+		return  postService.postAuction(postAuction);		 	
 	}
 	
 	// 그림게시판 전시회 조회
 	@GetMapping(value = "postExhibition", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<PostExhibitionDTO> postExhibition(@RequestParam("postExhibition") int postExhibition) {
-		return  service.postExhibition(postExhibition);		 	
+		return  postService.postExhibition(postExhibition);		 	
 	}
 	
 		
@@ -62,7 +62,7 @@ public class PostController {
 	@PostMapping(value="postCart", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int postCart(@RequestBody Map<String, Object> map){
-	      return service.postCart(map);
+	      return postService.postCart(map);
 	   }
 	
 	
@@ -70,14 +70,14 @@ public class PostController {
 	@DeleteMapping(value="postDelete", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public int postDelete(@RequestParam("postSeq") int postSeq) {
-		return service.postDelete(postSeq);
+		return postService.postDelete(postSeq);
 	}
 	
 	// 그림 수정
 	@PutMapping(value="postUpdate", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int postUpdate(PostDTO dto, MultipartFile multipartFile) {
-		return service.postUpdate(dto, multipartFile);
+	public int postUpdate(PostDTO postDTO, MultipartFile multipartFile) {
+		return postService.postUpdate(postDTO, multipartFile);
 	}
 	
 	

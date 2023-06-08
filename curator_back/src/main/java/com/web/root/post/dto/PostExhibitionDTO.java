@@ -1,7 +1,7 @@
 
 
 
-package com.web.root.postExhibition.dto;
+package com.web.root.post.dto;
 
 import java.sql.Timestamp;
 

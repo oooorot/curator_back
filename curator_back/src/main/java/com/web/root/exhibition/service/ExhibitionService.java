@@ -11,9 +11,9 @@ import com.web.root.exhibition.dto.ExhibitionDTO;
 
 public interface ExhibitionService {
 	
-	public List<ExhibitionDTO> ExhibitionList();
+	public List<ExhibitionDTO> exhibitionList();
 	
-	public ExhibitionDTO ExhibitionView(int exhibitionSeq);
+	public ExhibitionDTO exhibitionView(int exhibitionSeq);
 		
 //	public int exhibitionWrite(ExhibitionDTO dto, MultipartFile multipartFile);
 

@@ -17,13 +17,13 @@ import com.web.root.post.dto.PostDTO;
 public class GenreServiceImpl implements GenreService {
 	
 	@Autowired
-	private GenreMapper mapper;
+	private GenreMapper GenreMapper;
 	
 	@Override
-	public List<GenreDTO> GenreList() {
+	public List<GenreDTO> genreList() {
 		try {
-			List<GenreDTO> list = mapper.GenreList();
-			return list;
+			List<GenreDTO> GenreList = GenreMapper.genreList();
+			return GenreList;
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,10 +31,10 @@ public class GenreServiceImpl implements GenreService {
 	}
 	
 	@Override
-	public List<PostDTO> GenreView() {
+	public List<PostDTO> genreView(int genreSeq) {
 		try {
-			List<PostDTO> dto = mapper.GenreView();
-			return dto;
+			List<PostDTO> postDTO = GenreMapper.genreView(genreSeq);
+			return postDTO;
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

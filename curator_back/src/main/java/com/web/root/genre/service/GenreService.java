@@ -11,9 +11,9 @@ import com.web.root.post.dto.PostDTO;
 
 public interface GenreService {
 	
-	public List<GenreDTO> GenreList();
+	public List<GenreDTO> genreList();
 	
-	public List<PostDTO> GenreView();
+	public List<PostDTO> genreView(int genreSeq);
 
 
 }

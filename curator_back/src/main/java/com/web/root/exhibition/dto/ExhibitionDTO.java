@@ -1,6 +1,5 @@
 package com.web.root.exhibition.dto;
 
-import java.sql.Timestamp;
 
 public class ExhibitionDTO {
 	

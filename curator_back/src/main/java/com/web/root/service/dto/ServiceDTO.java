@@ -1,6 +1,5 @@
 package com.web.root.service.dto;
 
-import java.sql.Timestamp;
 
 public class ServiceDTO {
 
