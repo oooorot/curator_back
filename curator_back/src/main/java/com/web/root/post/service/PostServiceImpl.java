@@ -6,17 +6,18 @@ package com.web.root.post.service;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.cart.dto.CartDTO;
 import com.web.root.mybatis.post.PostMapper;
 import com.web.root.post.dto.PostDTO;
+import com.web.root.postExhibition.dto.PostExhibitionDTO;
+import com.web.root.postauction.dto.PostAuctionDTO;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -27,8 +28,62 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostDTO PostView(int postSeq) {
-		PostDTO dto = mapper.PostView(postSeq);
-		return dto;
+		try {
+			PostDTO dto = new PostDTO();
+			dto = mapper.PostView(postSeq);
+			return dto;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public List<PostDTO> postList() {
+		try {
+			List<PostDTO> dto = mapper.postList();
+			return dto;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// 전시회 유무
+	@Override
+	public List<PostExhibitionDTO> postExhibition(int postExhibition) {
+		
+		PostExhibitionDTO dto = new PostExhibitionDTO();
+		List<PostExhibitionDTO> list = null;
+		switch(postExhibition) {
+		case 1 : 
+			list = mapper.postExhibition1(postExhibition);
+			return list;
+		case 2 :
+			list = mapper.ViewExhibition(postExhibition);
+			return list;
+			
+		default : return null;	
+		
+		}
+		
+	}
+	
+	// 경매 유무
+	@Override
+	public List<PostAuctionDTO> postAuction(int postAuction) {
+		
+		PostAuctionDTO dto = new PostAuctionDTO();
+		List<PostAuctionDTO> list = null;
+		switch (postAuction) {
+		case 1:
+			list = mapper.postAuction(postAuction);
+			return list;
+		case 2:
+			list = mapper.ViewAuction(postAuction);
+			return list;
+		default: return null;
+		}
 	}
 	
 	@Override
@@ -110,7 +165,4 @@ public class PostServiceImpl implements PostService {
 	   }
 
 	
-	
-	
-
 }

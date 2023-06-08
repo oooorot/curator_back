@@ -50,7 +50,8 @@
 	
 	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
 		<id property="cartSeq" column="cart_seq"/>
-		<result property=""/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="memberSeq" column="member_seq"/>	
 	</resultMap>
 	
 	<select id="memberInfo" resultMap="member">
@@ -62,7 +63,7 @@
 	</update>
 		
 	<delete id="memberDelete">
-		DELETE member WHERE member_seq=#{memberSeq} 
+		DELETE member, commission, bookbark, cart WHERE member_seq=#{memberSeq} 
 	</delete>
 	
 	<select id="cartList" resultMap="cart">

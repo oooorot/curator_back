@@ -6,7 +6,7 @@ public class ExhibitionDTO {
 	
 	private int exhibitionSeq;
 	private String exhibitionName;
-	private Timestamp exhibitionDate;
+	private String exhibitionDate;
 	private String exhibitionExplain;
 	private String exhibitionBanner;
 	
@@ -14,7 +14,7 @@ public class ExhibitionDTO {
 		super();
 	}
 
-	public ExhibitionDTO(int exhibitionSeq, String exhibitionName, Timestamp exhibitionDate, String exhibitionExplain,
+	public ExhibitionDTO(int exhibitionSeq, String exhibitionName, String exhibitionDate, String exhibitionExplain,
 			String exhibitionBanner) {
 		super();
 		this.exhibitionSeq = exhibitionSeq;
@@ -40,11 +40,12 @@ public class ExhibitionDTO {
 		this.exhibitionName = exhibitionName;
 	}
 
-	public Timestamp getExhibitionDate() {
+
+	public String getExhibitionDate() {
 		return exhibitionDate;
 	}
 
-	public void setExhibitionDate(Timestamp exhibitionDate) {
+	public void setExhibitionDate(String exhibitionDate) {
 		this.exhibitionDate = exhibitionDate;
 	}
 

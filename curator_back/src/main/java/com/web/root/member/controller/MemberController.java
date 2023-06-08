@@ -1,8 +1,16 @@
 package com.web.root.member.controller;
 
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.root.member.dto.LoginDTO;
 import com.web.root.member.service.MemberRegisterMail;
 import com.web.root.member.service.MemberService;
 
@@ -28,9 +35,51 @@ public class MemberController {
 	// 로그인 토큰 반환으로 변경예정
 	@PostMapping(value="login", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public LoginDTO login(@RequestBody Map<String, Object> map) {
-		return memberService.login(map);
-	}		
+	public Map<String, Object> login(@RequestBody Map<String, String> map) {
+		String accessToken = memberService.getAccessToken(map);
+    	String refreshToken = memberService.getRefreshToken(map);
+
+        Map<String, Object> tokenJwt = new HashMap<String, Object>();
+        tokenJwt.put("accessToken", accessToken);
+        tokenJwt.put("refreshToken", refreshToken);
+        
+        return tokenJwt;
+	}
+	
+	//refreshToken
+	@PostMapping(value = "silentRefresh", produces = "application/json; charset=utf8")
+    @ResponseBody
+    public Map<String, Object> silentRefresh(@CookieValue(value = "refreshToken") Cookie refreshCookie) throws ParseException {
+    	
+    	String refreshToken = refreshCookie.getValue().toString();
+    	System.out.println(refreshToken);
+    	
+    	String token[] = refreshToken.split("\\.");
+    	System.out.println(token);
+    	Base64.Decoder decoder = Base64.getUrlDecoder();
+
+        System.out.println(new String(decoder.decode(token[1])));
+		String decodeToken = new String(decoder.decode(token[1]));
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject decodeJSON = (JSONObject)jsonParser.parse(decodeToken);
+		
+		String decodeValue = decodeJSON.get("email").toString();
+		System.out.println(decodeValue);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", decodeValue);
+    	
+    	if (refreshToken != null) {
+    		String accessToken = memberService.getAccessToken(map);
+    		Map<String, Object> tokenJwt = new HashMap<String, Object>();
+    		tokenJwt.put("accessToken", accessToken);
+    		
+    		return tokenJwt;
+		}
+    	
+    	return null;
+    	
+    }
 	
 	// 인증코드 발송
 	@PostMapping(value="registerCode", produces = "application/json; charset=utf-8")

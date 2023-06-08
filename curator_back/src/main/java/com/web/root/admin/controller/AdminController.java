@@ -36,7 +36,7 @@ public class AdminController {
 		return adminService.adminArtistList();
 	}
 	
-	// 임의 회원탈퇴(작성중)
+	// 임의 회원탈퇴
 	@DeleteMapping(value="adminMemberDelete", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public int adminMemberDelete(@RequestBody Map<String, Object> map) {

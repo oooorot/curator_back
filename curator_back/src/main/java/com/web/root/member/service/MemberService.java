@@ -7,7 +7,10 @@ import com.web.root.member.dto.LoginDTO;
 public interface MemberService {
 	
 	// 로그인
-	public LoginDTO login(Map<String, Object> map);
+	public String getAccessToken(Map<String, String> map);
+	
+	//refreshToken
+	public String getRefreshToken(Map<String, String> map);
 	
 	// 인증코드 확인
 	public int registerCodeResult(Map<String, Object> map);

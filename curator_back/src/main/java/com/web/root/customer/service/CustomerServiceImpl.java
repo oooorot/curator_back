@@ -24,8 +24,13 @@ public class CustomerServiceImpl implements CustomerService{
 	// 회원정보
 	@Override
 	public MemberDTO memberInfo(Map<String, Object> map) {
-		MemberDTO memberDTO = customerMapper.memberInfo(Integer.parseInt(map.get("MemberSeq").toString()));
+		try {
+			MemberDTO memberDTO = customerMapper.memberInfo(Integer.parseInt(map.get("MemberSeq").toString()));
 		return memberDTO; 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// 회원정보 수정
@@ -55,13 +60,23 @@ public class CustomerServiceImpl implements CustomerService{
 	//장바구니
 	@Override
     public List<CartDTO> cartList(int memberSeq) {
-       return customerMapper.cartList(memberSeq);
+		try {
+			return customerMapper.cartList(memberSeq);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+       
     }
 
 	// 장바구니 삭제
 	@Override
-	public int cartDelect(int carSeq) {
-		return customerMapper.cartDelect(carSeq);
+	public int cartDelect(int carSeq) {	
+		try {
+			return customerMapper.cartDelect(carSeq);
+		}catch (Exception e) {
+			return 0;
+		}
 	}
 
 	// 구매내역
@@ -74,24 +89,44 @@ public class CustomerServiceImpl implements CustomerService{
 	// 즐겨찾기
 	@Override
 	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map) {
-		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
-		return customerMapper.bookmarkArtistList(memberSeq);
+		try {
+			int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+			return customerMapper.bookmarkArtistList(memberSeq);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// 나의문의
 	@Override
+<<<<<<< HEAD
 	public List<HelpDTO> customerHelpList(int memberSeq) { 
 		return customerMapper.customerHelpList(memberSeq);
+=======
+	public List<ServiceDTO> customerHelpList(int memberSeq) { 
+		try {
+			return customerMapper.customerHelpList(memberSeq);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+>>>>>>> branch 'main' of https://github.com/leejunsam/curator_back-1.git
 	}
 	
 	// 답변보기
 	@Override
 	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map) {
-		ReplyDTO replyDTO = new ReplyDTO();
-		replyDTO.setReplySeq(Integer.parseInt(map.get("replySeq").toString()));
-		replyDTO.setHelpSeq(Integer.parseInt(map.get("helpSeq").toString()));
-		replyDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-		return customerMapper.customerReply(replyDTO);
+		try {
+			ReplyDTO replyDTO = new ReplyDTO();
+			replyDTO.setReplySeq(Integer.parseInt(map.get("replySeq").toString()));
+			replyDTO.setHelpSeq(Integer.parseInt(map.get("helpSeq").toString()));
+			replyDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+			return customerMapper.customerReply(replyDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

@@ -45,7 +45,7 @@
 		DELETE member WHERE member_seq=#{memberSeq} 
 	</delete>
    
-    <select id="artistPostList" resultMap="post">
+    <select id="artistPostList" resultMap="post"> 
        SELECT * FROM post WHERE artist_seq=#{artistSeq}
     </select>
     
