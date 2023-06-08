@@ -5,15 +5,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.web.root.bookmark.dto.BookmarkDTO;
-import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.BookmarkDTO;
+import com.web.root.customer.dto.CartDTO;
+import com.web.root.customer.dto.CustomerHelpReplyDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
-import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -78,35 +76,13 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerMapper.bookmarkArtistList(memberSeq);
 	}
 
-	// 나의문의
+	// 나의문의 및 답변
 	@Override
-	public List<ServiceDTO> customerHelpList(int memberSeq) { 
-		return customerMapper.customerHelpList(memberSeq);
-	}
-	
-	// 답변보기
-	@Override
-	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map) {
-		ReplyDTO replyDTO = new ReplyDTO();
-		replyDTO.setReplySeq(Integer.parseInt(map.get("replySeq").toString()));
-		replyDTO.setHelpSeq(Integer.parseInt(map.get("helpSeq").toString()));
-		replyDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-		return customerMapper.customerReply(replyDTO);
+	public List<CustomerHelpReplyDTO> customerHelpReplyList(Map<String, Object> map) {
+		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+		int helpSeq = Integer.parseInt(map.get("helpSeq").toString());
+		List<CustomerHelpReplyDTO> list = customerMapper.customerHelpReplyList(memberSeq, helpSeq);
+		return list;
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.root.bookmark.dto.BookmarkDTO;
-import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.BookmarkDTO;
+import com.web.root.customer.dto.CartDTO;
+import com.web.root.customer.dto.CustomerHelpReplyDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -78,38 +77,11 @@ public class CustomerController {
 		return customerService.bookmarkArtistList(map);
 	}
 	
-	// 나의문의
-	@GetMapping(value="customerHelpList", produces = "application/json; charset=utf-8")
+	// 나의문의 및 답변
+	@GetMapping(value="customerHelpReplyList", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<ServiceDTO> customerHelpList(@RequestParam("memberSeq") int memberSeq){
-		 return customerService.customerHelpList(memberSeq);
-	 }
-	
-	// 답변보기
-	@PutMapping(value="cutomerReply", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map){
-		return customerService.customerReply(map);
+	public List<CustomerHelpReplyDTO> customerHelpReplyList(@RequestBody Map<String, Object> map){
+		return customerService.customerHelpReplyList(map);
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

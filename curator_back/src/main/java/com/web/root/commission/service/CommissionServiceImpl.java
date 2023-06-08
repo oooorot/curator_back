@@ -14,32 +14,46 @@ import com.web.root.mybatis.commission.CommissionMapper;
 public class CommissionServiceImpl implements CommissionService{
 
 	@Autowired
-	private CommissionMapper mapper;
+	private CommissionMapper commissionMapper;
 	
+	// 의뢰 게시글 목록 불러오기
 	@Override
 	public List<CommissionDTO> commAllList() {
-		List<CommissionDTO> list = mapper.commAllList();
-		return list;
+		try {
+			List<CommissionDTO> list = commissionMapper.commAllList();
+			return list;		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
+	
+	// 의뢰 게시글 조회
 	@Override
 	public CommissionDTO commissionView(int commSeq) {
-		CommissionDTO dto = mapper.commissionView(commSeq);
-		return dto;
+		try {
+			CommissionDTO commissionDTO = commissionMapper.commissionView(commSeq);
+			return commissionDTO;			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
+	// 의뢰 게시글 등록
 	@Override
-	public int commissionWrite(CommissionDTO dto) {
+	public int commissionWrite(CommissionDTO commissionDTO) {
 		
 		int res = 0;
 		try {
 			CommissionDTO commDTO = new CommissionDTO();
-			commDTO.setArtistSeq(dto.getArtistSeq());
-			commDTO.setMemberSeq(dto.getMemberSeq());
-			commDTO.setCommTitle(dto.getCommTitle());
-			commDTO.setCommContent(dto.getCommContent());			
-			res = mapper.commissionWrite(dto);
+			commDTO.setArtistSeq(commissionDTO.getArtistSeq());
+			commDTO.setMemberSeq(commissionDTO.getMemberSeq());
+			commDTO.setCommTitle(commissionDTO.getCommTitle());
+			commDTO.setCommContent(commissionDTO.getCommContent());			
+			res = commissionMapper.commissionWrite(commissionDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -48,22 +62,29 @@ public class CommissionServiceImpl implements CommissionService{
 	}
 	
 	
+	// 수정 할 글 불러오기
 	@Override
 	public CommissionDTO updateView(int commSeq) {
-		CommissionDTO dto = mapper.updateView(commSeq);
-		return dto;
+		try {
+			CommissionDTO commissionDTO = commissionMapper.updateView(commSeq);
+			return commissionDTO;			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;	
 	}
 	
 
+	// 의뢰 게시글 수정
 	@Override
-	public int commissionUpdate(CommissionDTO dto) {
+	public int commissionUpdate(CommissionDTO commissionDTO) {
 		CommissionDTO commDTO = new CommissionDTO();
-		commDTO = mapper.updateView(dto.getCommSeq());
+		commDTO = commissionMapper.updateView(commissionDTO.getCommSeq());
 		try {
-			if(dto.getCommTitle()!=null&dto.getCommContent()!=null) {
-				commDTO.setCommTitle(dto.getCommTitle());
-				commDTO.setCommContent(dto.getCommContent());
-				return mapper.commissionUpdate(dto);
+			if(commissionDTO.getCommTitle()!=null&commissionDTO.getCommContent()!=null) {
+				commDTO.setCommTitle(commissionDTO.getCommTitle());
+				commDTO.setCommContent(commissionDTO.getCommContent());
+				return commissionMapper.commissionUpdate(commissionDTO);
 			} else
 				return 0;
 		} catch (Exception e) {
@@ -73,10 +94,11 @@ public class CommissionServiceImpl implements CommissionService{
 
 	}
 
+	// 의뢰 게시글 삭제
 	@Override
 	public int commissionDelete(int commSeq) {
 		try {
-			int res = mapper.commissionDelete(commSeq);
+			int res = commissionMapper.commissionDelete(commSeq);
 			return res;
 		} catch (Exception e) {
 			e.printStackTrace();

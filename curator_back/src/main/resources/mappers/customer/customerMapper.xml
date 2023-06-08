@@ -79,12 +79,12 @@
    </delete>
    
    <select id="cartList" resultMap="cart">
-        SELECT * FROM cart WHERE member_Seq=${memberSeq}
-      </select>
-   
-      <delete id="cartDelect">
-         DELETE FROM cart WHERE mark_seq=#{markSeq}
-      </delete>
+     SELECT * FROM cart WHERE member_Seq=${memberSeq}
+   </select>
+
+   <delete id="cartDelect">
+      DELETE FROM cart WHERE mark_seq=#{markSeq}
+   </delete>
    
    <select id="purchaseProduct" resultMap="purchase">
       SELECT * FROM purchase WHERE member_seq=#{memberSeq}

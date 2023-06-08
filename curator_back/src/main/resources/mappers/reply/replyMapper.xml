@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.reply.ReplyMapper">
-
 	<resultMap type="com.web.root.reply.dto.ReplyDTO" id="reply">
 		<id property="replySeq" column="reply_seq"/>
 		<result property="helpSeq" column="help_seq"/>
@@ -13,14 +12,9 @@
 		<result property="replyDate" column="reply_date"/>
 	</resultMap>
 
-	
 	<select id="ReplyView" resultMap="reply">
 		SELECT * FROM reply WHERE help_seq=#{helpSeq}
-	</select>
-	
-
-
-	
+	</select>	
 
 </mapper>
 

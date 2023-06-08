@@ -18,8 +18,8 @@ public interface ArtistPageMapper {
 	// 작가회원탈퇴
 	public int artistMemberDelete(int MemberSeq);
 	
-	// 작품내역
-	public List<CommissionDTO> artistPostList(int artistSeq);
+	// 작품내역(DB값)
+	public List<PostDTO> artistPostList(int artistSeq);
 	
 	// 작품등록
 	public int artistPostUpdate(PostDTO postDTO);

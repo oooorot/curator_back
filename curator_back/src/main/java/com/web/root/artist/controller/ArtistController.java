@@ -20,20 +20,20 @@ import com.web.root.artist.service.ArtistService;
 public class ArtistController {
 
 	@Autowired
-	private ArtistService service;
+	private ArtistService artistService;
 	
 	// 작가 리스트 불러오기
 	@GetMapping(value="artistAllList", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<ArtistDTO> artistAllList(){
-		return service.artistAllList();
+		return artistService.artistAllList();
 	}
 	
 	// 작가 조회  
 	@GetMapping(value = "artistInform", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public ArtistDTO artistInform(@RequestParam("artistSeq") int artistSeq) {
-		return service.artistInform(artistSeq);
+		return artistService.artistInform(artistSeq);
 	}
 	
 	
@@ -41,7 +41,7 @@ public class ArtistController {
 	@PostMapping(value="artistBookmark", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int artistBookmark(@RequestBody Map<String, Object> map){
-		return service.artistBookmark(map);
+		return artistService.artistBookmark(map);
 	}
 	
 	
