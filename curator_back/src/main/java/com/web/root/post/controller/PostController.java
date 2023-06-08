@@ -56,7 +56,6 @@ public class PostController {
 	public List<PostExhibitionDTO> postExhibition(@RequestParam("postExhibition") int postExhibition) {
 		return  postService.postExhibition(postExhibition);		 	
 	}
-	
 		
 	// 그림 장바구니
 	@PostMapping(value="postCart", produces = "application/json; charset=utf8")
