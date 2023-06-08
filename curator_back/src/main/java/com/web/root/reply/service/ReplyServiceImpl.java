@@ -12,11 +12,11 @@ import com.web.root.reply.dto.ReplyDTO;
 public class ReplyServiceImpl implements ReplyService {
 	
 	@Autowired
-	public ReplyMapper mapper;
+	public ReplyMapper replyMapper;
 	
 	@Override
 	public ReplyDTO ReplyView(int helpSeq) {
-		ReplyDTO dto = mapper.ReplyView(helpSeq);
+		ReplyDTO dto = replyMapper.ReplyView(helpSeq);
 		return dto;
 	}
 

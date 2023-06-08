@@ -1,7 +1,7 @@
 
 
 
-package com.web.root.cart.dto;
+package com.web.root.customer.dto;
 
 public class CartDTO {
 	

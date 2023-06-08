@@ -12,13 +12,7 @@
 		<result property="artistImage" column="artist_image"/>
 		<result property="artistHit" column="artist_hit"/>
 	</resultMap>
-	
-	<resultMap type="com.web.root.bookmark.dto.BookmarkDTO" id="bookmark">
-		<id property="markSeq" column="mark_seq"/>
-		<result property="memberSeq" column="member_seq"/>
-		<result property="artistSeq" column="artist_seq"/>
-	</resultMap>
-	
+		
 	
 	<select id="artistAllList" resultMap="artist">
 		SELECT * FROM artist ORDER BY artist_seq DESC

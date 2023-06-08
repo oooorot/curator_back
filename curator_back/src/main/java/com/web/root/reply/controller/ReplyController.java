@@ -18,13 +18,13 @@ import com.web.root.reply.service.ReplyService;
 public class ReplyController {
 	
 	@Autowired
-	public ReplyService service;
+	public ReplyService replyService;
 	
 	
 	@GetMapping(value = "replyView", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public ReplyDTO replyView(@RequestParam("helpSeq") int helpSeq) {
-		return service.ReplyView(helpSeq);
+		return replyService.ReplyView(helpSeq);
 	}
 	
 
