@@ -3,37 +3,31 @@
 
 package com.web.root.exhibition.service;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.exhibition.dto.ExhibitionDTO;
 import com.web.root.mybatis.exhibition.ExhibitionMapper;
-import com.web.root.post.dto.PostDTO;
 
 @Service
 public class ExhibitionServiceImpl implements ExhibitionService {
 	
 	@Autowired
-	private ExhibitionMapper mapper;
+	private ExhibitionMapper exhibitionMapper;
 	
 	@Override
-	public List<ExhibitionDTO> ExhibitionList() {
-		List<ExhibitionDTO> list = mapper.ExhibitionList();
-		return list;
+	public List<ExhibitionDTO> exhibitionList() {
+		List<ExhibitionDTO> exhibitionList = exhibitionMapper.exhibitionList();
+		return exhibitionList;
 	}
 	
 	@Override
-	public ExhibitionDTO ExhibitionView(int exhibitionSeq) {
-		ExhibitionDTO dto = mapper.ExhibitionView(exhibitionSeq);
-		return dto;
+	public ExhibitionDTO exhibitionView(int exhibitionSeq) {
+		ExhibitionDTO exhibitionDTO = exhibitionMapper.exhibitionView(exhibitionSeq);
+		return exhibitionDTO;
 	}
 	
 //	@Override

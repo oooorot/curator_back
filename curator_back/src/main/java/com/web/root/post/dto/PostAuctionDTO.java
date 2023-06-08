@@ -1,9 +1,8 @@
 
 
 
-package com.web.root.postauction.dto;
+package com.web.root.post.dto;
 
-import java.sql.Timestamp;
 
 public class PostAuctionDTO {
 

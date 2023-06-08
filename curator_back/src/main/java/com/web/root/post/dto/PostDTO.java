@@ -2,7 +2,6 @@
 
 package com.web.root.post.dto;
 
-import java.sql.Timestamp;
 
 public class PostDTO {
 	

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'main' of https://github.com/LeeBumS/curator_back.git
 package com.web.root.mybatis.artist;
 
 import java.util.List;
@@ -6,6 +9,22 @@ import java.util.List;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.bookmark.dto.BookmarkDTO;
 
+<<<<<<< HEAD
+
+
+
+
+
+public interface ArtistMapper {
+
+	public List<ArtistDTO> artistAllList();
+	
+	public ArtistDTO artistInform(int artistSeq);
+
+	public int artistBookmark(BookmarkDTO dto);
+	
+	public void updateHit(int artistSeq);
+=======
 public interface ArtistMapper {
 
 	// 작가 리스트 불러오기
@@ -22,5 +41,11 @@ public interface ArtistMapper {
 
 	
 }
+>>>>>>> branch 'main' of https://github.com/LeeBumS/curator_back.git
 
 
+<<<<<<< HEAD
+	
+}
+=======
+>>>>>>> branch 'main' of https://github.com/LeeBumS/curator_back.git

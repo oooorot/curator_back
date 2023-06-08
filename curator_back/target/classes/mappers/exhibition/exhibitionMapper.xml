@@ -12,11 +12,11 @@
 		<result property="exhibitionBanner" column="exhibition_banner"/>	
 	</resultMap>
 
-	<select id="ExhibitionList" resultMap="exhibition">
+	<select id="exhibitionList" resultMap="exhibition">
 		SELECT * FROM exhibition ORDER BY exhibition_seq DESC
 	</select>
 	
-	<select id="ExhibitionView" resultMap="exhibition">
+	<select id="exhibitionView" resultMap="exhibition">
 		SELECT * FROM exhibition WHERE exhibition_seq=#{exhibitionSeq}
 	</select>
 	
