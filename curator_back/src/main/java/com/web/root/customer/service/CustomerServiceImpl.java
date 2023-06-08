@@ -100,18 +100,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 나의문의
 	@Override
-<<<<<<< HEAD
 	public List<HelpDTO> customerHelpList(int memberSeq) { 
-		return customerMapper.customerHelpList(memberSeq);
-=======
-	public List<ServiceDTO> customerHelpList(int memberSeq) { 
 		try {
 			return customerMapper.customerHelpList(memberSeq);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
->>>>>>> branch 'main' of https://github.com/leejunsam/curator_back-1.git
 	}
 	
 	// 답변보기
