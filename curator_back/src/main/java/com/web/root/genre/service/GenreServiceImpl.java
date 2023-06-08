@@ -5,7 +5,6 @@ package com.web.root.genre.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +17,28 @@ import com.web.root.post.dto.PostDTO;
 public class GenreServiceImpl implements GenreService {
 	
 	@Autowired
-	private GenreMapper mapper;
+	private GenreMapper GenreMapper;
 	
 	@Override
-	public List<GenreDTO> GenreList() {
-		List<GenreDTO> list = mapper.GenreList();
-		return list;
+	public List<GenreDTO> genreList() {
+		try {
+			List<GenreDTO> GenreList = GenreMapper.genreList();
+			return GenreList;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@Override
-	public List<PostDTO> GenreView() {
-		List<PostDTO> dto = mapper.GenreView();
-		return dto;
+	public List<PostDTO> genreView(int genreSeq) {
+		try {
+			List<PostDTO> postDTO = GenreMapper.genreView(genreSeq);
+			return postDTO;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

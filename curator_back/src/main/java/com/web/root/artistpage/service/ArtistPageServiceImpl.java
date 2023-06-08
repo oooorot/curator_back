@@ -1,15 +1,18 @@
 package com.web.root.artistpage.service;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
@@ -54,12 +57,26 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 		
 	}
 	
-	// 작품내역
+	// 작품내역(DB값)
 	@Override
-	public List<CommissionDTO> artistPostList(int artistSeq, HttpServletResponse response) {
-		response.addHeader("Content-disposition", "attachment; fileName=");
-		List<CommissionDTO> list = artistPageMapper.artistPostList(artistSeq);
+	public List<PostDTO> artistPostList(int artistSeq) {
+		List<PostDTO> list = artistPageMapper.artistPostList(artistSeq);
 		return list;
+	}
+
+	// 작품내역(이미지)
+	@Override
+	public ResponseEntity<byte[]> artistPostImage(String postImageName) {
+		File file = new File("" + postImageName);
+		ResponseEntity<byte[]> result = null;
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	// 작품등록
@@ -86,9 +103,5 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	public List<CommissionDTO> PostCommissionList(int artistSeq) {
 		return artistPageMapper.PostCommissionList(artistSeq);
 	}
-	
-	
 
-	
-	
 }

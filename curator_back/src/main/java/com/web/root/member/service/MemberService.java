@@ -2,8 +2,6 @@ package com.web.root.member.service;
 
 import java.util.Map;
 
-import com.web.root.member.dto.LoginDTO;
-
 public interface MemberService {
 	
 	// 로그인
@@ -17,9 +15,11 @@ public interface MemberService {
 	
 	// 이메일 중복 확인
 	public int emailCheck(String insertEmail) throws Exception;
-	
+
 	// 회원가입
 	public int register(Map<String, Object> map);
 
+	// 로그인 체크
+	public String loginCheck(Map<String, String> map);
 
 }

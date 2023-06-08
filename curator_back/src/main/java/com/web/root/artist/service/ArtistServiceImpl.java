@@ -1,5 +1,6 @@
 package com.web.root.artist.service;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -7,42 +8,65 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.root.artist.dto.ArtistDTO;
-import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
 
 @Service
 public class ArtistServiceImpl implements ArtistService{
 
-	@Autowired
-	private ArtistMapper mapper;
+   @Autowired
+   private ArtistMapper artistMapper;
 
 
-	@Override
-	public List<ArtistDTO> artistAllList() {
-		List<ArtistDTO> list = mapper.artistAllList();
-		return list;
-	}
+   // 작가 리스트 불러오기
+   @Override
+   public List<ArtistDTO> artistAllList() {
+      try {
+         List<ArtistDTO> list = artistMapper.artistAllList();
+         return list;      
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
 
-	@Override
-	public ArtistDTO artistInform(int artistSeq) {
-		ArtistDTO dto = mapper.artistInform(artistSeq);		
-		return dto;
-	}
+   
+   // 작가 조회
+   @Override
+   public ArtistDTO artistInform(int artistSeq) {
 
-	@Override
-	public int artistBookmark(Map<String, Object> map) { 
-		int res= 0;
-		try {
-			BookmarkDTO dto = new BookmarkDTO();
-			dto.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-			dto.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-			res = mapper.artistBookmark(dto);		
-		} catch (Exception e) {
-			e.printStackTrace();	
-		}
-		return res;
-	}	
-	
+      try {
+         ArtistDTO artistDTO = artistMapper.artistInform(artistSeq);      
+         return artistDTO;   
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
 
-	
+   
+   // 북마크 등록
+   @Override
+   public int artistBookmark(Map<String, Object> map) { 
+      int res= 0;
+      try {
+         BookmarkDTO bookmarkDTO = new BookmarkDTO();
+         bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+         bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+         res = artistMapper.artistBookmark(bookmarkDTO);      
+         updateHit(bookmarkDTO.getArtistSeq());
+      } catch (Exception e) {
+         e.printStackTrace();   
+      }
+      return res;
+   }   
+   
+   
+   // 조회수 증가
+   public void updateHit(int artistSeq) {
+      artistMapper.updateHit(artistSeq); 
+   }
+   
+
+   
 }
