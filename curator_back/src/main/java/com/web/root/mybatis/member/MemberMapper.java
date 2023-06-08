@@ -1,8 +1,13 @@
 package com.web.root.mybatis.member;
 
+import java.util.Map;
+
 import com.web.root.member.dto.MemberDTO;
 
 public interface MemberMapper {
+	
+	// 로그인 체크
+	public MemberDTO loginCheck(String memberEmail, String memberPw);
 	
 	// 로그인
 	public MemberDTO login(MemberDTO memberDTO);

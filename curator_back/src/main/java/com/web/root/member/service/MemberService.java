@@ -2,7 +2,7 @@ package com.web.root.member.service;
 
 import java.util.Map;
 
-import com.web.root.member.dto.LoginDTO;
+import org.springframework.http.ResponseEntity;
 
 public interface MemberService {
 	
@@ -21,5 +21,7 @@ public interface MemberService {
 	// 회원가입
 	public int register(Map<String, Object> map);
 
+	// 로그인 체크
+	public String loginCheck(Map<String, String> map);
 
 }

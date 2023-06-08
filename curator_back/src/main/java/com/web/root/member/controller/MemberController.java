@@ -36,14 +36,20 @@ public class MemberController {
 	@PostMapping(value="login", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> login(@RequestBody Map<String, String> map) {
-		String accessToken = memberService.getAccessToken(map);
-    	String refreshToken = memberService.getRefreshToken(map);
 
-        Map<String, Object> tokenJwt = new HashMap<String, Object>();
-        tokenJwt.put("accessToken", accessToken);
-        tokenJwt.put("refreshToken", refreshToken);
-        
-        return tokenJwt;
+		Map<String, Object> tokenJwt = new HashMap<String, Object>();
+		
+		if(memberService.loginCheck(map) != null) {
+			String accessToken = memberService.getAccessToken(map);
+			String refreshToken = memberService.getRefreshToken(map);
+			
+			tokenJwt.put("accessToken", accessToken);
+			tokenJwt.put("refreshToken", refreshToken);
+			
+			return tokenJwt;	
+		}
+		return tokenJwt; 
+		
 	}
 	
 	//refreshToken

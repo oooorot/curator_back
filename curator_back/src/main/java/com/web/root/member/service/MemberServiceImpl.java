@@ -23,6 +23,16 @@ public class MemberServiceImpl implements MemberService{
 	//secret key
 	private final String ACCESS_SECRET = "keyactivatetoken";
 	private final String REFRESH_SECRET = "keyrefreshtoken";
+	
+	// 로그인 체크
+	@Override
+	public String loginCheck(Map<String, String> map) {
+		MemberDTO dto = memberMapper.loginCheck(map.get("memberEmail"), map.get("memberPw"));
+		if(dto.getMemberEmail() == null) {
+			return null;
+		}
+		return "success";
+	}
 
 	// 로그인
 	@Override
@@ -138,5 +148,8 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 	}	
+	
+	
+	
 	
 }

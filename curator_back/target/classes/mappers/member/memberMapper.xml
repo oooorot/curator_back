@@ -14,6 +14,9 @@
 		<result property="memberDate" column="member_date"/>
 	</resultMap>
 	
+	<select id="loginCheck" resultMap="member">
+		SELECT member_email, member_pw WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
+	</select>
 
 	<select id="emailCheck" resultType="String">
 		SELECT member_email FROM member WHERE member_email=#{insertEmail} 
