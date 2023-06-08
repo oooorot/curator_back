@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
+import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 public interface CustomerService {
 	
@@ -36,7 +36,7 @@ public interface CustomerService {
 	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map);
 	
 	// 나의문의
-	public List<ServiceDTO> customerHelpList(int memberSeq);
+	public List<HelpDTO> customerHelpList(int memberSeq);
 	
 	// 답변보기
 	public List<ReplyDTO> customerReply(@RequestBody Map<String, Object> map);

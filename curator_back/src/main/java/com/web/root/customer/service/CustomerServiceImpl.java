@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.web.root.bookmark.dto.BookmarkDTO;
 import com.web.root.cart.dto.CartDTO;
 import com.web.root.customer.dto.PurchaseDTO;
+import com.web.root.help.dto.HelpDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
 import com.web.root.reply.dto.ReplyDTO;
-import com.web.root.service.dto.ServiceDTO;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -100,6 +100,10 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 나의문의
 	@Override
+<<<<<<< HEAD
+	public List<HelpDTO> customerHelpList(int memberSeq) { 
+		return customerMapper.customerHelpList(memberSeq);
+=======
 	public List<ServiceDTO> customerHelpList(int memberSeq) { 
 		try {
 			return customerMapper.customerHelpList(memberSeq);
@@ -107,6 +111,7 @@ public class CustomerServiceImpl implements CustomerService{
 			e.printStackTrace();
 		}
 		return null;
+>>>>>>> branch 'main' of https://github.com/leejunsam/curator_back-1.git
 	}
 	
 	// 답변보기

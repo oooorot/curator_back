@@ -11,7 +11,7 @@ import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.admin.AdminMapper;
 import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.mybatis.customer.CustomerMapper;
-import com.web.root.mybatis.service.ServiceMapper;
+import com.web.root.mybatis.help.HelpMapper;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService{
 	public ArtistPageMapper artistPageMapper;
 	
 	@Autowired
-	public ServiceMapper serviceMapper;
+	public HelpMapper serviceMapper;
 
 	// 회원관리
 	@Override

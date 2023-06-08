@@ -9,7 +9,7 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 	<!-- 	<property name="jdbcUrl" value="jdbc:oracle:thin:@orot1195_medium?TNS_ADMIN=/usr/local/tomcat/webapps/Wallet_orot1195"/> -->
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@orot1195_medium?TNS_ADMIN=C:/Web/sqldeveloper/Wallet_orot1195"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@orot1195_medium?TNS_ADMIN=C://DB/Wallet_orot1195"/>
 		<property name="username" value="curator"/>
 		<property name="password" value="Open93348211955"/>
 	</bean>
