@@ -3,7 +3,7 @@ package com.web.root.mybatis.post;
 import java.util.List;
 
 import com.web.root.auction.dto.AuctionDTO;
-import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.CartDTO;
 import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;
 import com.web.root.post.dto.PostExhibitionDTO;

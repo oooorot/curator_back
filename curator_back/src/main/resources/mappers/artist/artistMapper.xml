@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.artist.ArtistMapper">
-
 	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
 		<id property="artistSeq" column="artist_seq"/>
 		<result property="artistName" column="artist_name"/>
@@ -11,14 +10,7 @@
 		<result property="artistSns" column="artist_sns"/>
 		<result property="artistImage" column="artist_image"/>
 		<result property="artistHit" column="artist_hit"/>
-	</resultMap>
-	
-	<resultMap type="com.web.root.bookmark.dto.BookmarkDTO" id="bookmark">
-		<id property="markSeq" column="mark_seq"/>
-		<result property="memberSeq" column="member_seq"/>
-		<result property="artistSeq" column="artist_seq"/>
-	</resultMap>
-	
+	</resultMap>	
 	
 	<select id="artistAllList" resultMap="artist">
 		SELECT * FROM artist ORDER BY artist_seq DESC

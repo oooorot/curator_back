@@ -25,7 +25,7 @@
 		<result property="purDate" column="pur_date" />
 	</resultMap>
 	
-	<resultMap type="com.web.root.bookmark.dto.BookmarkDTO" id="bookmark">
+	<resultMap type="com.web.root.customer.dto.BookmarkDTO" id="bookmark">
 		<id property="markSeq" column="mark_seq"/>
 		<result property="memberSeq" column="member_seq"/>
 		<result property="artistSeq" column="artist_seq"/>

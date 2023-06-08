@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.CartDTO;
 import com.web.root.mybatis.post.PostMapper;
 import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;

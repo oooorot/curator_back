@@ -24,8 +24,6 @@
 		INSERT INTO exhibition VALUES(exhibition_seq.NEXTVAL, #{exhibitionName}, CURRENT_DATE, #{exhibitionExplain}, #{exhibitionBanner})
 	</insert>
 
-	
-
 </mapper>
 
 
