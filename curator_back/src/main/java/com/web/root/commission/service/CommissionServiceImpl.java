@@ -16,19 +16,33 @@ public class CommissionServiceImpl implements CommissionService{
 	@Autowired
 	private CommissionMapper mapper;
 	
+	// 의뢰 게시글 목록 불러오기
 	@Override
 	public List<CommissionDTO> commAllList() {
-		List<CommissionDTO> list = mapper.commAllList();
-		return list;
+		try {
+			List<CommissionDTO> list = mapper.commAllList();
+			return list;		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
+	
+	// 의뢰 게시글 조회
 	@Override
 	public CommissionDTO commissionView(int commSeq) {
-		CommissionDTO dto = mapper.commissionView(commSeq);
-		return dto;
+		try {
+			CommissionDTO dto = mapper.commissionView(commSeq);
+			return dto;			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
+	// 의뢰 게시글 등록
 	@Override
 	public int commissionWrite(CommissionDTO dto) {
 		
@@ -48,13 +62,20 @@ public class CommissionServiceImpl implements CommissionService{
 	}
 	
 	
+	// 수정 할 글 불러오기
 	@Override
 	public CommissionDTO updateView(int commSeq) {
-		CommissionDTO dto = mapper.updateView(commSeq);
-		return dto;
+		try {
+			CommissionDTO dto = mapper.updateView(commSeq);
+			return dto;			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;	
 	}
 	
 
+	// 의뢰 게시글 수정
 	@Override
 	public int commissionUpdate(CommissionDTO dto) {
 		CommissionDTO commDTO = new CommissionDTO();
@@ -73,6 +94,7 @@ public class CommissionServiceImpl implements CommissionService{
 
 	}
 
+	// 의뢰 게시글 삭제
 	@Override
 	public int commissionDelete(int commSeq) {
 		try {

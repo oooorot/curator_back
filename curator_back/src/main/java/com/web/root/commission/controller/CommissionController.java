@@ -51,13 +51,15 @@ public class CommissionController {
 	public CommissionDTO updateView(@RequestParam("commSeq") int commSeq) {
 		return service.updateView(commSeq);
 	}
-
+	
+	
 	// 의뢰 게시글 수정
 	@PutMapping(value="commissionUpdate", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int commissionUpdate(@RequestBody CommissionDTO dto) {
 		return service.commissionUpdate(dto);
 	}
+
 	
 	// 의뢰 게시글 삭제
 	@GetMapping(value="commissionDelete", produces = "application/json; charset=utf8")

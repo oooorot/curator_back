@@ -49,8 +49,8 @@ public class MemberController {
 	// 이메일 중복확인
 	@GetMapping(value="emailCheck", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int emailCheck(@RequestParam("insertEmail") String InsertEmail) {
-		return memberService.emailCheck(InsertEmail);
+	public int emailCheck(@RequestParam("insertEmail") String insertEmail) throws Exception {
+		return memberService.emailCheck(insertEmail);
 	}
 	
 	// 회원가입
