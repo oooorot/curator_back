@@ -35,12 +35,6 @@
 		<result property="aucPrice" column="auc_price"/>
 	</resultMap>
 	
-	<resultMap type="com.web.root.customer.dto.CartDTO" id="cart">
-		<id property="cartSeq" column="cart_seq"/>
-		<result property="postSeq" column="post_seq"/>
-		<result property="memberSeq" column="member_seq"/>
-	</resultMap>
-	
 	<resultMap type="com.web.root.post.dto.PostAuctionDTO" id="postauction">
 		<id property="postSeq" column="post_seq"/>
 		<result property="genreSeq" column="genre_seq"/>
