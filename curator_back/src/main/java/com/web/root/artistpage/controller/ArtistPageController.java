@@ -3,10 +3,9 @@ package com.web.root.artistpage.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,12 +50,19 @@ public class ArtistPageController {
 		return artistPageService.artistMemberDelete(MemberSeq);
 	}
 	
-	// 작품내역(작업중)
+	// 작품내역(DB값)
 	@GetMapping(value="artistPostList", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<CommissionDTO> artistPostList(@RequestParam("artistSeq") int artistSeq, HttpServletResponse response){
-		return artistPageService.artistPostList(artistSeq, response);
-	}
+	public List<PostDTO> artistPostList(@RequestParam("artistSeq") int artistSeq){
+		return artistPageService.artistPostList(artistSeq);
+	}	
+	
+	// 작품내역(이미지:postImageName)
+	@GetMapping(value="artistPostImage", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<byte[]> artistPostImage(@RequestPart(value="postImageName") String postImageName) {
+		return artistPageService.artistPostImage(postImageName);
+	}	
 	
 	// 작품등록
 	@PostMapping(value="artistPostUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -72,7 +78,4 @@ public class ArtistPageController {
 		return artistPageService.PostCommissionList(artistSeq);
 	}
 
-
-	
-	
 }
