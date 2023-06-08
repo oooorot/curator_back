@@ -30,6 +30,19 @@
 	<!-- 마이바티스 xml 파일 dao 빈 연결 -->
 	<mybatis-spring:scan base-package="com.web.root.mybatis"/>
 
-	
+	  <!-- gmail설정 -->
+   <bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+        <property name="host" value="smtp.gmail.com" />
+         <property name="port" value="587" />
+       <property name="username" value="ljuho93@gmail.com"/> <!-- 자신의 이메일 아이디 -->
+       <property name="password" value="ljqgivevumbqffin"/> <!-- 자신의 비밀번호 -->
+    <!-- 보안연결 TLS과 관련된 설정 -->
+        <property name="javaMailProperties">
+          <props>
+             <prop key="mail.smtp.auth">true</prop>
+             <prop key="mail.smtp.starttls.enable">true</prop>
+          </props>
+        </property>
+   </bean>
 
 </beans>
