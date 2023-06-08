@@ -43,7 +43,7 @@
 		<result property="replyDate" column="reply_date"/>
 	</resultMap>
 	
-	<resultMap type="com.web.root.service.dto.ServiceDTO" id="help">
+	<resultMap type="com.web.root.help.dto.HelpDTO" id="help">
 		<result property="helpSeq" column="help_seq" />
 		<result property="memberSeq" column="member_seq" />
 		<result property="helpTitle" column="help_title" />
@@ -60,7 +60,7 @@
 		<result property="replyDate" column="reply_date"/>
 	</resultMap>
 	
-	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
+	<resultMap type="com.web.root.customer.dto.CartDTO" id="cart">
 		<id property="cartSeq" column="cart_seq"/>
 		<result property="postSeq" column="post_seq"/>
 		<result property="memberSeq" column="member_seq"/>
