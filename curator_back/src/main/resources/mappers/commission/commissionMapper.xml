@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.commission.CommissionMapper">
-
 	<resultMap type="com.web.root.commission.dto.CommissionDTO" id="comm">
 		<id property="commSeq" column="comm_seq"/>
 		<result property="artistSeq" column="artist_seq"/>
@@ -11,8 +10,7 @@
 		<result property="commTitle" column="comm_title"/>
 		<result property="commContent" column="comm_content"/>
 		<result property="commDate" column="comm_date"/>
-	</resultMap>
-		
+	</resultMap>	
 	
 	<select id="commAllList" resultMap="comm">
 		SELECT * FROM commission ORDER BY comm_seq DESC   

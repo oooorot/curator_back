@@ -16,8 +16,10 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Override
 	public ReplyDTO ReplyView(int helpSeq) {
-		ReplyDTO dto = replyMapper.ReplyView(helpSeq);
-		return dto;
+		
+		ReplyDTO replyDTO = replyMapper.ReplyView(helpSeq);
+		return replyDTO;
+
 	}
 
 }

@@ -19,7 +19,7 @@ public class ReplyController {
 	
 	@Autowired
 	public ReplyService replyService;
-	
+
 	
 	@GetMapping(value = "replyView", produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -27,5 +27,4 @@ public class ReplyController {
 		return replyService.ReplyView(helpSeq);
 	}
 	
-
 }
