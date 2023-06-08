@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.root.bookmark.dto.BookmarkDTO;
-import com.web.root.cart.dto.CartDTO;
+import com.web.root.customer.dto.BookmarkDTO;
+import com.web.root.customer.dto.CartDTO;
 import com.web.root.customer.dto.CustomerHelpReplyDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;

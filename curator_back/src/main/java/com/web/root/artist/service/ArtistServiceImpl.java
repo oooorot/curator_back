@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.root.artist.dto.ArtistDTO;
-import com.web.root.bookmark.dto.BookmarkDTO;
+import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
 
 @Service

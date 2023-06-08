@@ -35,7 +35,7 @@
 		<result property="aucPrice" column="auc_price"/>
 	</resultMap>
 	
-	<resultMap type="com.web.root.cart.dto.CartDTO" id="cart">
+	<resultMap type="com.web.root.customer.dto.CartDTO" id="cart">
 		<id property="cartSeq" column="cart_seq"/>
 		<result property="postSeq" column="post_seq"/>
 		<result property="memberSeq" column="member_seq"/>
