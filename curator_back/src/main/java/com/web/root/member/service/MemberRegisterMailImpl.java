@@ -12,14 +12,19 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import com.web.root.mybatis.member.MemberMapper;
+
 @Service
 public class MemberRegisterMailImpl implements MemberRegisterMail{
 	
 	@Autowired
 	JavaMailSenderImpl mailSender;
 	
+	@Autowired
+	MemberMapper memberMapper;
+	
 	@Override
-	public String registerCode(String memberEmail) throws Exception{
+	public int registerCode(String memberEmail) throws Exception{
 		boolean useLetters = true;
 		boolean useNumbers = true;
 		String randomCode = RandomStringUtils.random(8, useLetters, useNumbers);
@@ -44,7 +49,13 @@ public class MemberRegisterMailImpl implements MemberRegisterMail{
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return randomCode.toString();
+        
+        String code = randomCode.toString();
+        
+        System.out.println(code);
+        memberMapper.codeDelete();
+        int res = memberMapper.codeSave(code);
+		return res;
     }
 }
 
