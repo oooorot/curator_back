@@ -28,7 +28,8 @@
 	<!-- 마이바티스 xml 파일 dao 빈 연결 -->
 	<mybatis-spring:scan base-package="com.web.root.mybatis"/>
 
-	 	<!-- gmail설정 -->
+	<!-- gmail설정 -->
+
 	<bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
 	    <property name="host" value="smtp.gmail.com" />
 	    <property name="port" value="587" />
@@ -48,6 +49,5 @@
 		    </props>
      	</property>
 	</bean>
-	
 
 </beans>
