@@ -19,7 +19,7 @@
 	</select>
 
 	<select id="emailCheck" resultType="String">
-		SELECT member_name FROM member WHERE member_email=#{insertEmail} 
+		SELECT member_email FROM member WHERE member_email=#{memberEmail} 
 	</select>
 
 	<select id="checkEmail" resultMap="member">

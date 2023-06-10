@@ -14,7 +14,7 @@ public interface MemberService {
 	public int registerCodeResult(Map<String, Object> map);
 	
 	// 이메일 중복 확인
-	public int emailCheck(String insertEmail) throws Exception;
+	public int emailCheck(String memberEmail) throws Exception;
 
 	// 회원가입
 	public int register(Map<String, Object> map);
