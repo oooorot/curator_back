@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<select id="loginCheck" resultMap="member">
-		SELECT member_email, member_pw WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
+		SELECT member_email, member_pw FROM member WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
 	</select>
 
 	<select id="emailCheck" resultType="String">
@@ -27,12 +27,24 @@
 	</select>
 	
 	<select id="login" resultMap="member">
-		SELECT member_seq, member_email, member_pw, member_nickname, member_grade FROM member WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
+		SELECT * FROM member WHERE member_email=#{memberEmail} AND member_pw=#{memberPw}
 	</select>
 	
 	<insert id="register">
 		INSERT INTO member VALUES(member_seq.NEXTVAL,#{memberEmail},#{memberPw},#{memberNickname},#{memberName},#{memberPhone},#{memberAddr},#{memberGrade},current_date)
 	</insert>
+	
+	<insert id="codeSave">
+		INSERT INTO signupCode VALUES(#{code})
+	</insert>
+	
+	<select id="codeSelect" resultType="String">
+		SELECT * FROM signupCode
+	</select>
+	
+	<delete id="codeDelete">
+		DELETE FROM signupCode
+	</delete>
 
 </mapper>
 

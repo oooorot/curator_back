@@ -27,11 +27,19 @@ public class MemberServiceImpl implements MemberService{
 	// 로그인 체크
 	@Override
 	public String loginCheck(Map<String, String> map) {
-		MemberDTO dto = memberMapper.loginCheck(map.get("memberEmail"), map.get("memberPw"));
-		if(dto.getMemberEmail() == null) {
+		try {			
+			MemberDTO dto = memberMapper.loginCheck(map);
+			if(dto.getMemberEmail() != null) {
+				System.out.println(dto.getMemberEmail());
+				return dto.getMemberEmail();
+			}
+			return "success";
+		} catch (NullPointerException e) {
 			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return "success";
+		return null;
 	}
 
 	// 로그인
@@ -45,6 +53,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		// email을 통해 나머지 정보 select
 		MemberDTO dto = memberMapper.checkEmail(email);
+		System.out.println(dto.getMemberEmail());
     	String nickname = dto.getMemberNickname();
     	int seq = dto.getMemberSeq();
     	int grade = dto.getMemberGrade();
@@ -108,9 +117,10 @@ public class MemberServiceImpl implements MemberService{
 	// 인증코드 확인
 	@Override
 	public int registerCodeResult(Map<String, Object> map) {
-		String insertCode = map.get("insertCode").toString(); 
-		String registerCode = map.get("registerCode").toString();
+		String insertCode = map.get("token").toString(); 
+		String registerCode = memberMapper.codeSelect();
 		if(insertCode.equals(registerCode)) {
+			memberMapper.codeDelete();
 			return 1;
 		} else return 0;
 	}
@@ -120,6 +130,7 @@ public class MemberServiceImpl implements MemberService{
 	public int emailCheck(String insertEmail) throws Exception {
 		try {
 			if(memberMapper.emailCheck(insertEmail) == null) {
+				System.out.println(memberMapper.emailCheck(insertEmail));
 				return 0;
 			}	
 		} catch (Exception e) {

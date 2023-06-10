@@ -1,10 +1,14 @@
 package com.web.root.admin.service;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.member.dto.MemberDTO;
@@ -34,16 +38,40 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.adminCustomerList();
 	}
 	
-	// 작가등록
+//	// 작가등록
+//	@Override
+//	public int adminArtistAdd(Map<String, Object> map) {
+//		ArtistDTO artistDTO = new ArtistDTO();
+//		artistDTO.setArtistName(map.get("artistName").toString());
+//		artistDTO.setArtistProfile(map.get("artistProfile").toString());
+//		artistDTO.setArtistSns(map.get("artistSns").toString());
+//		return adminMapper.adminArtistAdd(artistDTO);
+//	}
+	
 	@Override
-	public int adminArtistAdd(Map<String, Object> map) {
-		ArtistDTO artistDTO = new ArtistDTO();
-		artistDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		artistDTO.setArtistName(map.get("artistName").toString());
-		artistDTO.setArtistProfile(map.get("artistProfile").toString());
-		artistDTO.setArtistSns(map.get("artistSns").toString());
-		artistDTO.setArtistImage(map.get("artistImage").toString());
-		return adminMapper.adminArtistAdd(artistDTO);
+	public String fileProcess(ArtistDTO dto, MultipartFile multipartFile) {
+		if (multipartFile.getSize() != 0) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar calendar = Calendar.getInstance();
+			String sysFileName = sdf.format(calendar.getTime());
+			sysFileName += multipartFile.getOriginalFilename();
+			
+			dto.setArtistImage(sysFileName);
+			
+			File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();			
+			}
+			adminMapper.adminArtistAdd(dto);
+		
+			return "success";
+		}
+		
+		return null;
+
 	}
 
 	// 작가관리

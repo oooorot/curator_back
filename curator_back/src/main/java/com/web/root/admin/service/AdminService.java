@@ -3,6 +3,8 @@ package com.web.root.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.member.dto.MemberDTO;
 
@@ -12,7 +14,8 @@ public interface AdminService {
 	public List<MemberDTO> adminCustomerList();
 	
 	// 작가등록
-	public int adminArtistAdd(Map<String, Object> map);
+//	public int adminArtistAdd(Map<String, Object> map);
+	public String fileProcess(ArtistDTO dto, MultipartFile multipartFile);
 	
 	// 작가관리
 	public List<ArtistDTO> adminArtistList();
