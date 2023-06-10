@@ -90,7 +90,7 @@ public class MemberController {
 	// 인증코드 발송
 	@GetMapping(value="registerCode", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String registerCode(@RequestParam("insertEmail") String memberEmail) throws Exception {
+	public int registerCode(@RequestParam("insertEmail") String memberEmail) throws Exception {
 		System.out.println(memberEmail);
 		return memberRegisterMail.registerCode(memberEmail);
 	}
@@ -120,6 +120,7 @@ public class MemberController {
 	@PostMapping(value="register", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public int register(@RequestBody Map<String, Object> map) {
+		System.out.println(map.get("memberEmail"));
 		return memberService.register(map);
 	}
 
