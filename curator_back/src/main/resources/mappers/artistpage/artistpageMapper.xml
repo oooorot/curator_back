@@ -11,6 +11,35 @@
 		<result property="artistSns" column="artist_sns"/>
 		<result property="artistImage" column="artist_image"/>
 		<result property="artistHit" column="artist_hit"/>
+<<<<<<< HEAD
+	</resultMap>
+
+	<resultMap type="com.web.root.post.dto.PostDTO" id="post">
+      <id property="postSeq" column="post_seq"/>
+      <result property="genreSeq" column="genre_seq"/>
+      <result property="artistSeq" column="artist_seq"/>   
+      <result property="postTitle" column="post_title"/>   
+      <result property="postSummary" column="post_summary"/>   
+      <result property="postImageName" column="post_image_name"/>   
+      <result property="postPrice" column="post_price"/>   
+      <result property="postDate" column="post_date"/>   
+      <result property="postAuction" column="post_auction" />
+      <result property="postExhibition" column="post_exhibition" />
+   </resultMap>
+   
+   	<resultMap type="com.web.root.commission.dto.CommissionDTO" id="comm">
+		<id property="commSeq" column="comm_seq"/>
+		<result property="artistSeq" column="artist_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="commTitle" column="comm_title"/>
+		<result property="commContent" column="comm_content"/>
+		<result property="commImage" column="comm_image"/>
+		<result property="commDate" column="comm_date"/>
+	</resultMap>
+   
+   	<select id="artistMemberInfo" resultMap="artist">
+		SELECT * FROM member WHERE member_seq=#{memberSeq}
+=======
 	</resultMap>	
 	
 	<resultMap type="com.web.root.artist.dto.ArtistProfileDTO" id="artistprofile">
@@ -33,12 +62,30 @@
 	
 	<select id="artistAllList" resultMap="artistprofile">
 		SELECT a.*,p.pro_record1,p.pro_record2,p.pro_record3,p.pro_record4,p.pro_painting1,p.pro_painting2,p.pro_painting3,p.pro_painting4 FROM artist a INNER JOIN profile p ON a.artist_seq=p.artist_seq  ORDER BY a.artist_seq
+>>>>>>> branch 'main' of https://github.com/Juho11955/curator_back.git
 	</select>
 	
 	<select id="artistInform" resultMap="artist">
 		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	
+<<<<<<< HEAD
+	<delete id="artistMemberDelete">
+		DELETE member WHERE member_seq=#{memberSeq} 
+	</delete>
+   
+    <select id="artistPostList" resultMap="post">
+       SELECT * FROM post WHERE artist_seq=#{artistSeq}
+    </select>
+    
+    <insert id="artistPostUpdate">
+       INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE)
+    </insert>
+   
+    <select id="PostCommissionList" resultMap="comm">
+       SELECT * FROM commission WHERE artist_seq=#{artistSeq}	
+    </select>
+=======
 	<insert id="artistBookmark">
 		INSERT INTO bookmark VALUES(mark_seq.NEXTVAL,#{memberSeq},#{artistSeq})
 	</insert>
@@ -47,6 +94,7 @@
 		UPDATE artist SET artist_hit=artist_hit+1 WHERE artist_seq=#{artistSeq}
 	</update>
 
+>>>>>>> branch 'main' of https://github.com/Juho11955/curator_back.git
 </mapper>
 
 
