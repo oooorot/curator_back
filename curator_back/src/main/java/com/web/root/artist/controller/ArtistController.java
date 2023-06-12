@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.artist.dto.ArtistProfileDTO;
 import com.web.root.artist.service.ArtistService;
 
 @RestController
@@ -27,7 +28,7 @@ public class ArtistController {
 	// 작가 리스트 불러오기
 	@GetMapping(value="artistAllList", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<ArtistDTO> artistAllList(){
+	public List<ArtistProfileDTO> artistAllList(){
 		return artistService.artistAllList();
 	}
 	

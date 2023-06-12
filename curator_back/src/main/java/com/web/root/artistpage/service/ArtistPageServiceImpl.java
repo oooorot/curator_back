@@ -37,7 +37,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	@Override
 	public int artistMemberUpdate(Map<String, Object> map) {
 		try {
-			if(map.get("memberPw")!=null&map.get("memberNickname")!=null&map.get("memberName")!=null&map.get("memberPhone")!=null&map.get("memberAddr")!=null) {
+			if(map.get("artistName")!=null&&map.get("artistProfile")!=null&&map.get("artistSns")!=null&&map.get("artistImage")!=null) {
 				return artistPageMapper.artistMemberUpdate(map);
 			} else return 0;
 		} catch (Exception e) {
@@ -48,9 +48,9 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	
 	// 작가회원탈퇴
 	@Override
-	public int artistMemberDelete(int MemberSeq) {
+	public int artistMemberDelete(int artistSeq) {
 		try {
-			return artistPageMapper.artistMemberDelete(MemberSeq);
+			return artistPageMapper.artistMemberDelete(artistSeq);
 		} catch (Exception e) {
 			return 0;
 		}
@@ -67,7 +67,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	// 작품내역(이미지)
 	@Override
 	public ResponseEntity<byte[]> artistPostImage(String postImageName) {
-		File file = new File("" + postImageName);
+		File file = new File("C:\\Web\\test\\" + postImageName);
 		ResponseEntity<byte[]> result = null;
 		try {
 			HttpHeaders header = new HttpHeaders();
@@ -81,21 +81,63 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 
 	// 작품등록
 	@Override
-	public int artistPostUpdate(PostDTO postDTO, MultipartFile multipartFile) {
+	public int artistPostWrite(PostDTO postDTO, MultipartFile multipartFile) {
 		if(multipartFile.getSize() != 0) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar calendar = Calendar.getInstance();
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+			File artistPostFile = new File("C:\\Web\\test" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistPostFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return artistPageMapper.artistPostUpdate(postDTO);
+		return artistPageMapper.artistPostWrite(postDTO);
+	}
+	
+	// 작품수정
+	@Override
+	public int artistPostUpdate(PostDTO postDTO, MultipartFile multipartFile) {
+		int result = 0;
+		if(multipartFile.getSize() != 0) {
+			exPostDelete(postDTO.getPostImageName());
+			postDTO.setPostImageName(onlyPostUpdate(multipartFile));
+		} else {
+			postDTO.setPostImageName(onlyPostUpdate(multipartFile));
+		}
+		try {
+			result = artistPageMapper.artistPostUpdate(postDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	// 작품수정 중 기존 이미지파일 삭제
+	public void exPostDelete(String exPostDelete) {
+		System.out.println("C:/Web/test/" + exPostDelete);
+		File file = new File("C:/Web/test/" + exPostDelete);
+		file.delete();
+	}
+	// 작품수정 중 새 이미지파일 업로드
+	public String onlyPostUpdate(MultipartFile multipartFile) {
+		PostDTO postDTO = new PostDTO();
+		if(multipartFile.getSize() != 0) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar calendar = Calendar.getInstance();
+			String sysFileName = sdf.format(calendar.getTime());
+			sysFileName += multipartFile.getOriginalFilename();
+			postDTO.setPostImageName(sysFileName);
+			File artistPostFile = new File("C:/Web/test" + File.separator + sysFileName);
+			try {
+				multipartFile.transferTo(artistPostFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return postDTO.getPostImageName();
 	}
 
 	// 의뢰내역

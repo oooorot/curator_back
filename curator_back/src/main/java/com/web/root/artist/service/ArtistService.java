@@ -6,11 +6,12 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.artist.dto.ArtistProfileDTO;
 
 public interface ArtistService {
 
 	// 작가 리스트 불러오기
-	public List<ArtistDTO> artistAllList();
+	public List<ArtistProfileDTO> artistAllList();
 	
 	// 작가 조회
 	public ArtistDTO artistInform(int artistSeq);

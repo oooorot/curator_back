@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.admin.service.AdminService;
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.artistpage.service.ArtistPageService;
 import com.web.root.member.dto.MemberDTO;
+import com.web.root.post.dto.PostDTO;
 
 @RestController
 @CrossOrigin(origins="*", allowedHeaders = "*")
@@ -28,6 +30,9 @@ public class AdminController {
 	@Autowired
 	public AdminService adminService;
 	
+	@Autowired
+	public ArtistPageService artistPageService;
+	
 	// 회원관리
 	@GetMapping(value="adminCustomerList", produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -35,22 +40,11 @@ public class AdminController {
 		return adminService.adminCustomerList();
 	}
 	
-
-//	@PostMapping(value="adminArtistAdd", produces = "application/json; charset=utf-8")
-//	@ResponseBody
-//	public int adminArtistAdd(@RequestBody Map<String, Object> map) {
-//		return adminService.adminArtistAdd(map);
-//	}
-	
 	// 작가등록
-	@PostMapping(value = "adminArtistAdd", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(value="adminArtistAdd", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String fileTest(@RequestPart(value = "dto") ArtistDTO dto, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		System.out.println(dto.getArtistName());
-		System.out.println(multipartFile.getOriginalFilename());
-		adminService.fileProcess(dto, multipartFile);
-		
-		return "success";
+	public int adminArtistAdd(@RequestBody Map<String, Object> map) {
+		return adminService.adminArtistAdd(map);
 	}
 	
 	// 작가관리
@@ -60,10 +54,17 @@ public class AdminController {
 		return adminService.adminArtistList();
 	}
 	
+	// 작품등록
+	@PostMapping(value="artistPostWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@ResponseBody
+	public int artistPostWrite(@RequestPart(value="postDTO") PostDTO postDTO, @RequestPart(value="artistPostFile", required=false) MultipartFile multipartFile) {
+		return artistPageService.artistPostWrite(postDTO, multipartFile);
+	}
+	
 	// 그림 등급 관리
 	@PutMapping(value="adminPostAuction", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int adminPostAuction(@RequestParam("postSeq") int postSeq, @RequestParam("postGrade") int postAuction) {
+	public int adminPostAuction(@RequestParam("postSeq") int postSeq, @RequestParam("postAuction") int postAuction) {
 		return adminService.adminPostAuction(postSeq, postAuction);
 	}
 	

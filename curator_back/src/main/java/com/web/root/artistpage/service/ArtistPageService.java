@@ -19,7 +19,7 @@ public interface ArtistPageService {
 	public int artistMemberUpdate(Map<String, Object> map);
 	
 	// 작가회원탈퇴
-	public int artistMemberDelete(int MemberSeq);
+	public int artistMemberDelete(int artistSeq);
 	
 	// 작품내역(DB값)
 	public List<PostDTO> artistPostList(int artistSeq);
@@ -28,6 +28,9 @@ public interface ArtistPageService {
 	public ResponseEntity<byte[]> artistPostImage(String postImageName);
 	
 	// 작품등록
+	public int artistPostWrite(PostDTO postDTO, MultipartFile multipartFile);
+	
+	// 작품수정
 	public int artistPostUpdate(PostDTO postDTO, MultipartFile multipartFile);
 	
 	// 의뢰내역

@@ -3,6 +3,7 @@ package com.web.root.artist.dto;
 public class ArtistDTO {
 
 	private int artistSeq;
+	private int exhibitionSeq;
 	private String artistName;
 	private String artistProfile;
 	private String artistSns;
@@ -30,6 +31,14 @@ public class ArtistDTO {
 
 	public void setArtistSeq(int artistSeq) {
 		this.artistSeq = artistSeq;
+	}
+
+	public int getExhibitionSeq() {
+		return exhibitionSeq;
+	}
+
+	public void setExhibitionSeq(int exhibitionSeq) {
+		this.exhibitionSeq = exhibitionSeq;
 	}
 
 	public String getArtistName() {

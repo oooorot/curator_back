@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.artist.dto.ArtistProfileDTO;
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.mybatis.artist.ArtistMapper;
 
@@ -26,9 +27,9 @@ public class ArtistServiceImpl implements ArtistService{
 
    // 작가 리스트 불러오기
    @Override
-   public List<ArtistDTO> artistAllList() {
+   public List<ArtistProfileDTO> artistAllList() {
       try {
-         List<ArtistDTO> list = artistMapper.artistAllList();
+         List<ArtistProfileDTO> list = artistMapper.artistAllList();
          return list;      
       } catch (Exception e) {
          e.printStackTrace();
