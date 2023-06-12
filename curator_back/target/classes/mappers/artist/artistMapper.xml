@@ -5,6 +5,7 @@
 <mapper namespace="com.web.root.mybatis.artist.ArtistMapper">
 	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
 		<id property="artistSeq" column="artist_seq"/>
+		<result property="exhibitionSeq" column="exhibition_seq" />
 		<result property="artistName" column="artist_name"/>
 		<result property="artistProfile" column="artist_profile"/>
 		<result property="artistSns" column="artist_sns"/>
@@ -12,11 +13,29 @@
 		<result property="artistHit" column="artist_hit"/>
 	</resultMap>	
 	
-	<select id="artistAllList" resultMap="artist">
-		SELECT * FROM artist ORDER BY artist_seq DESC
+	<resultMap type="com.web.root.artist.dto.ArtistProfileDTO" id="artistprofile">
+		<id property="artistSeq" column="artist_seq"/>
+		<result property="exhibitionSeq" column="exhibition_seq" />
+		<result property="artistName" column="artist_name"/>
+		<result property="artistProfile" column="artist_profile"/>
+		<result property="artistSns" column="artist_sns"/>
+		<result property="artistImage" column="artist_image"/>
+		<result property="artistHit" column="artist_hit"/>
+		<result property="proRecord1" column="pro_record1"/>
+		<result property="proRecord2" column="pro_record2"/>
+		<result property="proRecord3" column="pro_record3"/>
+		<result property="proRecord4" column="pro_record4"/>
+		<result property="proPainting1" column="pro_painting1"/>
+		<result property="proPainting2" column="pro_painting2"/>
+		<result property="proPainting3" column="pro_painting3"/>
+		<result property="proPainting4" column="pro_painting4"/>
+	</resultMap>	
+	
+	<select id="artistAllList" resultMap="artistprofile">
+		SELECT a.*,p.pro_record1,p.pro_record2,p.pro_record3,p.pro_record4,p.pro_painting1,p.pro_painting2,p.pro_painting3,p.pro_painting4 FROM artist a INNER JOIN profile p ON a.artist_seq=p.artist_seq  ORDER BY a.artist_seq
 	</select>
 	
-	<select id="artistView" resultMap="artist">
+	<select id="artistInform" resultMap="artist">
 		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	

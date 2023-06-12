@@ -19,20 +19,20 @@ import com.web.root.nonmember.service.NonmemberService;
 public class NonmemberController {
 
 	@Autowired
-	private NonmemberService NonmemberService;
+	private NonmemberService nonmemberService;
 	
 	// 비회원 정보 가져오기 
 	@GetMapping(value="getNonmember", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public NonmemberDTO getNonmember(@RequestParam("nonSeq") int nonSeq) {
-		return NonmemberService.getNonmember(nonSeq);
+		return nonmemberService.getNonmember(nonSeq);
 	}
 	
 	// 비회원 구매시 정보 입력 
 	@PostMapping(value="nonmemberInform", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int nonmemberInform(@RequestBody Map<String, Object> map) {
-		return NonmemberService.nonmemberInform(map);
+		return nonmemberService.nonmemberInform(map);
 	}
 	
 	

@@ -7,6 +7,7 @@ package com.web.root.post.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.post.dto.PostAuctionDTO;
@@ -32,6 +33,8 @@ public interface PostService {
 	public List<PostExhibitionDTO> postExhibition(int postExhibition);
 	
 	public List<PostAuctionDTO> postAuction(int postAuction);
+	
+	public ResponseEntity<byte[]> postImageName(String postImageName);
 
 	
 	

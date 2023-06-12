@@ -10,6 +10,8 @@ public class PurchaseDTO {
 	private String purPhone;
 	private String purAddr;
 	private String purDate;
+	private String purCompany;
+	private String purDscode;
 	
 	// Constructor
 	public PurchaseDTO() {}
@@ -70,4 +72,22 @@ public class PurchaseDTO {
 	public void setPurDate(String purDate) {
 		this.purDate = purDate;
 	}
+
+	public String getPurCompany() {
+		return purCompany;
+	}
+
+	public void setPurCompany(String purCompany) {
+		this.purCompany = purCompany;
+	}
+
+	public String getPurDscode() {
+		return purDscode;
+	}
+
+	public void setPurDscode(String purDscode) {
+		this.purDscode = purDscode;
+	}
+	
+	
 }
