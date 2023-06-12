@@ -29,7 +29,7 @@
 	</select>
 	
 	<update id="commissionUpdate">
-		UPDATE commission SET comm_title=#{commTitle}, comm_content=#{commContent}, WHERE comm_seq=#{commSeq}
+		UPDATE commission SET comm_title=#{commTitle}, comm_content=#{commContent} WHERE comm_seq=#{commSeq}
 	</update>
 	
 	<delete id="commissionDelete">

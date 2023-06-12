@@ -13,4 +13,16 @@ public interface AuctionMapper {
 	// 경매 : 입찰	
 	public int auctionBid(Map<String, Object> map);
 	
+	// 경매 : 글 삭제
+	public int deleteAuction(int aucSeq);
+	
+	// 경매 : 낙찰
+	public int getSuccessfulBid(int aucPrice);
+	
+	// 경매 : 낙찰자 제외 참여자 삭제
+	public int deleteParticipant(int aucPrice);
+	
+	// 경매 : 조회
+	public AuctionDTO getAuction(int aucSeq);
+	
 }

@@ -11,13 +11,15 @@ public class NonmemberDTO {
 	private String nonPhone;
 	private String nonAddr;
 	private Timestamp nonDate;
+	private String nonCompany;
+	private String nonDscode;
 	
 	public NonmemberDTO() {
 		
 	}
 
 	public NonmemberDTO(int nonSeq, String nonCode, String nonEmail, String nonName, String nonPhone, String nonAddr,
-			Timestamp nonDate) {
+			Timestamp nonDate, String nonCompany, String nonDscode) {
 		super();
 		this.nonSeq = nonSeq;
 		this.nonCode = nonCode;
@@ -26,6 +28,8 @@ public class NonmemberDTO {
 		this.nonPhone = nonPhone;
 		this.nonAddr = nonAddr;
 		this.nonDate = nonDate;
+		this.nonCompany = nonCompany;
+		this.nonDscode = nonDscode;
 	}
 
 	public int getNonSeq() {
@@ -84,7 +88,20 @@ public class NonmemberDTO {
 		this.nonDate = nonDate;
 	}
 
-	
-	
+	public String getNonCompany() {
+		return nonCompany;
+	}
+
+	public void setNonCompany(String nonCompany) {
+		this.nonCompany = nonCompany;
+	}
+
+	public String getNonDscode() {
+		return nonDscode;
+	}
+
+	public void setNonDscode(String nonDscode) {
+		this.nonDscode = nonDscode;
+	}
 	
 }

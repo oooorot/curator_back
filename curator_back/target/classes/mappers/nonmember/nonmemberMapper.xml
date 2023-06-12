@@ -19,8 +19,12 @@
 </select>
 	
 <insert id="nonmemberInform">
-	INSERT INTO nonmember VALUES(non_seq.NEXTVAL, #{nonCode}, #{nonEmail}, #{nonName}, #{nonPhone}, #{nonAddr}, CURRENT_DATE)  
+	INSERT INTO nonmember VALUES(non_seq.NEXTVAL, #{nonCode}, #{nonEmail}, #{nonName}, #{nonPhone}, #{nonAddr}, #{nonCompany}, #{nonDscode}, CURRENT_DATE)  
 </insert>
+
+<select id="randomValue">
+	SELECT nonCode FROM nonmember;
+</select>
 </mapper>
 
 
