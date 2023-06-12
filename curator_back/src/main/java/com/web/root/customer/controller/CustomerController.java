@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.customer.dto.CartDTO;
 import com.web.root.customer.dto.CustomerHelpReplyDTO;
+import com.web.root.customer.dto.ParcelDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
 import com.web.root.member.dto.MemberDTO;
@@ -59,8 +60,8 @@ public class CustomerController {
 	// 장바구니 삭제
 	@DeleteMapping(value="cartDelect", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int cartDelect(@RequestParam("carSeq") int carSeq) {
-		return customerService.cartDelect(carSeq);
+	public int cartDelect(@RequestParam("cartSeq") int cartSeq) {
+		return customerService.cartDelect(cartSeq);
 	}
 	
 	// 구매내역
@@ -69,7 +70,14 @@ public class CustomerController {
 	public List<PurchaseDTO> purchaseProduct(@RequestBody Map<String, Object> map) {
 		return customerService.purchaseProduct(map); 
 	}
-
+	
+	// 배송조회
+	@GetMapping(value="parcelSelect", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ParcelDTO parcelSelect(@RequestParam("purSeq") int purSeq) {
+		return customerService.parcelSelect(purSeq);
+	}
+	
 	// 즐겨찾기(북마크 등록한 작가)
 	@GetMapping(value="bookmarkArtistList", produces = "application/json; charset=utf-8")
 	@ResponseBody 

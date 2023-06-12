@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.customer.dto.CartDTO;
 import com.web.root.customer.dto.CustomerHelpReplyDTO;
+import com.web.root.customer.dto.ParcelDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
 
@@ -26,10 +27,13 @@ public interface CustomerService {
 	public List<CartDTO> cartList(int memberSeq);
 	
 	// 장바구니 삭제
-	public int cartDelect(int carSeq);
+	public int cartDelect(int cartSeq);
 	
 	// 구매내역
 	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map);
+	
+	// 배송조회
+	public ParcelDTO parcelSelect(int purSeq);
 	
 	// 즐겨찾기
 	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map);
