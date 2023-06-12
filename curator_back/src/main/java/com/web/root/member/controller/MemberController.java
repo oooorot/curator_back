@@ -36,14 +36,20 @@ public class MemberController {
 	@PostMapping(value="login", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> login(@RequestBody Map<String, String> map) {
-		String accessToken = memberService.getAccessToken(map);
-    	String refreshToken = memberService.getRefreshToken(map);
 
-        Map<String, Object> tokenJwt = new HashMap<String, Object>();
-        tokenJwt.put("accessToken", accessToken);
-        tokenJwt.put("refreshToken", refreshToken);
-        
-        return tokenJwt;
+		Map<String, Object> tokenJwt = new HashMap<String, Object>();
+		
+		if(memberService.loginCheck(map) != null) {
+			String accessToken = memberService.getAccessToken(map);
+			String refreshToken = memberService.getRefreshToken(map);
+			
+			tokenJwt.put("accessToken", accessToken);
+			tokenJwt.put("refreshToken", refreshToken);
+			
+			return tokenJwt;	
+		}
+		return tokenJwt; 
+		
 	}
 	
 	//refreshToken
@@ -82,9 +88,10 @@ public class MemberController {
     }
 	
 	// 인증코드 발송
-	@PostMapping(value="registerCode", produces = "application/json; charset=utf-8")
+	@GetMapping(value="registerCode", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String registerCode(@RequestParam String memberEmail) throws Exception {
+	public int registerCode(@RequestParam("insertEmail") String memberEmail) throws Exception {
+		System.out.println(memberEmail);
 		return memberRegisterMail.registerCode(memberEmail);
 	}
 	
@@ -98,14 +105,22 @@ public class MemberController {
 	// 이메일 중복확인
 	@GetMapping(value="emailCheck", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int emailCheck(@RequestParam("insertEmail") String insertEmail) throws Exception {
-		return memberService.emailCheck(insertEmail);
+	public int emailCheck(@RequestParam("insertEmail") String InsertEmail) throws Exception {
+		try {
+			if(memberService.emailCheck(InsertEmail) == 0) {
+				return 0;
+			} else return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 	
 	// 회원가입
 	@PostMapping(value="register", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public int register(@RequestBody Map<String, Object> map) {
+		System.out.println(map.get("memberEmail"));
 		return memberService.register(map);
 	}
 
