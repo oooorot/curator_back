@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.customer.dto.CartDTO;
 import com.web.root.customer.dto.CustomerHelpReplyDTO;
+import com.web.root.customer.dto.ParcelDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.customer.CustomerMapper;
@@ -58,8 +59,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 장바구니 삭제
 	@Override
-	public int cartDelect(int carSeq) {
-		return customerMapper.cartDelect(carSeq);
+	public int cartDelect(int cartSeq) {
+		return customerMapper.cartDelect(cartSeq);
 	}
 
 	// 구매내역
@@ -69,6 +70,24 @@ public class CustomerServiceImpl implements CustomerService{
 		return purchaseList;
 	}
 	
+	
+	
+	//배송조회
+	@Override
+	public ParcelDTO parcelSelect(int purSeq) {
+		ParcelDTO parcelDTO = new ParcelDTO(); 
+		try {
+			PurchaseDTO purchaseDTO = customerMapper.parcelSelect(purSeq);
+			parcelDTO.setPurDscode(purchaseDTO.getPurDscode());
+			parcelDTO.setPurCode(purchaseDTO.getPurCompany());
+			parcelDTO.setPurAddr("http://info.sweettracker.co.kr//tracking/2");
+			parcelDTO.setPurKey("n6UAfOSjfAtjoomyjlkscA");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return parcelDTO;
+	}
+
 	// 즐겨찾기
 	@Override
 	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map) {

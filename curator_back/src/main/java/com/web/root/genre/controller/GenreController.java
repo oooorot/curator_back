@@ -7,9 +7,10 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,21 +23,28 @@ import com.web.root.post.dto.PostDTO;
 public class GenreController {
 	
 	@Autowired
-	private GenreService GenreService;
+	private GenreService genreService;
 	
 	//장르 리스트
 	@GetMapping(value = "genreList", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public List<GenreDTO> genreList() {
-		return GenreService.genreList();
+		return genreService.genreList();
 	}
-	
 	
 	// 장르 조회
 	@GetMapping(value = "genreView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<PostDTO> postView(@RequestParam("genreSeq") int genreSeq) {
-		return GenreService.genreView(genreSeq);
+	public List<PostDTO> postView() {
+		return genreService.genreView();
 	}
+	
+	   
+	// 장르내역(이미지:postImageName)
+	@GetMapping(value="genrePostImageName", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<byte[]> genrePostImageName(@RequestPart(value="postImageName") String postImageName) {
+	    return genreService.genrePostImageName(postImageName);
+	}  
 
 }

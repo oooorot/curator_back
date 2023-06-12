@@ -22,7 +22,6 @@ public class CommissionController {
 	@Autowired
 	private CommissionService commissionService; 
 	
-	
 	// 의뢰 게시글 목록 불러오기 
 	@GetMapping(value = "commAllList",  produces = "application/json; charset=utf8")
 	@ResponseBody

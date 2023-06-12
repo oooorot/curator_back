@@ -2,7 +2,6 @@
 
 package com.web.root.reply.dto;
 
-import java.sql.Timestamp;
 
 public class ReplyDTO {
 	
