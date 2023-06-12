@@ -16,12 +16,14 @@ public interface ArtistPageMapper {
 	public int artistMemberUpdate(Map<String, Object> map);
 	
 	// 작가회원탈퇴
-	public int artistMemberDelete(int MemberSeq);
+	public int artistMemberDelete(int artistSeq);
 	
 	// 작품내역(DB값)
 	public List<PostDTO> artistPostList(int artistSeq);
 	
 	// 작품등록
+	public int artistPostWrite(PostDTO postDTO);
+	// 작품수정(artistPostUpdate : DB수정)
 	public int artistPostUpdate(PostDTO postDTO);
 	
 	// 의뢰내역

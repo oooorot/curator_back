@@ -31,7 +31,7 @@ public class ArtistPageController {
 	public ArtistPageService artistPageService;
 	
 	// 작가회원정보
-	@PostMapping(value="artistMemberInfo", produces = "application/json; charset=utf-8")
+	@GetMapping(value="artistMemberInfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public ArtistDTO artistMemberInfo(@RequestBody Map<String, Object> map) {
 		return artistPageService.artistMemberInfo(map);
@@ -46,8 +46,8 @@ public class ArtistPageController {
 	// 작가회원탈퇴
 	@DeleteMapping(value="artistMemberDelete", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int artistMemberDelete(@RequestParam("MemberSeq") int MemberSeq) {
-		return artistPageService.artistMemberDelete(MemberSeq);
+	public int artistMemberDelete(@RequestParam("artistSeq") int artistSeq) {
+		return artistPageService.artistMemberDelete(artistSeq);
 	}
 	
 	// 작품내역(DB값)
@@ -65,9 +65,16 @@ public class ArtistPageController {
 	}	
 	
 	// 작품등록
-	@PostMapping(value="artistPostUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(value="artistPostWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
-	public int artistPostUpdate(@RequestPart(value="postDTO") PostDTO postDTO, @RequestPart(value="artistPostFile", required=false) MultipartFile multipartFile) {
+	public int artistPostWrite(@RequestPart(value="postDTO") PostDTO postDTO, @RequestPart(value="artistPostFile", required=false) MultipartFile multipartFile) {
+		return artistPageService.artistPostWrite(postDTO, multipartFile);
+	}
+	
+	// 작품수정
+	@PutMapping(value="artistPostUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@ResponseBody
+	public int artistPostUpdate(@RequestPart(value="postDTO") PostDTO postDTO,  @RequestPart(value="postUpdateFile", required=false) MultipartFile multipartFile) {
 		return artistPageService.artistPostUpdate(postDTO, multipartFile);
 	}
 	
