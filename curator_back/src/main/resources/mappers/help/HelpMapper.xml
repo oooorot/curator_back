@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="helpWrite">
-		INSERT INTO help VALUES(help_seq.NEXTVAL, memberSeq, helpTitle, helpContent, CURRENT_DATE)
+		INSERT INTO help VALUES(help_seq.NEXTVAL, #{memberSeq}, #{helpTitle}, #{helpContent}, CURRENT_DATE)
 	</insert>
 	
 	<select id="updateHelpView" resultMap="help">
