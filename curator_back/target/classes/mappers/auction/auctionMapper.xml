@@ -19,4 +19,20 @@
 		INSERT INTO auction VALUES(#{memberSeq},#{memberNickname},#{postSeq},#{artistSeq},#{auctionAccount})
 	</insert>
 	
+	<delete id="deleteAuction">
+		DELETE FROM auction WHERE auc_seq=#{aucSeq}
+	</delete>
+	
+	<select id="getSuccessfulBid">
+		SELECT * FROM (SELECT * FROM auction ORDER BY #{aucPrice} DESC) WHERE ROWNUM = 1;
+	</select>
+	
+	<delete id="deleteParticipant">
+		DELETE FROM auction WHERE auc_price IN (SELECT aucPrice(MAX) FROM auction)
+	</delete>
+	
+	<select id="getAuction" resultMap="auction">
+		SELECT * FROM auction WHERE auc_seq=#{aucSeq}
+	</select>
+	
 </mapper>

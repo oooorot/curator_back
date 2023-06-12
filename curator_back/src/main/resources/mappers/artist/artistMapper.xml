@@ -17,7 +17,7 @@
 		SELECT * FROM artist ORDER BY artist_seq DESC
 	</select>
 	
-	<select id="artistView" resultMap="artist">
+	<select id="artistInform" resultMap="artist">
 		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	

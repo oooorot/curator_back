@@ -13,4 +13,10 @@ public interface AuctionService {
 	// 경매 : 입찰
 	public int auctionBid(Map<String, Object> map);
 	
+	// 경매 : 삭제
+	public int deleteAuction(Map<String, Object> map);
+	
+	// 경매 : 조회
+	public AuctionDTO getAuction(int aucSeq);
+	
 }
