@@ -3,6 +3,8 @@ package com.web.root.artist.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
+
 import com.web.root.artist.dto.ArtistDTO;
 
 public interface ArtistService {
@@ -16,5 +18,7 @@ public interface ArtistService {
 	// 북마크 등록
 	public int artistBookmark(Map<String, Object> map);
 	
+	// 작가 이미지 등록
+	public ResponseEntity<byte[]> artistImage(String artistImage);
 	
 }

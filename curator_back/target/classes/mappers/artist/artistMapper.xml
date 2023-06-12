@@ -10,13 +10,14 @@
 		<result property="artistSns" column="artist_sns"/>
 		<result property="artistImage" column="artist_image"/>
 		<result property="artistHit" column="artist_hit"/>
-	</resultMap>	
+	</resultMap>
+		
 	
 	<select id="artistAllList" resultMap="artist">
 		SELECT * FROM artist ORDER BY artist_seq DESC
 	</select>
 	
-	<select id="artistView" resultMap="artist">
+	<select id="artistInform" resultMap="artist">
 		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	
