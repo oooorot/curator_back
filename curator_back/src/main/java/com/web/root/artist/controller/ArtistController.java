@@ -32,6 +32,13 @@ public class ArtistController {
 		return artistService.artistAllList();
 	}
 	
+	// 작가 즐겨찾기 불러오기
+	@GetMapping(value="artistTop", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<ArtistDTO> artistTop(@RequestParam("artistHit") int artistHit){
+		return artistService.artistTop(artistHit);
+	}
+	
 	
 	// 작가 조회  
 	@GetMapping(value = "artistInform", produces = "application/json; charset=utf8")

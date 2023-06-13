@@ -46,7 +46,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	    return list;
 	 }
 
-	 // 작품내역(이미지)
+	 // 전시회내역(이미지)
 	 @Override
 	   public ResponseEntity<byte[]> exhibitionimage(String exhibitionBanner) {
 	      File file = new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + exhibitionBanner);
@@ -61,7 +61,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	      return result;
 	   }
 
-	   // 작품등록
+	   // 전시회등록
 	   @Override
 	   public int exhibitionWrite(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile) {
 	      if(multipartFile.getSize() != 0) {
@@ -80,7 +80,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	      return exhibitionMapper.exhibitionWrite(exhibitionDTO);
 	   }
 	   
-	   // 작품수정
+	   // 전시회수정
 	   @Override
 	   public int exhibitionUpdate(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile) {
 	      int result = 0;
@@ -98,14 +98,14 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	      return result;
 	   }
 	   
-	   // 작품수정 중 기존 이미지파일 삭제
+	   // 전시회수정 중 기존 이미지파일 삭제
 	   public void exhibitionDelete(String exhibitionDelete) {
 	      System.out.println("C:\\Users\\Administrator\\Pictures\\image\\bg_image\\" + exhibitionDelete);
 	      File file = new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image\\" + exhibitionDelete);
 	      file.delete();
 	   }
 	   
-	   // 작품수정 중 새 이미지파일 업로드
+	   // 전시회수정 중 새 이미지파일 업로드
 	   public String onlyExhibitionUpdate(MultipartFile multipartFile) {
 		   ExhibitionDTO exhibitionDTO = new ExhibitionDTO();
 	      if(multipartFile.getSize() != 0) {

@@ -16,17 +16,18 @@ public interface ExhibitionService {
 	public List<ExhibitionDTO> exhibitionList();
 	
 	public ExhibitionDTO exhibitionView(int exhibitionSeq);
+	
 		
-	// 작품내역(DB값)
+	// 전시회내역(DB값)
 	public List<ExhibitionDTO> exhibitionBannerList(int exhibitionSeq);
 	   
-	// 작품내역(이미지)
+	// 전시회내역(이미지)
 	public ResponseEntity<byte[]> exhibitionimage(String exhibitionBanner);
 	   
-	// 작품등록
+	// 전시회등록
 	public int exhibitionWrite(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile);
 	   
-	// 작품수정
+	// 전시회수정
 	public int exhibitionUpdate(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile);
 
 }

@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.artist.ArtistMapper">
+
 	<resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
 		<id property="artistSeq" column="artist_seq"/>
 		<result property="exhibitionSeq" column="exhibition_seq" />
@@ -33,6 +34,10 @@
 	
 	<select id="artistAllList" resultMap="artistprofile">
 		SELECT a.*,p.pro_record1,p.pro_record2,p.pro_record3,p.pro_record4,p.pro_painting1,p.pro_painting2,p.pro_painting3,p.pro_painting4 FROM artist a INNER JOIN profile p ON a.artist_seq=p.artist_seq  ORDER BY a.artist_seq
+	</select>
+	
+	<select id="artistTop" resultMap="artist">
+		SELECT * FROM(SELECT * FROM artist ORDER BY artist_seq DESC)<![CDATA[WHERE ROWNUM <= 3]]>
 	</select>
 	
 	<select id="artistInform" resultMap="artist">

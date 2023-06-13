@@ -36,6 +36,18 @@ public class ArtistServiceImpl implements ArtistService{
       }
       return null;
    }
+   
+   // 작가 top 불러오기
+   @Override
+   public List<ArtistDTO> artistTop(int artistHit) {
+	   try {
+		   List<ArtistDTO> list = artistMapper.artistTop(artistHit);
+		   return list;      
+	   } catch (Exception e) {
+		   e.printStackTrace();
+	   }
+	   return null;
+   }
 
    
    // 작가 조회
@@ -75,7 +87,7 @@ public class ArtistServiceImpl implements ArtistService{
    }
    
    
-   // 작품내역 불러오기(이미지)
+   // 작가내역 불러오기(이미지)
    @Override
      public ResponseEntity<byte[]> artistImage(String artistImage) {
         File file = new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + artistImage);

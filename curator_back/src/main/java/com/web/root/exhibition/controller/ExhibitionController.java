@@ -57,14 +57,14 @@ public class ExhibitionController {
 	    return exhibitionService.exhibitionimage(exhibitionBanner);
 	}  
 	   
-	// 작품등록
+	// 전시회등록
 	@PostMapping(value="exhibitionWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public int exhibitionWrite(@RequestPart(value="exhibitionDTO") ExhibitionDTO exhibitionDTO, @RequestPart(value="exhibitionBanner", required=false) MultipartFile multipartFile) {
 	    return exhibitionService.exhibitionWrite(exhibitionDTO, multipartFile);
 	}
 	   
-	// 작품수정
+	// 전시회수정
 	@PutMapping(value="exhibitionUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public int exhibitionUpdate(@RequestPart(value="exhibitionDTO") ExhibitionDTO exhibitionDTO,  @RequestPart(value="exhibitionUpdateFile", required=false) MultipartFile multipartFile) {

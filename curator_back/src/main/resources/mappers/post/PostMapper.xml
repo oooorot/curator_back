@@ -18,22 +18,6 @@
 		<result property="postDate" column="post_date"/>	
 	</resultMap>
 	
-	<resultMap type="com.web.root.exhibition.dto.ExhibitionDTO" id="exhibition">
-		<id property="exhibitionSeq" column="exhibition_seq"/>
-		<result property="exhibitionName" column="exhibition_name"/>
-		<result property="exhibitionDate" column="exhibition_date"/>	
-		<result property="exhibitionExplain" column="exhibition_explain"/>	
-		<result property="exhibitionBanner" column="exhibition_banner"/>	
-	</resultMap>
-	
-	<resultMap type="com.web.root.auction.dto.AuctionDTO" id="auction">
-		<id property="aucSeq" column="auc_seq"/>
-		<result property="memberSeq" column="member_seq"/>
-		<result property="artistSeq" column="artist_seq"/>
-		<result property="postSeq" column="post_seq"/>
-		<result property="aucNickName" column="auc_nick_name"/>
-		<result property="aucPrice" column="auc_price"/>
-	</resultMap>
 	
 	<resultMap type="com.web.root.post.dto.PostAuctionDTO" id="postauction">
 		<id property="postSeq" column="post_seq"/>
