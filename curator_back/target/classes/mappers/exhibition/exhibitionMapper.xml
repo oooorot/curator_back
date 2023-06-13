@@ -23,6 +23,10 @@
 	<insert id="exhibitionWrite">
 		INSERT INTO exhibition VALUES(exhibition_seq.NEXTVAL, #{exhibitionName}, CURRENT_DATE, #{exhibitionExplain}, #{exhibitionBanner})
 	</insert>
+	
+	<update id="exhibitionUpdate">
+        UPDATE exhibition SET exhibition_name=#{exhibitionName}, CURRENT_DATE, exhibition_explain=#{exhibitionExplain}, exhibition_banner=#{exhibitionBanner}
+    </update>
 
 </mapper>
 
