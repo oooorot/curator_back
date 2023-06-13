@@ -14,7 +14,7 @@ public interface ArtistService {
 	public List<ArtistProfileDTO> artistAllList();
 	
 	// 작가 탑레이팅 불러오기
-	public List<ArtistDTO> artistTop(int artistHit);
+	public List<ArtistDTO> artistTop();
 	
 	// 작가 조회
 	public ArtistDTO artistInform(int artistSeq);

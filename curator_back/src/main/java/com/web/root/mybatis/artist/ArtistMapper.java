@@ -12,7 +12,7 @@ public interface ArtistMapper {
    public List<ArtistProfileDTO> artistAllList();
    
    // 작가 Top 불러오기
-   public List<ArtistDTO> artistTop(int artistHit);
+   public List<ArtistDTO> artistTop();
    
    // 작가 조회
    public ArtistDTO artistInform(int artistSeq);

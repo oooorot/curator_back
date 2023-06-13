@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="artistTop" resultMap="artist">
-		SELECT * FROM(SELECT * FROM artist ORDER BY artist_seq DESC)<![CDATA[WHERE ROWNUM <= 3]]>
+		SELECT * FROM(SELECT * FROM artist ORDER BY artist_hit DESC)<![CDATA[WHERE ROWNUM <= 3]]>
 	</select>
 	
 	<select id="artistInform" resultMap="artist">

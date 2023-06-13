@@ -39,9 +39,9 @@ public class ArtistServiceImpl implements ArtistService{
    
    // 작가 top 불러오기
    @Override
-   public List<ArtistDTO> artistTop(int artistHit) {
+   public List<ArtistDTO> artistTop() {
 	   try {
-		   List<ArtistDTO> list = artistMapper.artistTop(artistHit);
+		   List<ArtistDTO> list = artistMapper.artistTop();
 		   return list;      
 	   } catch (Exception e) {
 		   e.printStackTrace();
