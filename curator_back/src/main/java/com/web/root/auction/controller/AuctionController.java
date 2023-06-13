@@ -50,8 +50,6 @@ public class AuctionController {
 		return auctionService.deleteAuction(map);
 	}
 	
-	
-	// 이 달의 경매
 }
 
 

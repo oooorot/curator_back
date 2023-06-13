@@ -1,10 +1,14 @@
 package com.web.root.admin.service;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.member.dto.MemberDTO;
@@ -36,13 +40,25 @@ public class AdminServiceImpl implements AdminService{
 	
 	// 작가등록
 	@Override
-	public int adminArtistAdd(Map<String, Object> map) {
+	public int adminArtistAdd(Map<String, Object> map, MultipartFile multipartFile) {
 		ArtistDTO artistDTO = new ArtistDTO();
 		artistDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
 		artistDTO.setArtistName(map.get("artistName").toString());
 		artistDTO.setArtistProfile(map.get("artistProfile").toString());
 		artistDTO.setArtistSns(map.get("artistSns").toString());
-		artistDTO.setArtistImage(map.get("artistImage").toString());
+		if(multipartFile.getSize() != 0) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar calendar = Calendar.getInstance();
+			String sysFileName = sdf.format(calendar.getTime());
+			sysFileName += multipartFile.getOriginalFilename();
+			artistDTO.setArtistImage(sysFileName);
+			File artistImageFile = new File("" + File.separator + sysFileName);
+			try {
+				multipartFile.transferTo(artistImageFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return adminMapper.adminArtistAdd(artistDTO);
 	}
 
