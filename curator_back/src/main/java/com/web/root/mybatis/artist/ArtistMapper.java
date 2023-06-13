@@ -13,12 +13,18 @@ public interface ArtistMapper {
    
    // 작가 조회
    public ArtistDTO artistInform(int artistSeq);
+   
+   // 작가 Top 불러오기
+   public List<ArtistDTO> artistTop();
 
    // 북마크 등록
    public int artistBookmark(BookmarkDTO bookmarkDTO);
 
    // 조회수 증가
    public void updateHit(int artistSeq);
+   
+   // 구매점수 증가
+   public void purchasePoint(int artistSeq);
 
    
 }

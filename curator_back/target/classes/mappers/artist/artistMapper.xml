@@ -39,12 +39,20 @@
 		SELECT * FROM artist WHERE artist_seq=#{artistSeq}
 	</select>
 	
+	<select id="artistTop" resultMap="artist">
+        SELECT * FROM(SELECT * FROM artist ORDER BY artist_hit DESC)<![CDATA[WHERE ROWNUM <= 3]]>
+    </select>
+	
 	<insert id="artistBookmark">
 		INSERT INTO bookmark VALUES(mark_seq.NEXTVAL,#{memberSeq},#{artistSeq})
 	</insert>
 	
 	<update id="updateHit">
 		UPDATE artist SET artist_hit=artist_hit+1 WHERE artist_seq=#{artistSeq}
+	</update>
+	
+	<update id="purchasePoint">
+		UPDATE artist SET artist_hit=artist_hit+2 WHERE artist_seq=#{artistSeq}
 	</update>
 
 </mapper>

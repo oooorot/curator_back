@@ -9,19 +9,9 @@ public class HelpDTO {
 	private String helpTitle;
 	private String helpContent;
 	private Timestamp helpDate;
+	private String helpCate;
 	
-	public HelpDTO() {
-		super();
-	}
-
-	public HelpDTO(int helpSeq, int memberSeq, String helpTitle, String helpContent, Timestamp helpDate) {
-		super();
-		this.helpSeq = helpSeq;
-		this.memberSeq = memberSeq;
-		this.helpTitle = helpTitle;
-		this.helpContent = helpContent;
-		this.helpDate = helpDate;
-	}
+	public HelpDTO() {}
 
 	public int getHelpSeq() {
 		return helpSeq;
@@ -63,7 +53,12 @@ public class HelpDTO {
 		this.helpDate = helpDate;
 	}
 
-	
-	
+	public String getHelpCate() {
+		return helpCate;
+	}
+
+	public void setHelpCate(String helpCate) {
+		this.helpCate = helpCate;
+	}
 	
 }

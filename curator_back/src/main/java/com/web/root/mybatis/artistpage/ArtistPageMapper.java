@@ -1,7 +1,6 @@
 package com.web.root.mybatis.artistpage;
 
 import java.util.List;
-import java.util.Map;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.commission.dto.CommissionDTO;
@@ -13,7 +12,7 @@ public interface ArtistPageMapper {
 	public ArtistDTO artistMemberInfo(int artistSeq);
 	
 	// 작가회원정보 수정
-	public int artistMemberUpdate(Map<String, Object> map);
+	public int artistMemberUpdate(ArtistDTO artistDTO);
 	
 	// 작가회원탈퇴
 	public int artistMemberDelete(int artistSeq);
