@@ -37,9 +37,9 @@ public class GenreServiceImpl implements GenreService {
 	}
 	
 	@Override
-	public List<PostDTO> genreView() {
+	public List<PostDTO> genreView(int genreSeq) {
 		try {
-			List<PostDTO> dto = genreMapper.genreView();
+			List<PostDTO> dto = genreMapper.genreView(genreSeq);
 			return dto;
 		}catch (Exception e) {
 			e.printStackTrace();

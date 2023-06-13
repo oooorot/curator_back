@@ -14,7 +14,7 @@ public interface GenreService {
 	
 	public List<GenreDTO> genreList();
 	
-	public List<PostDTO> genreView();
+	public List<PostDTO> genreView(int genreSeq);
 	
 	public ResponseEntity<byte[]> genrePostImageName(String postImageName);
 

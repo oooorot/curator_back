@@ -13,7 +13,7 @@
 
 	<!--	<property name="jdbcUrl" value="jdbc:oracle:thin:@nas.walpie.com:31521:xe"/>-->
 
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@orot1195_medium?TNS_ADMIN=C://DB/Wallet_orot1195"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@orot1195_medium?TNS_ADMIN=C:/web/DB/Wallet_orot1195"/>
 		<property name="username" value="curator"/>
 		<property name="password" value="Open93348211955"/>
 	</bean>

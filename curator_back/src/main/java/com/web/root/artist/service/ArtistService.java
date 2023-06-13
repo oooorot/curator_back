@@ -16,6 +16,9 @@ public interface ArtistService {
 	// 작가 조회
 	public ArtistDTO artistInform(int artistSeq);
 	
+    // 작가 탑레이팅 불러오기
+    public List<ArtistDTO> artistTop();
+	
 	// 북마크 등록
 	public int artistBookmark(Map<String, Object> map);
 	

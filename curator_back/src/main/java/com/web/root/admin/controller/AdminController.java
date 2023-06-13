@@ -46,7 +46,7 @@ public class AdminController {
 		return adminService.adminArtistAdd(map, multipartFile);
 	}
 	
-	// 작가관리
+	// 작가관리(사진없이 DB정보만)
 	@GetMapping(value="adminArtistList", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<ArtistDTO> adminArtistList(){

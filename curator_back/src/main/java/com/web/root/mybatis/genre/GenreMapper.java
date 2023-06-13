@@ -9,7 +9,7 @@ public interface GenreMapper {
 	
 	public List<GenreDTO> genreList();
 	
-	public List<PostDTO> genreView();
+	public List<PostDTO> genreView(int genreSeq);
 	
 
 
