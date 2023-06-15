@@ -83,7 +83,7 @@
 	</select>
 	
 	<select id="postExhibition1" resultMap="postexhibition">
-		SELECT * FROM(SELECT * FROM post,exhibition) WHERE post_exhibition=#{postExhibition}
+		SELECT * FROM post,exhibition WHERE post_exhibition=#{postExhibition}
 	</select>
 	
 	<select id="viewExhibition" resultMap="post">

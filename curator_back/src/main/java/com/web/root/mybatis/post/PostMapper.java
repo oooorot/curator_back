@@ -24,7 +24,7 @@ public interface PostMapper {
 	
 	public List<PostExhibitionDTO> postExhibition1(int postExhibition);
 	
-	public List<PostExhibitionDTO> viewExhibition(int postExibition);
+	public List<PostDTO> viewExhibition(int postExibition);
 
 	public List<PostAuctionDTO> postAuction(int postAuction);
 	

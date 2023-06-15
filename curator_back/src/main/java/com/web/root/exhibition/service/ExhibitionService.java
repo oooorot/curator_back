@@ -3,9 +3,9 @@
 
 package com.web.root.exhibition.service;
 
+import java.io.IOException;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.exhibition.dto.ExhibitionDTO;
@@ -13,20 +13,16 @@ import com.web.root.exhibition.dto.ExhibitionDTO;
 
 public interface ExhibitionService {
 	
+	// 전시회 리스트
 	public List<ExhibitionDTO> exhibitionList();
 	
-	public ExhibitionDTO exhibitionView(int exhibitionSeq);
-		
-	// 작품내역(DB값)
-	public List<ExhibitionDTO> exhibitionBannerList(int exhibitionSeq);
+	// 전시회 조회
+	public ExhibitionDTO exhibitionView(int exhibitionSeq) throws IOException;
 	   
-	// 작품내역(이미지)
-	public ResponseEntity<byte[]> exhibitionimage(String exhibitionBanner);
-	   
-	// 작품등록
+	// 전시회 등록
 	public int exhibitionWrite(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile);
 	   
-	// 작품수정
+	// 전시회 수정
 	public int exhibitionUpdate(ExhibitionDTO exhibitionDTO, MultipartFile multipartFile);
 
 }

@@ -1,18 +1,16 @@
 package com.web.root.artistpage.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
@@ -28,24 +26,13 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	
 	// 작가회원정보
 	@Override
-	public ArtistDTO artistMemberInfo(Map<String, Object> map) {
-		ArtistDTO memberDTO = artistPageMapper.artistMemberInfo(Integer.parseInt(map.get("artistSeq").toString()));
-		return memberDTO;  
-	}
-	
-	// 작품내역(이미지)
-	@Override
-	public ResponseEntity<byte[]> artistProfileImage(String artistImageName) {
-		File file = new File("" + artistImageName);
-		ResponseEntity<byte[]> result = null;
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+	public ArtistDTO artistMemberInfo(Map<String, Object> map) throws IOException {
+		ArtistDTO artistDTO = artistPageMapper.artistMemberInfo(Integer.parseInt(map.get("artistSeq").toString()));
+		String ImageName = artistDTO.getArtistImage();
+        byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+        String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
+        artistDTO.setArtistImage(photoEncodeName);
+		return artistDTO;  
 	}
 	
 	// 작가회원정보 수정
@@ -101,26 +88,23 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 		
 	}
 	
-	// 작품내역(DB값)
+	// 작품내역
 	@Override
 	public List<PostDTO> artistPostList(int artistSeq) {
-		List<PostDTO> list = artistPageMapper.artistPostList(artistSeq);
-		return list;
-	}
-
-	// 작품내역(이미지)
-	@Override
-	public ResponseEntity<byte[]> artistPostImage(String postImageName) {
-		File file = new File("C:\\Web\\test\\" + postImageName);
-		ResponseEntity<byte[]> result = null;
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+	     try {
+	         List<PostDTO> list = artistPageMapper.artistPostList(artistSeq);
+	         for(int i = 0; i < list.size(); i++) {
+	        	 PostDTO postDTO = list.get(i);
+	        	 String ImageName = postDTO.getPostImageName();
+	             byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+	             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
+	             postDTO.setPostImageName(photoEncodeName);
+	         }
+	         return list;      
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return null;
 	}
 
 	// 작품등록

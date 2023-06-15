@@ -150,7 +150,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	    
 	// 결제 환불
 	@Override
-	public ResponseEntity<String> cancelResponse(int memberSeq) {
+	public ResponseEntity<String> cancelResponse(String tid) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		HttpHeaders httpHeaders = new HttpHeaders();
@@ -159,7 +159,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		httpHeaders.add("Authorization", "KakaoAK " + serviceAppAdminKey);
 		httpHeaders.add("Content-type", CONTENT_TYPE);
 		
-		KakaoPaymentApproveDTO kakaoPaymentApproveDTO = kakaoPayMapper.paymentInfo(memberSeq);
+		KakaoPaymentApproveDTO kakaoPaymentApproveDTO = kakaoPayMapper.paymentMemberInfo(tid);
 		String amountJson = kakaoPaymentApproveDTO.getAmount();
 		int total = 0;
 		try {
@@ -178,7 +178,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(params, httpHeaders);
 			ResponseEntity<String> response = restTemplate.exchange(cancelUrl, HttpMethod.POST, entity, String.class);
             if (response.getStatusCode() == HttpStatus.OK) {
-            	kakaoPayMapper.cancelResponse(memberSeq);
+            	kakaoPayMapper.cancelResponse(tid);
                 return ResponseEntity.ok("Payment cancelled successfully");
             } else {
                 return ResponseEntity.badRequest().body("Payment cancellation failed");

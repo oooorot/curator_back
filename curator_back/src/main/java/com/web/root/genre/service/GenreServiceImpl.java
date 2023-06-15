@@ -5,15 +5,11 @@ package com.web.root.genre.service;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Base64;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 
 import com.web.root.genre.dto.GenreDTO;
 import com.web.root.mybatis.genre.GenreMapper;
@@ -38,29 +34,20 @@ public class GenreServiceImpl implements GenreService {
 	
 	@Override
 	public List<PostDTO> genreView(int genreSeq) {
-		try {
-			List<PostDTO> dto = genreMapper.genreView(genreSeq);
-			return dto;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	    try {
+	        List<PostDTO> list = genreMapper.genreView(genreSeq);
+	        for(int i = 0; i < list.size(); i++) {
+	        	PostDTO postDTO = list.get(i);
+	            String ImageName = postDTO.getPostImageName();
+	            byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+	            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
+	            postDTO.setPostImageName(photoEncodeName);
+	        }
+	        return list;      
+	     } catch (Exception e) {
+	        e.printStackTrace();
+	     }
+	     return null;
 	}
-	
-	
-	 // 작품내역(이미지)
-	 @Override
-	   public ResponseEntity<byte[]> genrePostImageName(String postImageName) {
-	      File file = new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + postImageName);
-	      ResponseEntity<byte[]> result = null;
-	      try {
-	         HttpHeaders header = new HttpHeaders();
-	         header.add("Content-type", Files.probeContentType(file.toPath()));
-	         result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      return result;
-	   }
 
 }
