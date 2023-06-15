@@ -47,6 +47,10 @@
 		INSERT INTO bookmark VALUES(mark_seq.NEXTVAL,#{memberSeq},#{artistSeq})
 	</insert>
 	
+	<select id="artistBookmarkGet" resultType="int">
+		SELECT * FROM bookmark WHERE member_seq=#{memberSeq} AND artist_seq=#{artistSeq}
+	</select>
+	
 	<update id="updateHit">
 		UPDATE artist SET artist_hit=artist_hit+1 WHERE artist_seq=#{artistSeq}
 	</update>

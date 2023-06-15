@@ -20,4 +20,7 @@ public interface ArtistService {
 	// 북마크 등록
 	public int artistBookmark(Map<String, Object> map);	
 	
+	// 북마크 불러오기
+	public int artistBookmarkGet(Map<String, Object> map);
+	
 }
