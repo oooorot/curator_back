@@ -105,6 +105,10 @@
 		INSERT INTO cart VALUES(cart_seq.NEXTVAL, #{memberSeq}, #{postSeq})
 	</insert>
 	
+	<insert id="auctionCart">
+		INSERT INTO cart VALUES(cart_seq.NEXTVAL, #{memberSeq}, #{postSeq})
+	</insert>
+	
 	<delete id="postDelete">
 		DELETE post WHERE post_seq=#{postSeq} 
 	</delete>

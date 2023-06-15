@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.auction.service.AuctionServiceImpl;
 import com.web.root.customer.dto.CartDTO;
+import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.mybatis.post.PostMapper;
 import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;
@@ -29,6 +31,12 @@ public class PostServiceImpl implements PostService {
 	
 	@Autowired
 	private PostMapper postMapper;
+	
+	@Autowired
+	public AuctionServiceImpl auctionService;
+	
+	@Autowired
+	public ArtistPageMapper artistPageMapper;
 	
 
 	@Override
@@ -125,6 +133,8 @@ public class PostServiceImpl implements PostService {
 		return res;
 	}
 	
+	
+	// 장바구니 등록
 	@Override
 	public int postCart(Map<String, Object> map) {
 		int res = 0;
@@ -132,7 +142,7 @@ public class PostServiceImpl implements PostService {
 	         CartDTO cartDTO = new CartDTO();
 	         cartDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 	         cartDTO.setPostSeq(Integer.parseInt(map.get("postSeq").toString()));   
-	         res = postMapper.postCart(cartDTO);      
+	         res = postMapper.postCart(cartDTO);   
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }	
@@ -140,6 +150,18 @@ public class PostServiceImpl implements PostService {
 		return res;
 	}
 	
+	
+	// 경매 장바구니
+	@Override
+	public int auctionCart(CartDTO cartDTO) {
+		CartDTO dto = new CartDTO();
+        dto.setMemberSeq(cartDTO.getMemberSeq());
+        dto.setPostSeq(cartDTO.getPostSeq());
+		return postMapper.auctionCart(cartDTO);
+	}
+	
+	
+
 	@Override
 	public int postDelete(int postSeq) {
 		try {

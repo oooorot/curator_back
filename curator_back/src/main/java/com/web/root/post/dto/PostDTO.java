@@ -8,6 +8,7 @@ public class PostDTO {
 	private int postSeq;
 	private int genreSeq;
 	private int artistSeq;
+	private int exhibitionSeq;
 	private String postTitle;
 	private String postSummary;
 	private String postContent;
@@ -17,25 +18,7 @@ public class PostDTO {
 	private int postExhibition;
 	private String postDate;
 	
-	public PostDTO() {
-		super();
-	}
-
-	public PostDTO(int postSeq, int genreSeq, int artistSeq, String postTitle, String postSummary, String postContent,
-			String postImageName, int postPrice, int postAuction, int postExhibition, String postDate) {
-		super();
-		this.postSeq = postSeq;
-		this.genreSeq = genreSeq;
-		this.artistSeq = artistSeq;
-		this.postTitle = postTitle;
-		this.postSummary = postSummary;
-		this.postContent = postContent;
-		this.postImageName = postImageName;
-		this.postPrice = postPrice;
-		this.postAuction = postAuction;
-		this.postExhibition = postExhibition;
-		this.postDate = postDate;
-	}
+	public PostDTO() {}
 
 	public int getPostSeq() {
 		return postSeq;
@@ -123,6 +106,14 @@ public class PostDTO {
 
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
+	}
+
+	public int getExhibitionSeq() {
+		return exhibitionSeq;
+	}
+
+	public void setExhibitionSeq(int exhibitionSeq) {
+		this.exhibitionSeq = exhibitionSeq;
 	}
 
 	

@@ -4,35 +4,63 @@
 
 <mapper namespace="com.web.root.mybatis.auction.AuctionMapper">
 	<resultMap type="com.web.root.auction.dto.AuctionDTO" id="auction">
-		<id property="memberSeq" column="member_seq"/>
-		<result property="memberNickname" column="member_nickname"/>
-		<result property="postSeq" column="post_seq"/>
+		<id property="aucSeq" column="auc_seq"/>
+		<result property="memberSeq" column="member_seq"/>
 		<result property="artistSeq" column="artist_seq"/>
-		<result property="auctionAccount" column="auction_account"/>
+		<result property="postSeq" column="post_seq"/>
+		<result property="aucNickName" column="auc_nickname"/>
+		<result property="aucPrice" column="auc_price"/>
 	</resultMap>
 	
+	<resultMap type="com.web.root.customer.dto.CartDTO" id="cart">
+		<id property="cartSeq" column="cart_seq"/>
+		<result property="memberSeq" column="member_seq"/>
+		<result property="postSeq" column="post_seq"/>
+	</resultMap>
+		
 	<select id="auctionView" resultMap="auction">
-		SELECT ROWNUM B.* FROM(SELECT memberNickname,auctionAccount FROM auction ORDER BY auction_account DESC) B WHERE ROWNUM BETWEEN 1 AND 5
+		SELECT ROWNUM B.* FROM(SELECT aucNickname,aucPrice FROM auction ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 
 	<insert id="auctionBid">
-		INSERT INTO auction VALUES(#{memberSeq},#{memberNickname},#{postSeq},#{artistSeq},#{auctionAccount})
+		INSERT INTO auction VALUES(auc_seq.NEXTVAL, #{memberSeq}, #{artistSeq}, #{postSeq}, #{aucNickname}, #{aucPrice})
 	</insert>
 	
 	<delete id="deleteAuction">
 		DELETE FROM auction WHERE auc_seq=#{aucSeq}
 	</delete>
 	
-	<select id="getSuccessfulBid">
-		SELECT * FROM (SELECT * FROM auction ORDER BY #{aucPrice} DESC) WHERE ROWNUM = 1;
+	<select id="getSuccessfulBidMemberSeq" resultMap="auction">
+		SELECT member_seq FROM (SELECT * FROM auction ORDER BY auc_price DESC) WHERE ROWNUM = 1
 	</select>
 	
-	<delete id="deleteParticipant">
-		DELETE FROM auction WHERE auc_price IN (SELECT aucPrice(MAX) FROM auction)
-	</delete>
+	<select id="getSuccessfulBidPostSeq" resultMap="auction">
+		SELECT post_seq FROM (SELECT * FROM auction ORDER BY auc_price DESC) WHERE ROWNUM = 1
+	</select>
 	
+	<select id="getSuccessfulBid" resultMap="auction">
+SELECT MEMBER_SEQ, POST_SEQ, auc_price
+FROM (
+  SELECT MEMBER_SEQ, POST_SEQ, AUC_PRICE,
+    ROW_NUMBER() OVER (ORDER BY POST_SEQ ASC, AUC_PRICE DESC) AS rn
+  FROM auction
+) subquery
+WHERE rn = 1
+		
+	</select>
+	
+	<delete id="deleteParticipant">	
+		DELETE FROM auction WHERE post_seq = (SELECT MIN(post_seq)FROM auction)
+	</delete>
+
 	<select id="getAuction" resultMap="auction">
 		SELECT * FROM auction WHERE auc_seq=#{aucSeq}
 	</select>
 	
+	<select id="getAucPrice" resultMap="auction">
+		SELECT auc_price FROM auction WHERE auc_seq=#{aucSeq}
+	</select>
+	
+	
 </mapper>
+

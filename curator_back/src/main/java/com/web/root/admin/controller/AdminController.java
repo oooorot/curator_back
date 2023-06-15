@@ -54,12 +54,6 @@ public class AdminController {
 		return adminService.adminArtistList();
 	}
 	
-	// 작품등록
-	@PostMapping(value="artistPostWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-	@ResponseBody
-	public int artistPostWrite(@RequestPart(value="postDTO") PostDTO postDTO, @RequestPart(value="artistPostFile", required=false) MultipartFile multipartFile) {
-		return artistPageService.artistPostWrite(postDTO, multipartFile);
-	}
 	
 	// 그림 등급 관리
 	@PutMapping(value="adminPostAuction", produces = "application/json; charset=utf-8")

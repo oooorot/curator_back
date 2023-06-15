@@ -1,6 +1,6 @@
 package com.web.root.mybatis.nonmember;
 
-import java.util.List;
+import java.util.Set;
 
 import com.web.root.nonmember.dto.NonmemberDTO;
 
@@ -10,6 +10,8 @@ public interface NonmemberMapper {
 
 	public int nonmemberInform(NonmemberDTO nonmemberDTO);
 	
-	public List<String> randomValue();
+	public int getNonCode();
+	
+	public Integer getNonCode(NonmemberDTO nonmemberDTO);
 	
 }

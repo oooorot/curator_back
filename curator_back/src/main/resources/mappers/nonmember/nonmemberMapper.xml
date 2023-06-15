@@ -22,9 +22,10 @@
 	INSERT INTO nonmember VALUES(non_seq.NEXTVAL, #{nonCode}, #{nonEmail}, #{nonName}, #{nonPhone}, #{nonAddr}, #{nonCompany}, #{nonDscode}, CURRENT_DATE)  
 </insert>
 
-<select id="randomValue">
-	SELECT nonCode FROM nonmember;
+<select id="getNonCode" resultMap="nonmember">
+	SELECT count(*) FROM nonmember WHERE non_code=#{nonCode}
 </select>
+
 </mapper>
 
 

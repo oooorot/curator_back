@@ -10,21 +10,27 @@ public class AuctionDTO {
 	private int memberSeq;
 	private int artistSeq;
 	private int postSeq;
-	private String aucNickName;
+	private String aucNickname;
 	private int aucPrice;
 	
 	public AuctionDTO() {
 		super();
 	}
 
-	public AuctionDTO(int aucSeq, int memberSeq, int artistSeq, int postSeq, String aucNickName, int aucPrice) {
+	public AuctionDTO(int aucSeq, int memberSeq, int artistSeq, int postSeq, String aucNickname, int aucPrice) {
 		super();
 		this.aucSeq = aucSeq;
 		this.memberSeq = memberSeq;
 		this.artistSeq = artistSeq;
 		this.postSeq = postSeq;
-		this.aucNickName = aucNickName;
+		this.aucNickname = aucNickname;
 		this.aucPrice = aucPrice;
+	}
+	
+	public AuctionDTO(int memberSeq, int postSeq) {
+		super();
+		this.memberSeq = memberSeq;
+		this.postSeq = postSeq;
 	}
 
 	public int getAucSeq() {
@@ -60,11 +66,11 @@ public class AuctionDTO {
 	}
 
 	public String getAucNickName() {
-		return aucNickName;
+		return aucNickname;
 	}
 
 	public void setAucNickName(String aucNickName) {
-		this.aucNickName = aucNickName;
+		this.aucNickname = aucNickName;
 	}
 
 	public int getAucPrice() {
