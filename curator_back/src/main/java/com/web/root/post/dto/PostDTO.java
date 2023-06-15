@@ -18,6 +18,7 @@ public class PostDTO {
 	private int postExhibition;
 	private String postDate;
 	
+	
 	public PostDTO() {}
 
 	public int getPostSeq() {
