@@ -45,6 +45,11 @@
 	<delete id="codeDelete">
 		DELETE FROM signupCode
 	</delete>
+	
+	<select id="getName" resultType="String">
+		SELECT member_name FROM member WHERE member_seq=#{seq}	
+	</select>
+	
 
 </mapper>
 

@@ -29,4 +29,7 @@ public interface MemberMapper {
 	
 	// 인증번호 삭제
 	public int codeDelete();
+	
+	// 이름 받아오
+	public String getName(int seq);
 }
