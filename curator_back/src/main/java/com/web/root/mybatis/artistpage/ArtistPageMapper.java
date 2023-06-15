@@ -22,10 +22,16 @@ public interface ArtistPageMapper {
 	
 	// 작품등록
 	public int artistPostWrite(PostDTO postDTO);
+	
+	// 경매번호가져오기
+//	public int getAuctionPostSeq(int PostSeq);
+	
 	// 작품수정(artistPostUpdate : DB수정)
 	public int artistPostUpdate(PostDTO postDTO);
 	
 	// 의뢰내역
 	public List<CommissionDTO> PostCommissionList(int artistSeq);
+
+//	public int artistPostWrite(int postAuction);
 
 }

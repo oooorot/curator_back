@@ -18,5 +18,8 @@ public interface AuctionService {
 	
 	// 경매 : 조회
 	public AuctionDTO getAuction(int aucSeq);
+
+	
+
 	
 }

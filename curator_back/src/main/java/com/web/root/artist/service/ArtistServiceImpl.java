@@ -84,7 +84,7 @@ public class ArtistServiceImpl implements ArtistService{
    }   
    
    
-   // 조회수 증가
+   // 좋아요 증가
    public void updateHit(int artistSeq) {
       artistMapper.updateHit(artistSeq); 
    }

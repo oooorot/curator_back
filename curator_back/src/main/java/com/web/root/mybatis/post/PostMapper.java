@@ -18,6 +18,8 @@ public interface PostMapper {
 
 	public int postCart(CartDTO cartDTO);
 	
+	public int auctionCart(CartDTO cartDTO);
+	
 	public int postDelete(int postSeq);
 	
 	public int postUpdate(PostDTO postDTO);
@@ -30,6 +32,8 @@ public interface PostMapper {
 	
 	public AuctionDTO auctionSelect(int postSeq);
 	
-	public List<PostAuctionDTO> viewAuction(int postAuction);
+	public List<PostAuctionDTO> viewAuction(int postAuction);
+
+	public int auctionCart(int memSeq, int postSeq);
 
 }
