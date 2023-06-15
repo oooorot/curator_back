@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.root.customer.dto.CartDTO;
 import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;
 import com.web.root.post.dto.PostExhibitionDTO;
@@ -23,6 +24,8 @@ public interface PostService {
 	public int postWrite(PostDTO postDTO, MultipartFile multipartFile);
 	
 	public int postCart(Map<String, Object> map);
+	
+	public int auctionCart(CartDTO cartDTO);
 	
 	public int postDelete(int postSeq);
 	

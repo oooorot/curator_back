@@ -20,7 +20,7 @@ public interface ArtistMapper {
    // 북마크 등록
    public int artistBookmark(BookmarkDTO bookmarkDTO);
 
-   // 조회수 증가
+   // 좋아요 증가
    public void updateHit(int artistSeq);
    
    // 구매점수 증가

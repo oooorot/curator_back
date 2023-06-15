@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.web.root.auction.dto.AuctionDTO;
+import com.web.root.customer.dto.CartDTO;
 
 public interface AuctionMapper {
 
@@ -17,12 +18,22 @@ public interface AuctionMapper {
 	public int deleteAuction(int aucSeq);
 	
 	// 경매 : 낙찰
-	public int getSuccessfulBid(int aucPrice);
+//	public int getSuccessfulBidMemberSeq(Map<String, Object> map);
+	
+//	public int getSuccessfulBidPostSeq(Map<String, Object> map);
+	
+	public AuctionDTO getSuccessfulBid(Map<String, Object> map);
 	
 	// 경매 : 낙찰자 제외 참여자 삭제
-	public int deleteParticipant(int aucPrice);
+	public int deleteParticipant();
+
+	// 경매 : 해당 경매 참여자 가격 조회
+	public AuctionDTO getAucPrice(int aucSeq);
 	
-	// 경매 : 조회
+	// 경매 : 내역조회
 	public AuctionDTO getAuction(int aucSeq);
+	
+
+	
 	
 }
