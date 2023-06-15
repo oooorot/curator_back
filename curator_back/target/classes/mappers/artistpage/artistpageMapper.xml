@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.web.root.mybatis.artistpage.ArtistPageMapper">
+
    <resultMap type="com.web.root.artist.dto.ArtistDTO" id="artist">
       <id property="artistSeq" column="artist_seq"/>
       <result property="artistName" column="artist_name"/>
@@ -36,7 +37,7 @@
       <result property="commDate" column="comm_date"/>
    </resultMap>
    
-      <select id="artistMemberInfo" resultMap="artist">
+   <select id="artistMemberInfo" resultMap="artist">
       SELECT * FROM artist WHERE artist_seq=#{artistSeq}
    </select>
    
@@ -55,8 +56,7 @@
     <insert id="artistPostWrite">
         INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{exhibitionSeq}, #{postTitle}, #{postContent}, #{postSummary}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE)
     </insert>
-    
- 
+
     
     <update id="artistPostUpdate">
        UPDATE post SET genre_seq=#{genreSeq}, artist_seq=#{artistSeq}, post_title=#{postTitle}, post_content=#{postContent}, post_summary=#{postSummary}, post_image_name=#{postImageName}, post_price=#{postPrice}, post_auction=#{postAuction}, post_exhibition=#{postExhibition}
@@ -66,20 +66,4 @@
        SELECT * FROM commission WHERE artist_seq=#{artistSeq}   
     </select>
     
- 
-</mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ </mapper>

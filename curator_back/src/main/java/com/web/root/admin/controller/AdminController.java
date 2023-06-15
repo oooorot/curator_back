@@ -21,7 +21,6 @@ import com.web.root.admin.service.AdminService;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artistpage.service.ArtistPageService;
 import com.web.root.member.dto.MemberDTO;
-import com.web.root.post.dto.PostDTO;
 
 @RestController
 @CrossOrigin(origins="*", allowedHeaders = "*")
@@ -41,20 +40,19 @@ public class AdminController {
 	}
 	
 	// 작가등록
-	@PostMapping(value="adminArtistAdd", produces = "application/json; charset=utf-8")
+	@PostMapping(value="adminArtistAdd", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
-	public int adminArtistAdd(@RequestBody Map<String, Object> map) {
-		return adminService.adminArtistAdd(map);
+	public int adminArtistAdd(@RequestBody Map<String, Object> map, @RequestPart(value="artistImage", required=false) MultipartFile multipartFile) {
+		return adminService.adminArtistAdd(map, multipartFile);
 	}
 	
-	// 작가관리
+	// 작가관리(사진없이 DB정보만)
 	@GetMapping(value="adminArtistList", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<ArtistDTO> adminArtistList(){
 		return adminService.adminArtistList();
 	}
-	
-	
+
 	// 그림 등급 관리
 	@PutMapping(value="adminPostAuction", produces = "application/json; charset=utf-8")
 	@ResponseBody

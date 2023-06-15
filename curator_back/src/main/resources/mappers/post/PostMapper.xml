@@ -16,6 +16,7 @@
 		<result property="postAuction" column="post_auction"/>	
 		<result property="postExhibition" column="post_exhibition"/>	
 		<result property="postDate" column="post_date"/>	
+		<result property="exhibitionSeq" column="exhibition_seq"/>
 	</resultMap>
 	
 	<resultMap type="com.web.root.exhibition.dto.ExhibitionDTO" id="exhibition">
@@ -98,7 +99,7 @@
 	</select>
 	
 	<insert id="postWrite">
-		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE)
+		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE, #{exhibitionSeq})
 	</insert>
 	
 	<insert id="postCart">
@@ -114,7 +115,7 @@
 	</delete>
 	
 	<update id="postUpdate">
-		UPDATE post SET post_title=#{postTitle}, post_summary=#{postSummary}, post_content=#{postContent}, post_image_name=#{postImageName}, post_price=#{postPrice}, CURRENT_DATE
+		UPDATE post SET post_title=#{postTitle}, post_summary=#{postSummary}, post_content=#{postContent}, post_image_name=#{postImageName}, post_price=#{postPrice}, CURRENT_DATE, exhibition_seq=#{exhibitionSeq}
 	</update>
 	
 

@@ -15,8 +15,11 @@ public interface ArtistPageService {
 	// 작가회원정보
 	public ArtistDTO artistMemberInfo(Map<String, Object> map);
 	
+	// 작가회원정보(이미지)
+	public ResponseEntity<byte[]> artistProfileImage(String artistImageName);
+	
 	// 작가회원정보 수정
-	public int artistMemberUpdate(Map<String, Object> map);
+	public int artistMemberUpdate(ArtistDTO artistDTO, MultipartFile multipartFile);
 	
 	// 작가회원탈퇴
 	public int artistMemberDelete(int artistSeq);

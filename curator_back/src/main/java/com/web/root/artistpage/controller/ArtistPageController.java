@@ -36,11 +36,19 @@ public class ArtistPageController {
 	public ArtistDTO artistMemberInfo(@RequestBody Map<String, Object> map) {
 		return artistPageService.artistMemberInfo(map);
 	}
-	// 작가회원정보 수정
-	@PutMapping(value="artistMemberUpdate", produces = "application/json; charset=utf-8")
+	
+	// 작품내역(이미지:artistImageName)
+	@GetMapping(value="artistProfileImage", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int artistMemberUpdate(@RequestBody Map<String, Object> map) {
-		return artistPageService.artistMemberUpdate(map);
+	public ResponseEntity<byte[]> artistProfileImage(@RequestPart(value="artistImageName") String artistImageName) {
+		return artistPageService.artistProfileImage(artistImageName);
+	}	
+	
+	// 작가회원정보 수정
+	@PutMapping(value="artistMemberUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@ResponseBody
+	public int artistMemberUpdate(@RequestPart(value="artistDTO") ArtistDTO artistDTO, @RequestPart(value="artistImageName", required=false) MultipartFile multipartFile) {
+		return artistPageService.artistMemberUpdate(artistDTO, multipartFile); 
 	}
 	
 	// 작가회원탈퇴

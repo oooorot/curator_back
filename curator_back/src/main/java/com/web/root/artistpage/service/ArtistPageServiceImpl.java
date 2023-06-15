@@ -37,17 +37,61 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 		return memberDTO;  
 	}
 	
-	// 작가회원정보 수정
+	// 작품내역(이미지)
 	@Override
-	public int artistMemberUpdate(Map<String, Object> map) {
+	public ResponseEntity<byte[]> artistProfileImage(String artistImageName) {
+		File file = new File("" + artistImageName);
+		ResponseEntity<byte[]> result = null;
 		try {
-			if(map.get("artistName")!=null&&map.get("artistProfile")!=null&&map.get("artistSns")!=null&&map.get("artistImage")!=null) {
-				return artistPageMapper.artistMemberUpdate(map);
-			} else return 0;
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0;
 		}
+		return result;
+	}
+	
+	// 작가회원정보 수정
+	@Override
+	public int artistMemberUpdate(ArtistDTO artistDTO, MultipartFile multipartFile) {
+		int result = 0;
+		if(multipartFile.getSize() != 0) {
+			exArtistImgDelete(artistDTO.getArtistImage());
+			artistDTO.setArtistImage(onlyArtistImgUpdate(multipartFile));
+		} else {
+			artistDTO.setArtistImage(onlyArtistImgUpdate(multipartFile));
+		}
+		try {
+			result = artistPageMapper.artistMemberUpdate(artistDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	// 작가회원정보 수정 중 기존 이미지파일 삭제
+	public void exArtistImgDelete(String exPostDelete) {
+		System.out.println("C:/Web/test/" + exPostDelete);
+		File file = new File("C:/Web/test/" + exPostDelete);
+		file.delete();
+	}
+	// 작가회원정보 수정 중 새 이미지파일 업로드
+	public String onlyArtistImgUpdate(MultipartFile multipartFile) {
+		ArtistDTO artistDTO = new ArtistDTO();
+		if(multipartFile.getSize() != 0) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar calendar = Calendar.getInstance();
+			String sysFileName = sdf.format(calendar.getTime());
+			sysFileName += multipartFile.getOriginalFilename();
+			artistDTO.setArtistImage(sysFileName);
+			File artistImageFile = new File("C:/Web/test" + File.separator + sysFileName);
+			try {
+				multipartFile.transferTo(artistImageFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return artistDTO.getArtistImage();
 	}
 	
 	// 작가회원탈퇴
@@ -110,6 +154,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 		return 1;
 	}
 	
+	
 	// 작품수정
 	@Override
 	public int artistPostUpdate(PostDTO postDTO, MultipartFile multipartFile) {
@@ -130,7 +175,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	// 작품수정 중 기존 이미지파일 삭제
 	public void exPostDelete(String exPostDelete) {
 		System.out.println("C:/Web/test/" + exPostDelete);
-		File file = new File("C:/Web/test/" + exPostDelete);
+		File file = new File("C:/Web/test/" + exPostDelete + ".*");
 		file.delete();
 	}
 	// 작품수정 중 새 이미지파일 업로드

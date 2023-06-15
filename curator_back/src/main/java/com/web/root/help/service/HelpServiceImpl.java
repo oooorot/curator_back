@@ -52,6 +52,7 @@ public class HelpServiceImpl implements HelpService{
 			helpDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 			helpDTO.setHelpTitle(map.get("helpTitle").toString());
 			helpDTO.setHelpContent(map.get("helpContent").toString());
+			helpDTO.setHelpCate(map.get("helpCate").toString());
 			res = helpMapper.helpWrite(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,6 +83,7 @@ public class HelpServiceImpl implements HelpService{
 			if(helpDTO.getHelpTitle() !=null && helpDTO.getHelpContent() != null) {
 				helpDTO.setHelpTitle(map.get("helpTitle").toString());
 				helpDTO.setHelpContent(map.get("helpContent").toString());
+				helpDTO.setHelpCate(map.get("helpCate").toString());
 				return helpMapper.helpUpdate(map);
 			} else
 				return 0;

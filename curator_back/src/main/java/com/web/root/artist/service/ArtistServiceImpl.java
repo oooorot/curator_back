@@ -51,8 +51,19 @@ public class ArtistServiceImpl implements ArtistService{
       return null;
    }
 
-   
-   // 북마크 등록
+   // 작가 top 불러오기
+   @Override
+   public List<ArtistDTO> artistTop() {
+      try {
+         List<ArtistDTO> list = artistMapper.artistTop();
+         return list;      
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+// 북마크 등록
    @Override
    public int artistBookmark(Map<String, Object> map) { 
       int res= 0;
