@@ -7,6 +7,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class ArtistServiceImpl implements ArtistService{
          for(int i = 0; i < list.size(); i++) {
         	 ArtistProfileDTO artistProfileDTO = list.get(i);
         	 String ImageName = artistProfileDTO.getArtistImage();
-             byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+             byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
              String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
              artistProfileDTO.setArtistImage(photoEncodeName);
          }
@@ -82,6 +83,23 @@ public class ArtistServiceImpl implements ArtistService{
       }
       return res;
    }   
+   
+   @Override
+	public int artistBookmarkGet(Map<String, Object> map) {
+	   int res = 0;
+	   try {
+		   BookmarkDTO bookmarkDTO = new BookmarkDTO();
+		   bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+		   bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+		   res = artistMapper.artistBookmarkGet(bookmarkDTO);
+		   System.out.println(res);
+		} catch (Exception e) {
+			e.printStackTrace();  
+			res = 0;
+		} 
+	   
+		return res;
+	}
    
    
    // 좋아요 증가

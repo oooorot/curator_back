@@ -51,5 +51,17 @@ public class ArtistController {
 	public int artistBookmark(@RequestBody Map<String, Object> map){
 		return artistService.artistBookmark(map);
 	}
+	
+	// 북마크 제거
+	
+	
+	// 북마크 불러오기
+	@PostMapping(value="artistBookmarkGet", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public int artistBookmarkGet(@RequestBody Map<String, Object> map){
+		return artistService.artistBookmarkGet(map);
+	}
+	
+	
 
 }
