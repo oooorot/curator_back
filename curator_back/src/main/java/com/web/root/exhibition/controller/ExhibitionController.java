@@ -3,12 +3,12 @@
 
 package com.web.root.exhibition.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,37 +39,22 @@ public class ExhibitionController {
 	// 전시회 조회
 	@GetMapping(value = "exhibitionView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ExhibitionDTO exhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) {
+	public ExhibitionDTO exhibitionView(@RequestParam("exhibitionSeq") int exhibitionSeq) throws IOException {
 		return exhibitionService.exhibitionView(exhibitionSeq);
-	}
-	
-	// 전시회내역(DB값)
-    @GetMapping(value="exhibitionBannerList", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public List<ExhibitionDTO> exhibitionBannerList(@RequestParam("exhibitionSeq") int exhibitionSeq){
-	    return exhibitionService.exhibitionBannerList(exhibitionSeq);
-	}   
+	} 
 	   
-	// 전시회내역(이미지:exhibitionimage)
-	@GetMapping(value="exhibitionimage", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public ResponseEntity<byte[]> exhibitionimage(@RequestPart(value="exhibitionBanner") String exhibitionBanner) {
-	    return exhibitionService.exhibitionimage(exhibitionBanner);
-	}  
-	   
-	// 작품등록
+	// 전시회 등록
 	@PostMapping(value="exhibitionWrite", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public int exhibitionWrite(@RequestPart(value="exhibitionDTO") ExhibitionDTO exhibitionDTO, @RequestPart(value="exhibitionBanner", required=false) MultipartFile multipartFile) {
 	    return exhibitionService.exhibitionWrite(exhibitionDTO, multipartFile);
 	}
 	   
-	// 작품수정
+	// 전시회 수정
 	@PutMapping(value="exhibitionUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
 	public int exhibitionUpdate(@RequestPart(value="exhibitionDTO") ExhibitionDTO exhibitionDTO,  @RequestPart(value="exhibitionUpdateFile", required=false) MultipartFile multipartFile) {
 	    return exhibitionService.exhibitionUpdate(exhibitionDTO, multipartFile);
 	}
-	
 
 }

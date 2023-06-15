@@ -25,8 +25,12 @@
 		SELECT * FROM pay WHERE member_seq=#{memberSeq}
 	</select>
 	
+	<select id="paymentMemberInfo" resultMap="pay">
+		SELECT * FROM pay WHERE tid=#{tid}
+	</select>
+	
 	<delete id="cancelResponse">
-		DELETE FROM pay WHERE member_seq=#{memberSeq}
+		DELETE FROM pay WHERE tid=#{tid}
 	</delete>
 
 </mapper>

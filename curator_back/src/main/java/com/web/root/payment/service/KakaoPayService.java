@@ -15,5 +15,5 @@ public interface KakaoPayService {
 	
 	public KakaoPaymentApproveDTO paymentInfo(int memberSeq);
 	
-	public ResponseEntity<String> cancelResponse(int memberSeq);
+	public ResponseEntity<String> cancelResponse(String tid);
 }

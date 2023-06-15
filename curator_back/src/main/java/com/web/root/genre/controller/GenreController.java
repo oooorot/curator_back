@@ -7,11 +7,9 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,13 +37,5 @@ public class GenreController {
 	public List<PostDTO> postView(@RequestParam("genreSeq") int genreSeq) {
 		return genreService.genreView(genreSeq);
 	}
-	
-	   
-	// 장르내역(이미지:postImageName)
-	@GetMapping(value="genrePostImageName", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public ResponseEntity<byte[]> genrePostImageName(@RequestPart(value="postImageName") String postImageName) {
-	    return genreService.genrePostImageName(postImageName);
-	}  
 
 }

@@ -8,5 +8,7 @@ public interface KakaoPayMapper {
 	
 	public KakaoPaymentApproveDTO paymentInfo(int memberSeq);
 	
-	public void cancelResponse(int memberSeq);
+	public KakaoPaymentApproveDTO paymentMemberInfo(String tid);
+	
+	public void cancelResponse(String tid);
 }

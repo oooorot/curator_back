@@ -1,11 +1,11 @@
 package com.web.root.artistpage.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,16 +33,9 @@ public class ArtistPageController {
 	// 작가회원정보
 	@GetMapping(value="artistMemberInfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArtistDTO artistMemberInfo(@RequestBody Map<String, Object> map) {
+	public ArtistDTO artistMemberInfo(@RequestBody Map<String, Object> map) throws IOException {
 		return artistPageService.artistMemberInfo(map);
 	}
-	
-	// 작품내역(이미지:artistImageName)
-	@GetMapping(value="artistProfileImage", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public ResponseEntity<byte[]> artistProfileImage(@RequestPart(value="artistImageName") String artistImageName) {
-		return artistPageService.artistProfileImage(artistImageName);
-	}	
 	
 	// 작가회원정보 수정
 	@PutMapping(value="artistMemberUpdate", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -63,13 +56,6 @@ public class ArtistPageController {
 	@ResponseBody
 	public List<PostDTO> artistPostList(@RequestParam("artistSeq") int artistSeq){
 		return artistPageService.artistPostList(artistSeq);
-	}	
-	
-	// 작품내역(이미지:postImageName)
-	@GetMapping(value="artistPostImage", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public ResponseEntity<byte[]> artistPostImage(@RequestPart(value="postImageName") String postImageName) {
-		return artistPageService.artistPostImage(postImageName);
 	}	
 	
 	// 작품등록
