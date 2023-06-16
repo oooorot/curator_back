@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.auction.service.AuctionServiceImpl;
 import com.web.root.commission.dto.CommissionDTO;
 import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.post.dto.PostDTO;
@@ -23,6 +24,9 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 
 	@Autowired
 	public ArtistPageMapper artistPageMapper;
+	
+	@Autowired
+	public AuctionServiceImpl auctionService;
 	
 	// 작가회원정보
 	@Override
@@ -116,14 +120,18 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File("C:\\Web\\test" + File.separator + sysFileName);
+			File artistPostFile = new File("C:\\gukbi_lee_jun_sam\\spring_origin\\resource\\image_repo" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistPostFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return artistPageMapper.artistPostWrite(postDTO);
+		if(postDTO.getPostAuction()==1) {
+			artistPageMapper.artistPostWrite(postDTO);
+			auctionService.timeOver();
+		}
+		return 1;
 	}
 	
 	

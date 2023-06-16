@@ -11,13 +11,7 @@
 		<result property="aucNickName" column="auc_nickname"/>
 		<result property="aucPrice" column="auc_price"/>
 	</resultMap>
-	
-	<resultMap type="com.web.root.customer.dto.CartDTO" id="cart">
-		<id property="cartSeq" column="cart_seq"/>
-		<result property="memberSeq" column="member_seq"/>
-		<result property="postSeq" column="post_seq"/>
-	</resultMap>
-		
+			
 	<select id="auctionView" resultMap="auction">
 		SELECT ROWNUM B.* FROM(SELECT aucNickname,aucPrice FROM auction ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
@@ -29,38 +23,25 @@
 	<delete id="deleteAuction">
 		DELETE FROM auction WHERE auc_seq=#{aucSeq}
 	</delete>
-	
-	<select id="getSuccessfulBidMemberSeq" resultMap="auction">
-		SELECT member_seq FROM (SELECT * FROM auction ORDER BY auc_price DESC) WHERE ROWNUM = 1
-	</select>
-	
-	<select id="getSuccessfulBidPostSeq" resultMap="auction">
-		SELECT post_seq FROM (SELECT * FROM auction ORDER BY auc_price DESC) WHERE ROWNUM = 1
+
+	<select id="getAuction" resultMap="auction">
+		SELECT * FROM auction WHERE auc_seq=#{aucSeq}
 	</select>
 	
 	<select id="getSuccessfulBid" resultMap="auction">
-SELECT MEMBER_SEQ, POST_SEQ, auc_price
-FROM (
-  SELECT MEMBER_SEQ, POST_SEQ, AUC_PRICE,
-    ROW_NUMBER() OVER (ORDER BY POST_SEQ ASC, AUC_PRICE DESC) AS rn
-  FROM auction
-) subquery
-WHERE rn = 1
-		
+		SELECT member_seq, post_seq, auc_price
+		FROM (
+  		SELECT member_seq, post_seq, auc_price,
+    	ROW_NUMBER() OVER (ORDER BY post_seq ASC, auc_price DESC) AS rn
+ 		FROM auction
+		) subquery
+		WHERE rn = 1
 	</select>
 	
 	<delete id="deleteParticipant">	
 		DELETE FROM auction WHERE post_seq = (SELECT MIN(post_seq)FROM auction)
 	</delete>
 
-	<select id="getAuction" resultMap="auction">
-		SELECT * FROM auction WHERE auc_seq=#{aucSeq}
-	</select>
-	
-	<select id="getAucPrice" resultMap="auction">
-		SELECT auc_price FROM auction WHERE auc_seq=#{aucSeq}
-	</select>
-	
 	
 </mapper>
 
