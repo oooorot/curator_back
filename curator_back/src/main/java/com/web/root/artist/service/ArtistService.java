@@ -23,4 +23,8 @@ public interface ArtistService {
 	// 북마크 불러오기
 	public int artistBookmarkGet(Map<String, Object> map);
 	
+    // 북마크 제거
+    public int bookmarkDelete(Map<String, Object> map);
+	   
+	
 }

@@ -91,7 +91,10 @@ public class ArtistServiceImpl implements ArtistService{
 		   BookmarkDTO bookmarkDTO = new BookmarkDTO();
 		   bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
 		   bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		   res = artistMapper.artistBookmarkGet(bookmarkDTO);
+		   if(artistMapper.artistBookmarkGet(bookmarkDTO) != null) {
+			   res = Integer.parseInt(artistMapper.artistBookmarkGet(bookmarkDTO).toString());
+			   
+		   }
 		   System.out.println(res);
 		} catch (Exception e) {
 			e.printStackTrace();  
@@ -101,10 +104,24 @@ public class ArtistServiceImpl implements ArtistService{
 		return res;
 	}
    
-   
-   // 좋아요 증가
-   public void updateHit(int artistSeq) {
-      artistMapper.updateHit(artistSeq); 
-   }
+	   // 북마크 제거
+	   @Override
+	   public int bookmarkDelete(Map<String, Object> map) {
+	      int res = 0;
+	      try {
+	    	  BookmarkDTO bookmarkDTO = new BookmarkDTO();
+	    	  bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
+	    	  bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+	          res = artistMapper.bookmarkDelete(bookmarkDTO);
+	      }catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return res;
+	   }
+	   
+	   // 좋아요 증가
+	   public void updateHit(int artistSeq) {
+	      artistMapper.updateHit(artistSeq); 
+	   }
 
 }
