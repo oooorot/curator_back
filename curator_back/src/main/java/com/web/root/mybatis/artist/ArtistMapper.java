@@ -21,13 +21,16 @@ public interface ArtistMapper {
    public int artistBookmark(BookmarkDTO bookmarkDTO);
 
    // 북마크 불러오기
-   public int artistBookmarkGet(BookmarkDTO bookmarkDTO);
+   public Object artistBookmarkGet(BookmarkDTO bookmarkDTO);
    
    // 좋아요 증가
    public void updateHit(int artistSeq);
    
    // 구매점수 증가
    public void purchasePoint(int artistSeq);
+   
+   // 북마크 제거
+   public int bookmarkDelete(BookmarkDTO bookmarkDTO);
 
    
 }

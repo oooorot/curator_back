@@ -21,5 +21,9 @@ public interface MemberService {
 
 	// 로그인 체크
 	public String loginCheck(Map<String, String> map);
+	
+	// 이름 얻어오기
+	public String getName(int seq);
+
 
 }

@@ -123,6 +123,15 @@ public class MemberController {
 		System.out.println(map.get("memberEmail"));
 		return memberService.register(map);
 	}
+	
+	
+	// 이름 값 얻어오기
+	@GetMapping(value="getName", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getName(@RequestParam("seq") int seq) {
+		return memberService.getName(seq);
+	}
+
 
 }
 

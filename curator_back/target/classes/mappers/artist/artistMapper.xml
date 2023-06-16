@@ -47,7 +47,7 @@
 		INSERT INTO bookmark VALUES(mark_seq.NEXTVAL,#{memberSeq},#{artistSeq})
 	</insert>
 	
-	<select id="artistBookmarkGet" resultType="int">
+	<select id="artistBookmarkGet" resultType="object">
 		SELECT * FROM bookmark WHERE member_seq=#{memberSeq} AND artist_seq=#{artistSeq}
 	</select>
 	
@@ -58,6 +58,10 @@
 	<update id="purchasePoint">
 		UPDATE artist SET artist_hit=artist_hit+2 WHERE artist_seq=#{artistSeq}
 	</update>
+	
+	<delete id="bookmarkDelete">
+      DELETE bookmark WHERE mark_seq=#{markSeq}
+   </delete>
 
 </mapper>
 

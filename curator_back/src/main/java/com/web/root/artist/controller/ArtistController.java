@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +54,11 @@ public class ArtistController {
 	}
 	
 	// 북마크 제거
+   @DeleteMapping(value="bookmarkDelete", produces = "application/json; charset=utf8")
+   @ResponseBody
+   public int bookmarkDelete(@RequestBody Map<String, Object> map){
+      return artistService.bookmarkDelete(map);
+   }
 	
 	
 	// 북마크 불러오기

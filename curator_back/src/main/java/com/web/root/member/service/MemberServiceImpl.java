@@ -160,6 +160,11 @@ public class MemberServiceImpl implements MemberService{
 		
 	}	
 	
+	// 이름 얻어오기
+	public String getName(int seq) {
+		return memberMapper.getName(seq);
+	}
+	
 	
 	
 	
