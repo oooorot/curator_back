@@ -70,8 +70,6 @@ public class CustomerServiceImpl implements CustomerService{
 		return purchaseList;
 	}
 	
-	
-	
 	//배송조회
 	@Override
 	public ParcelDTO parcelSelect(int purSeq) {

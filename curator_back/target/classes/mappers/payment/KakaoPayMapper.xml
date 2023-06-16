@@ -21,6 +21,10 @@
 		INSERT INTO pay VALUES(#{aid},#{tid},#{cid},#{partnerOrderId},#{partnerUserId},#{paymentMethodType},#{amount},#{itemName},#{quantity},#{createdAt},#{approvedAt},#{memberSeq})
 	</insert>
 	
+   	<delete id="cartDelect">
+   		DELETE FROM cart WHERE post_seq=#{postSeq}
+   	</delete>
+	
 	<select id="paymentInfo" resultMap="pay">
 		SELECT * FROM pay WHERE member_seq=#{memberSeq}
 	</select>

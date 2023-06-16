@@ -66,7 +66,7 @@
 	</update>
 		
 	<delete id="memberDelete">
-		DELETE member, commission, bookbark, cart WHERE member_seq=#{memberSeq} 
+		DELETE member, commission, bookmark, cart WHERE member_seq=#{memberSeq} 
 	</delete>
 	
 	<select id="cartList" resultMap="cart">
@@ -74,7 +74,7 @@
    	</select>
    
    	<delete id="cartDelect">
-   		DELETE FROM cart WHERE mark_seq=#{markSeq}
+   		DELETE FROM cart WHERE cart_seq=#{cartSeq}
    	</delete>
 	
 	<select id="purchaseProduct" resultMap="purchase">

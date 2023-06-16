@@ -9,7 +9,7 @@ import com.web.root.payment.dto.KakaoPaymentApproveDTO;
 
 public interface KakaoPayService {
 
-	public String readyKakaoRequest(int memberSeq, int artistSeq, String postTitle, int postPrice, HttpSession session);
+	public String readyKakaoRequest(int memberSeq, int artistSeq, String postTitle, int postPrice, int postSeq, HttpSession session);
 
 	public int ApproveResponse(String pgToken, HttpSession session);
 	
