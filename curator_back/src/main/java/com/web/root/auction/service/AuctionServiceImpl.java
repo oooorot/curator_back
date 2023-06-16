@@ -87,6 +87,9 @@ public class AuctionServiceImpl implements AuctionService{
 				// now시간부터 endTime시간까지 시간차이(초단위)를 count에 담기
 				long count = now.until(endTime, ChronoUnit.SECONDS);
 				
+				
+				
+				
 				if(count > 0) {
 					// 시간 형식 포맷
 					// 24시간이 안넘은 값은 day로 쳐주지 않음
