@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.root.mybatis.artist.ArtistMapper;
 import com.web.root.mybatis.kakaopay.KakaoPayMapper;
+import com.web.root.mybatis.post.PostMapper;
 import com.web.root.payment.dto.Amount;
 import com.web.root.payment.dto.KakaoPaymentApproveDTO;
 
@@ -40,10 +41,12 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	@Autowired
 	ArtistMapper artistMapper;
 	
+	@Autowired
+	PostMapper postMapper;
 	
 	// 카카오페이 요청
 	@Override
-	public String readyKakaoRequest(int memberSeq, int artistSeq, String postTitle, int postPrice, HttpSession session) {
+	public String readyKakaoRequest(int memberSeq, int artistSeq, String postTitle, int postPrice, int postSeq, HttpSession session) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		HttpHeaders httpHeaders = new HttpHeaders();
@@ -76,6 +79,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			
 			session.setAttribute("tid", tid);
 			session.setAttribute("memberSeq", memberSeq);
+			session.setAttribute("postSeq", postSeq);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,6 +96,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		String tid = (String)session.getAttribute("tid");
 		int memberSeq = (int)session.getAttribute("memberSeq");
+		int postSeq = (int)session.getAttribute("postSeq");
 		
 		httpHeaders.add("Authorization", "KakaoAK " + serviceAppAdminKey);
 		httpHeaders.add("Content-type", CONTENT_TYPE);
@@ -133,8 +138,13 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			kakaoPaymentApproveDTO.setApprovedAt(approved_at);
 			kakaoPaymentApproveDTO.setMemberSeq(memberSeq);
 			kakaoPayMapper.ApproveResponse(kakaoPaymentApproveDTO);
+			
+			kakaoPayMapper.cartDelect(postSeq);
+			postMapper.postDelete(postSeq);
+			
 			session.removeAttribute("tid");
 			session.removeAttribute("memberSeq");
+			session.removeAttribute("postSeq");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -190,20 +200,3 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

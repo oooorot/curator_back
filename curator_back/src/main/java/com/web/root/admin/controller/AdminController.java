@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +20,7 @@ import com.web.root.admin.service.AdminService;
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.artistpage.service.ArtistPageService;
 import com.web.root.member.dto.MemberDTO;
+import com.web.root.post.dto.PostDTO;
 
 @RestController
 @CrossOrigin(origins="*", allowedHeaders = "*")
@@ -56,8 +56,8 @@ public class AdminController {
 	// 그림 등급 관리
 	@PutMapping(value="adminPostAuction", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int adminPostAuction(@RequestParam("postSeq") int postSeq, @RequestParam("postAuction") int postAuction) {
-		return adminService.adminPostAuction(postSeq, postAuction);
+	public int adminPostAuction(@RequestBody PostDTO postDTO) {
+		return adminService.adminPostAuction(postDTO);
 	}
 	
 	// 임의 회원탈퇴

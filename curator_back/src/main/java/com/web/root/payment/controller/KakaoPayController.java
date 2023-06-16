@@ -26,8 +26,8 @@ public class KakaoPayController {
 	// 결제 요청
 	@GetMapping(value="readyKakaoRequest", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public RedirectView readyKakaoRequest(@RequestParam("memberSeq") int memberSeq, @RequestParam("artistSeq") int artistSeq, @RequestParam("postTitle") String postTitle, @RequestParam("postPrice") int postPrice, HttpSession session) {
-		String kakaoPayRequestURL = paymentService.readyKakaoRequest(memberSeq, artistSeq, postTitle, postPrice, session);	
+	public RedirectView readyKakaoRequest(@RequestParam("memberSeq") int memberSeq, @RequestParam("artistSeq") int artistSeq, @RequestParam("postTitle") String postTitle, @RequestParam("postPrice") int postPrice, @RequestParam("postSeq") int postSeq, HttpSession session) {
+		String kakaoPayRequestURL = paymentService.readyKakaoRequest(memberSeq, artistSeq, postTitle, postPrice, postSeq, session);	
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(kakaoPayRequestURL);
 		return redirectView;
@@ -56,20 +56,3 @@ public class KakaoPayController {
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

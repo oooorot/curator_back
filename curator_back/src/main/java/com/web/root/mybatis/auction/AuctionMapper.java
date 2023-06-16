@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.web.root.auction.dto.AuctionDTO;
-import com.web.root.customer.dto.CartDTO;
 
 public interface AuctionMapper {
 
@@ -25,5 +24,6 @@ public interface AuctionMapper {
 	
 	// 경매 : 낙찰자 제외 참여자 삭제
 	public int deleteParticipant();
+
 	
 }

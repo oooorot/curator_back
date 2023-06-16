@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.auction.service.AuctionServiceImpl;
 import com.web.root.member.dto.MemberDTO;
 import com.web.root.mybatis.admin.AdminMapper;
 import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.mybatis.customer.CustomerMapper;
 import com.web.root.mybatis.help.HelpMapper;
+import com.web.root.post.dto.PostDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -31,6 +33,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	public HelpMapper serviceMapper;
+	
+	@Autowired
+	public AuctionServiceImpl auctionService;
 
 	// 회원관리
 	@Override
@@ -70,8 +75,14 @@ public class AdminServiceImpl implements AdminService{
 	
 	// 그림 등급 관리
 	@Override
-	public int adminPostAuction(int postSeq, int postAuction) {
-		return adminMapper.adminPostAuction(postSeq, postAuction);
+	public int adminPostAuction(PostDTO postDTO) {
+		int postSeq = postDTO.getPostSeq();
+		int postAuction = postDTO.getPostAuction();
+		adminMapper.adminPostAuction(postSeq, postAuction);
+		if(postDTO.getPostAuction()==1) {
+			auctionService.timeOver();
+			return 1;
+		} else return 0;
 	}
 
 	// 임의 회원 탈퇴

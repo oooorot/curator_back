@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -135,14 +134,15 @@ public class AuctionServiceImpl implements AuctionService{
 
 		// 낙찰성공한 회원 데이터 가져오기
 		public CartDTO getSuccessfulBid(Map<String, Object> map) {
-			  // 제일 높은 auc_price 가진 회원 데이터 가져오기
-			  AuctionDTO auctionDTO = auctionMapper.getSuccessfulBid(map);
-			  
-			  // CartDTO 객체 생성 및 값 설정
-			  CartDTO cartDTO = new CartDTO();
-			  cartDTO.setMemberSeq(auctionDTO.getMemberSeq());
-			  cartDTO.setPostSeq(auctionDTO.getPostSeq());
-			  
-			  return cartDTO;
+			// 제일 높은 auc_price 가진 회원 데이터 가져오기
+			AuctionDTO auctionDTO = auctionMapper.getSuccessfulBid(map);
+			
+			// CartDTO 객체 생성 및 값 설정
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setMemberSeq(auctionDTO.getMemberSeq());
+			cartDTO.setPostSeq(auctionDTO.getPostSeq());
+			
+			return cartDTO;
+			
 		}		
 }
