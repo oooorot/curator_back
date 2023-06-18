@@ -30,18 +30,17 @@ public class PostServiceImpl implements PostService {
 	// 그림게시판 조회
 	@Override
 	public PostDTO postView(int postSeq) {
+		PostDTO postDTO = new PostDTO();
 		try {
-			PostDTO postDTO = new PostDTO();
 			postDTO = postMapper.postView(postSeq);
 			String ImageName = postDTO.getPostImageName();
             byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
             postDTO.setPostImageName(photoEncodeName);
-			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return postDTO;
 	}
 	
 	//그림게시판 리스트

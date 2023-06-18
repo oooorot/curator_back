@@ -70,8 +70,6 @@ public class CustomerServiceImpl implements CustomerService{
 		return purchaseList;
 	}
 	
-	
-	
 	//배송조회
 	@Override
 	public ParcelDTO parcelSelect(int purSeq) {
@@ -90,8 +88,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 즐겨찾기
 	@Override
-	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map) {
-		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+	public List<BookmarkDTO> bookmarkArtistList(int memberSeq) {
 		return customerMapper.bookmarkArtistList(memberSeq);
 	}
 

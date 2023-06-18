@@ -6,6 +6,8 @@ public interface KakaoPayMapper {
 
 	public int ApproveResponse(KakaoPaymentApproveDTO kakaoPaymentApproveDTO);
 	
+	public void cartDelect(int postSeq);
+	
 	public KakaoPaymentApproveDTO paymentInfo(int memberSeq);
 	
 	public KakaoPaymentApproveDTO paymentMemberInfo(String tid);

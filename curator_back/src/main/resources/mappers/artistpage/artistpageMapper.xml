@@ -56,8 +56,7 @@
     <insert id="artistPostWrite">
         INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{exhibitionSeq}, #{postTitle}, #{postContent}, #{postSummary}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE)
     </insert>
-
-    
+ 
     <update id="artistPostUpdate">
        UPDATE post SET genre_seq=#{genreSeq}, artist_seq=#{artistSeq}, post_title=#{postTitle}, post_content=#{postContent}, post_summary=#{postSummary}, post_image_name=#{postImageName}, post_price=#{postPrice}, post_auction=#{postAuction}, post_exhibition=#{postExhibition}
     </update>

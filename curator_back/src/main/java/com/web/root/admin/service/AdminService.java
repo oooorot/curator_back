@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
 import com.web.root.member.dto.MemberDTO;
+import com.web.root.post.dto.PostDTO;
 
 public interface AdminService {
 	
@@ -20,7 +21,7 @@ public interface AdminService {
 	public List<ArtistDTO> adminArtistList();
 	
 	// 그림 등급 관리
-	public int adminPostAuction(int postSeq, int postAuction);
+	public int adminPostAuction(PostDTO postDTO);
 	
 	// 회원 임의 탈퇴
 	public int adminMemberDelete(Map<String, Object> map);

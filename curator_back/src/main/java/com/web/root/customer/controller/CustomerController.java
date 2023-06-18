@@ -81,8 +81,8 @@ public class CustomerController {
 	// 즐겨찾기(북마크 등록한 작가)
 	@GetMapping(value="bookmarkArtistList", produces = "application/json; charset=utf-8")
 	@ResponseBody 
-	public List<BookmarkDTO> bookmarkArtistList(@RequestBody Map<String, Object> map){
-		return customerService.bookmarkArtistList(map);
+	public List<BookmarkDTO> bookmarkArtistList(@RequestParam("memberSeq") int memberSeq){
+		return customerService.bookmarkArtistList(memberSeq);
 	}
 	
 	// 나의문의 및 답변
