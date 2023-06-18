@@ -33,7 +33,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	public ArtistDTO artistMemberInfo(Map<String, Object> map) throws IOException {
 		ArtistDTO artistDTO = artistPageMapper.artistMemberInfo(Integer.parseInt(map.get("artistSeq").toString()));
 		String ImageName = artistDTO.getArtistImage();
-        byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+        byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
         String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
         artistDTO.setArtistImage(photoEncodeName);
 		return artistDTO;  
@@ -58,8 +58,8 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	}
 	// 작가회원정보 수정 중 기존 이미지파일 삭제
 	public void exArtistImgDelete(String exPostDelete) {
-		System.out.println("C:/Web/test/" + exPostDelete);
-		File file = new File("C:/Web/test/" + exPostDelete);
+		System.out.println("/Users/orot/workbench/00_project/project_storage" + exPostDelete);
+		File file = new File("/Users/orot/workbench/00_project/project_storage" + exPostDelete);
 		file.delete();
 	}
 	// 작가회원정보 수정 중 새 이미지파일 업로드
@@ -71,7 +71,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			artistDTO.setArtistImage(sysFileName);
-			File artistImageFile = new File("C:/Web/test" + File.separator + sysFileName);
+			File artistImageFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistImageFile);
 			} catch (Exception e) {
@@ -100,7 +100,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	         for(int i = 0; i < list.size(); i++) {
 	        	 PostDTO postDTO = list.get(i);
 	        	 String ImageName = postDTO.getPostImageName();
-	             byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+	             byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
 	             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 	             postDTO.setPostImageName(photoEncodeName);
 	         }
@@ -120,7 +120,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File("C:\\gukbi_lee_jun_sam\\spring_origin\\resource\\image_repo" + File.separator + sysFileName);
+			File artistPostFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistPostFile);
 			} catch (Exception e) {
@@ -130,7 +130,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 		if(postDTO.getPostAuction()==1) {
 			artistPageMapper.artistPostWrite(postDTO);
 			auctionService.timeOver();
-		}
+		} artistPageMapper.artistPostWrite(postDTO);
 		return 1;
 	}
 	
@@ -154,8 +154,8 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 	}
 	// 작품수정 중 기존 이미지파일 삭제
 	public void exPostDelete(String exPostDelete) {
-		System.out.println("C:/Web/test/" + exPostDelete);
-		File file = new File("C:/Web/test/" + exPostDelete + ".*");
+		System.out.println("/Users/orot/workbench/00_project/project_storage" + exPostDelete);
+		File file = new File("/Users/orot/workbench/00_project/project_storage" + exPostDelete + ".*");
 		file.delete();
 	}
 	// 작품수정 중 새 이미지파일 업로드
@@ -167,7 +167,7 @@ public class ArtistPageServiceImpl implements ArtistPageService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File("C:/Web/test" + File.separator + sysFileName);
+			File artistPostFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistPostFile);
 			} catch (Exception e) {

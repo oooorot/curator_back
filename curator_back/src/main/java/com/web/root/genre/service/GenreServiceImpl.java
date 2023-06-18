@@ -39,7 +39,7 @@ public class GenreServiceImpl implements GenreService {
 	        for(int i = 0; i < list.size(); i++) {
 	        	PostDTO postDTO = list.get(i);
 	            String ImageName = postDTO.getPostImageName();
-	            byte[] photoEncode = Files.readAllBytes(new File("C:\\Users\\Administrator\\Pictures\\image\\bg_image" + File.separator + ImageName).toPath());
+	            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
 	            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 	            postDTO.setPostImageName(photoEncodeName);
 	        }
