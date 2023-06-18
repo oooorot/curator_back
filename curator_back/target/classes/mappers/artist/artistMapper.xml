@@ -60,7 +60,7 @@
 	</update>
 	
 	<delete id="bookmarkDelete">
-      DELETE bookmark WHERE mark_seq=#{markSeq}
+      DELETE bookmark WHERE member_seq=#{memberSeq} AND artist_seq=#{artistSeq}
    </delete>
 
 </mapper>

@@ -56,7 +56,7 @@ public class ArtistController {
 	// 북마크 제거
    @DeleteMapping(value="bookmarkDelete", produces = "application/json; charset=utf8")
    @ResponseBody
-   public int bookmarkDelete(@RequestBody Map<String, Object> map){
+   public int bookmarkDelete(@RequestBody Map<String, String> map){
       return artistService.bookmarkDelete(map);
    }
 	
