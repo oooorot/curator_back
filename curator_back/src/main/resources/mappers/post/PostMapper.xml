@@ -83,7 +83,7 @@
 	</select>
 	
 	<select id="postExhibition1" resultMap="postexhibition">
-		SELECT * FROM post,exhibition WHERE post_exhibition=#{postExhibition}
+		SELECT p.*,e.exhibition_name,e.exhibition_date,e.exhibition_explain,e.exhibition_banner FROM post p LEFT JOIN exhibition e ON p.exhibition_seq=e.exhibition_seq WHERE post_exhibition=#{postExhibition}
 	</select>
 	
 	<select id="viewExhibition" resultMap="post">

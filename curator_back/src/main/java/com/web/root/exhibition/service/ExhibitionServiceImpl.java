@@ -17,9 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.exhibition.dto.ExhibitionDTO;
 import com.web.root.mybatis.exhibition.ExhibitionMapper;
+import com.web.root.session.imagepath.ImagePath;
 
 @Service
-public class ExhibitionServiceImpl implements ExhibitionService {
+public class ExhibitionServiceImpl implements ExhibitionService, ImagePath {
 	
 		@Autowired
 		private ExhibitionMapper exhibitionMapper;
@@ -32,7 +33,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		         for(int i = 0; i < list.size(); i++) {
 		        	 ExhibitionDTO exhibitionDTO = list.get(i);
 		        	 String ImageName = exhibitionDTO.getExhibitionBanner();
-		             byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+		             byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 		             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 		             exhibitionDTO.setExhibitionBanner(photoEncodeName);
 		         }
@@ -48,7 +49,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		public ExhibitionDTO exhibitionView(int exhibitionSeq) throws IOException {
 			 ExhibitionDTO exhibitionDTO = exhibitionMapper.exhibitionView(exhibitionSeq);
 	       	 String ImageName = exhibitionDTO.getExhibitionBanner();
-	         byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+	         byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 	         String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 	         exhibitionDTO.setExhibitionBanner(photoEncodeName);
 			return exhibitionDTO;
@@ -63,7 +64,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	         String sysFileName = sdf.format(calendar.getTime());
 	         sysFileName += multipartFile.getOriginalFilename();
 	         exhibitionDTO.setExhibitionBanner(sysFileName);
-	         File exhibitionBanner = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+	         File exhibitionBanner = new File(IMAGE_PATH + File.separator + sysFileName);
 	         try {
 	            multipartFile.transferTo(exhibitionBanner);
 	         } catch (Exception e) {
@@ -93,8 +94,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	   
 	   // 전시회 수정 중 기존 이미지파일 삭제
 	   public void exhibitionDelete(String exhibitionDelete) {
-	      System.out.println("/Users/orot/workbench/00_project/project_storage" + File.separator + exhibitionDelete);
-	      File file = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + exhibitionDelete);
+	      System.out.println(IMAGE_PATH + File.separator + exhibitionDelete);
+	      File file = new File(IMAGE_PATH + File.separator + exhibitionDelete);
 	      file.delete();
 	   }
 	   
@@ -107,7 +108,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	         String sysFileName = sdf.format(calendar.getTime());
 	         sysFileName += multipartFile.getOriginalFilename();
 	         exhibitionDTO.setExhibitionBanner(sysFileName);
-	         File exhibitionUpdateFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+	         File exhibitionUpdateFile = new File(IMAGE_PATH + File.separator + sysFileName);
 	         try {
 	            multipartFile.transferTo(exhibitionUpdateFile);
 	         } catch (Exception e) {
