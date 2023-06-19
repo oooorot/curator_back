@@ -18,9 +18,10 @@ import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.mybatis.customer.CustomerMapper;
 import com.web.root.mybatis.help.HelpMapper;
 import com.web.root.post.dto.PostDTO;
+import com.web.root.session.imagepath.ImagePath;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService, ImagePath{
 	
 	@Autowired
 	public AdminMapper adminMapper;
@@ -57,7 +58,7 @@ public class AdminServiceImpl implements AdminService{
 			String sysFileName = sdf.format(calendar.getTime());
 			sysFileName += multipartFile.getOriginalFilename();
 			artistDTO.setArtistImage(sysFileName);
-			File artistImageFile = new File("" + File.separator + sysFileName);
+			File artistImageFile = new File(IMAGE_PATH + File.separator + sysFileName);
 			try {
 				multipartFile.transferTo(artistImageFile);
 			} catch (Exception e) {

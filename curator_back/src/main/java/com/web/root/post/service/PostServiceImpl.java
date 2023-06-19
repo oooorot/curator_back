@@ -20,9 +20,10 @@ import com.web.root.mybatis.post.PostMapper;
 import com.web.root.post.dto.PostAuctionDTO;
 import com.web.root.post.dto.PostDTO;
 import com.web.root.post.dto.PostExhibitionDTO;
+import com.web.root.session.imagepath.ImagePath;
 
 @Service
-public class PostServiceImpl implements PostService {
+public class PostServiceImpl implements PostService, ImagePath {
 	
 	@Autowired
 	private PostMapper postMapper;
@@ -34,7 +35,7 @@ public class PostServiceImpl implements PostService {
 		try {
 			postDTO = postMapper.postView(postSeq);
 			String ImageName = postDTO.getPostImageName();
-            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+            byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
             postDTO.setPostImageName(photoEncodeName);
 		} catch (Exception e) {
@@ -51,7 +52,7 @@ public class PostServiceImpl implements PostService {
 	        for(int i = 0; i < list.size(); i++) {
 	        	PostDTO postDTO = list.get(i);
 	        	String ImageName = postDTO.getPostImageName();
-	            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+	            byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 	            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 	            postDTO.setPostImageName(photoEncodeName);
 	        }
@@ -76,7 +77,7 @@ public class PostServiceImpl implements PostService {
 		         for(int i = 0; i < list.size(); i++) {
 		        	 PostAuctionDTO postAuctionDTO = list.get(i);
 		        	 String ImageName = postAuctionDTO.getPostImageName();
-		             byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+		             byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 		             String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 		             postAuctionDTO.setPostImageName(photoEncodeName);
 		         }
@@ -100,12 +101,12 @@ public class PostServiceImpl implements PostService {
 		        for(int i = 0; i < list.size(); i++) {
 		        	PostExhibitionDTO postExhibitionDTO = list.get(i);
 		        	String ImageName = postExhibitionDTO.getPostImageName();
-		            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+		            byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 		            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 		            postExhibitionDTO.setPostImageName(photoEncodeName);
 		            
 		            String bannerName = postExhibitionDTO.getExhibitionBanner();
-		            byte[] bannerEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + bannerName).toPath());
+		            byte[] bannerEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + bannerName).toPath());
 		            String bannerEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(bannerEncode);
 		            postExhibitionDTO.setExhibitionBanner(bannerEncodeName);
 		        }
@@ -120,7 +121,7 @@ public class PostServiceImpl implements PostService {
 		        for(int i = 0; i < postlist.size(); i++) {
 		        	PostDTO postDTO = postlist.get(i);
 		        	String ImageName = postDTO.getPostImageName();
-		            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+		            byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 		            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 		            postDTO.setPostImageName(photoEncodeName);
 		        }
@@ -169,7 +170,7 @@ public class PostServiceImpl implements PostService {
 	         deleteImage(sysFileName);
 	         postDTO.setPostImageName(sysFileName);
 	         
-	         File saveFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + sysFileName);
+	         File saveFile = new File(IMAGE_PATH + File.separator + sysFileName);
 	         
 	         try {
 	            multipartFile.transferTo(saveFile);
@@ -183,7 +184,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public void deleteImage(String originalFileName) {
-	   File deleteFile = new File("/Users/orot/workbench/00_project/project_storage" + File.separator + originalFileName);
+	   File deleteFile = new File(IMAGE_PATH + File.separator + originalFileName);
 	   deleteFile.delete();
 	}
 
