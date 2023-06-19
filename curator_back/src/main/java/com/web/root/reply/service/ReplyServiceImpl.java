@@ -2,6 +2,8 @@
 
 package com.web.root.reply.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,17 @@ public class ReplyServiceImpl implements ReplyService {
 		ReplyDTO replyDTO = replyMapper.ReplyView(helpSeq);
 		return replyDTO;
 
+	}
+	
+	@Override
+	public int ReplyPost(Map<String, String> map) {
+		int helpSeq = Integer.parseInt(map.get("helpSeq").toString());
+		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+		String replyContent = map.get("replyContent");
+		
+		replyMapper.ReplyPost(helpSeq, memberSeq, replyContent);
+				
+		return 0;
 	}
 
 }
