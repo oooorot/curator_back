@@ -2,6 +2,7 @@
 
 package com.web.root.reply.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,26 @@ public class ReplyServiceImpl implements ReplyService {
 	public ReplyMapper replyMapper;
 	
 	@Override
-	public ReplyDTO ReplyView(int helpSeq) {
+	public List<ReplyDTO> ReplyView(int helpSeq) {
 		
-		ReplyDTO replyDTO = replyMapper.ReplyView(helpSeq);
+		List<ReplyDTO> replyDTO = replyMapper.ReplyView(helpSeq);
 		return replyDTO;
 
 	}
 	
 	@Override
 	public int ReplyPost(Map<String, String> map) {
-		int helpSeq = Integer.parseInt(map.get("helpSeq").toString());
-		int memberSeq = Integer.parseInt(map.get("memberSeq").toString());
+		int helpSeq = Integer.parseInt(map.get("helpSeq"));
+		int memberSeq = Integer.parseInt(map.get("memberSeq"));
 		String replyContent = map.get("replyContent");
 		
-		replyMapper.ReplyPost(helpSeq, memberSeq, replyContent);
+		System.out.println(helpSeq);
+		System.out.println(memberSeq);
+		System.out.println(replyContent);
+		
+		int res = replyMapper.ReplyPost(helpSeq, memberSeq, replyContent);
 				
-		return 0;
+		return res;
 	}
 
 }
