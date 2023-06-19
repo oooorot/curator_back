@@ -106,12 +106,12 @@ public class ArtistServiceImpl implements ArtistService, ImagePath{
    
 	   // 북마크 제거
 	   @Override
-	   public int bookmarkDelete(Map<String, Object> map) {
+	   public int bookmarkDelete(Map<String, String> map) {
 	      int res = 0;
 	      try {
 	    	  BookmarkDTO bookmarkDTO = new BookmarkDTO();
-	    	  bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq").toString()));
-	    	  bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
+	    	  bookmarkDTO.setMemberSeq(Integer.parseInt(map.get("memberSeq")));
+	    	  bookmarkDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq")));
 	          res = artistMapper.bookmarkDelete(bookmarkDTO);
 	      }catch (Exception e) {
 	         e.printStackTrace();

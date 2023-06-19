@@ -13,12 +13,13 @@
 	</resultMap>
 			
 	<select id="auctionView" resultMap="auction">
-		SELECT ROWNUM B.* FROM(SELECT aucNickname,aucPrice FROM auction ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 5
+		SELECT ROWNUM, B.* FROM(SELECT auc_nickname, auc_price FROM auction ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 3
 	</select>
 
 	<insert id="auctionBid">
 		INSERT INTO auction VALUES(auc_seq.NEXTVAL, #{memberSeq}, #{artistSeq}, #{postSeq}, #{aucNickname}, #{aucPrice})
 	</insert>
+	
 	
 	<delete id="deleteAuction">
 		DELETE FROM auction WHERE auc_seq=#{aucSeq}

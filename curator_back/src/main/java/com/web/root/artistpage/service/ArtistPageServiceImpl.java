@@ -59,8 +59,8 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 	}
 	// 작가회원정보 수정 중 기존 이미지파일 삭제
 	public void exArtistImgDelete(String exPostDelete) {
-		System.out.println("C:/Web/test/" + exPostDelete);
-		File file = new File("C:/Web/test/" + exPostDelete);
+		System.out.println("/Users/orot/workbench/00_project/project_storage" + exPostDelete);
+		File file = new File("/Users/orot/workbench/00_project/project_storage" + exPostDelete);
 		file.delete();
 	}
 	// 작가회원정보 수정 중 새 이미지파일 업로드
@@ -131,7 +131,7 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 		if(postDTO.getPostAuction()==1) {
 			artistPageMapper.artistPostWrite(postDTO);
 			auctionService.timeOver();
-		}
+		} artistPageMapper.artistPostWrite(postDTO);
 		return 1;
 	}
 	

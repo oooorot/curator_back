@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.root.payment.dto.KakaoPaymentApproveDTO;
 import com.web.root.payment.service.KakaoPayService;
@@ -24,13 +23,11 @@ public class KakaoPayController {
 	public KakaoPayService paymentService;
 	
 	// 결제 요청
-	@GetMapping(value="readyKakaoRequest", produces = "application/json; charset=utf-8")
+	@PostMapping(value="readyKakaoRequest", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public RedirectView readyKakaoRequest(@RequestParam("memberSeq") int memberSeq, @RequestParam("artistSeq") int artistSeq, @RequestParam("postTitle") String postTitle, @RequestParam("postPrice") int postPrice, @RequestParam("postSeq") int postSeq, HttpSession session) {
+	public String readyKakaoRequest(@RequestParam("memberSeq") int memberSeq, @RequestParam("artistSeq") int artistSeq, @RequestParam("postTitle") String postTitle, @RequestParam("postPrice") int postPrice, @RequestParam("postSeq") int postSeq, HttpSession session) {
 		String kakaoPayRequestURL = paymentService.readyKakaoRequest(memberSeq, artistSeq, postTitle, postPrice, postSeq, session);	
-		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl(kakaoPayRequestURL);
-		return redirectView;
+		return kakaoPayRequestURL;
 	}
 	
 	// 카카오 페이 결제 승인

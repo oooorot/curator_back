@@ -36,7 +36,7 @@ public interface CustomerService {
 	public ParcelDTO parcelSelect(int purSeq);
 	
 	// 즐겨찾기
-	public List<BookmarkDTO> bookmarkArtistList(Map<String, Object> map);
+	public List<BookmarkDTO> bookmarkArtistList(int memberSeq);
 	
 	// 나의문의 및 답변
 	public List<CustomerHelpReplyDTO> customerHelpReplyList(@RequestBody Map<String, Object> map);

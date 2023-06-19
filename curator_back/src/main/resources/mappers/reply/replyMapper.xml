@@ -15,6 +15,10 @@
 	<select id="ReplyView" resultMap="reply">
 		SELECT * FROM reply WHERE help_seq=#{helpSeq}
 	</select>	
+	
+	<insert id="ReplyPost">
+		INSERT INTO reply(reply_seq, help_seq, member_seq, reply_content, reply_date) VALUES(reply_seq.NEXTVAL, helpSeq, memberSeq, CURRENT_DATE)
+	</insert>
 
 </mapper>
 
