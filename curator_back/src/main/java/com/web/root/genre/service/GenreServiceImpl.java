@@ -14,9 +14,10 @@ import org.springframework.stereotype.Service;
 import com.web.root.genre.dto.GenreDTO;
 import com.web.root.mybatis.genre.GenreMapper;
 import com.web.root.post.dto.PostDTO;
+import com.web.root.session.imagepath.ImagePath;
 
 @Service
-public class GenreServiceImpl implements GenreService {
+public class GenreServiceImpl implements GenreService, ImagePath {
 	
 	@Autowired
 	private GenreMapper genreMapper;
@@ -39,7 +40,7 @@ public class GenreServiceImpl implements GenreService {
 	        for(int i = 0; i < list.size(); i++) {
 	        	PostDTO postDTO = list.get(i);
 	            String ImageName = postDTO.getPostImageName();
-	            byte[] photoEncode = Files.readAllBytes(new File("/Users/orot/workbench/00_project/project_storage" + File.separator + ImageName).toPath());
+	            byte[] photoEncode = Files.readAllBytes(new File(IMAGE_PATH + File.separator + ImageName).toPath());
 	            String photoEncodeName = "data:application/octet-stream;base64, " + Base64.getEncoder().encodeToString(photoEncode);
 	            postDTO.setPostImageName(photoEncodeName);
 	        }
