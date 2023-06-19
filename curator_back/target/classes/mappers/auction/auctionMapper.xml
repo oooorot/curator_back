@@ -13,7 +13,7 @@
 	</resultMap>
 			
 	<select id="auctionView" resultMap="auction">
-		SELECT ROWNUM, B.* FROM(SELECT auc_nickname, auc_price FROM auction ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 3
+		SELECT ROWNUM, B.* FROM(SELECT auc_nickname, auc_price FROM auction WHERE post_seq=#{postSeq} ORDER BY auc_price DESC) B WHERE ROWNUM BETWEEN 1 AND 3
 	</select>
 
 	<insert id="auctionBid">
