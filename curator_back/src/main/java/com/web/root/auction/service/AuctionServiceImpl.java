@@ -155,7 +155,7 @@ public class AuctionServiceImpl implements AuctionService{
 		}
 		
 
-		// 낙찰 성공한 회원 데이터 가져오기
+		// 낙찰 성공한 회원 데이터 가져오기 
 		public CartDTO getSuccessfulBid(Map<String, Object> map) {
 			// 제일 높은 auc_price 가진 회원 데이터 가져오기
 			AuctionDTO auctionDTO = auctionMapper.getSuccessfulBid(map);
