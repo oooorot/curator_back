@@ -17,6 +17,13 @@
 		<result property="approvedAt" column="approved_at" />
 		<result property="memberSeq" column="member_seq" />
 	</resultMap>
+	
+	<resultMap type="com.web.root.payment.dto.successDTO" id="success">
+		<id property="tid" column="tid" />
+		<result property="memberSeq" column="memberSeq" />
+		<result property="postSeq" column="postSeq" />
+	</resultMap>
+	
 	<insert id="ApproveResponse">
 		INSERT INTO pay VALUES(#{aid},#{tid},#{cid},#{partnerOrderId},#{partnerUserId},#{paymentMethodType},#{amount},#{itemName},#{quantity},#{createdAt},#{approvedAt},#{memberSeq})
 	</insert>
@@ -36,5 +43,17 @@
 	<delete id="cancelResponse">
 		DELETE FROM pay WHERE tid=#{tid}
 	</delete>
+	
+	<insert id="setInfo">
+		INSERT INTO success VALUES(#{tid}, #{memberSeq}, #{postSeq})
+	</insert>
+	
+	<delete id="delInfo">
+		DELETE FROM success
+	</delete>
+	
+	<select id="selInfo" resultMap="success">
+		SELECT * FROM success WHERE ROWNUM=1
+	</select>
 
 </mapper>

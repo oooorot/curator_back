@@ -22,6 +22,7 @@ import com.web.root.mybatis.kakaopay.KakaoPayMapper;
 import com.web.root.mybatis.post.PostMapper;
 import com.web.root.payment.dto.Amount;
 import com.web.root.payment.dto.KakaoPaymentApproveDTO;
+import com.web.root.payment.dto.successDTO;
 
 @Service
 public class KakaoPayServiceImpl implements KakaoPayService {
@@ -51,9 +52,12 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		HttpHeaders httpHeaders = new HttpHeaders();
 		RestTemplate restTemplate = new RestTemplate();
+		
+		kakaoPayMapper.delInfo();
         
 		httpHeaders.add("Authorization", "KakaoAK " + serviceAppAdminKey);
 		httpHeaders.add("Content-type", CONTENT_TYPE);
+		httpHeaders.add("Access-Control-Allow-Origin", "*");
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
@@ -64,9 +68,9 @@ public class KakaoPayServiceImpl implements KakaoPayService {
         params.add("total_amount", Integer.toString(postPrice));
         params.add("vat_amount", Integer.toString(postPrice/10));
         params.add("tax_free_amount", "0");
-        params.add("approval_url", "http://localhost:3000/root/success");
-        params.add("fail_url", "http://localhost:3000/root/fail");
-        params.add("cancel_url", "http://localhost:3000/root/kakaoPayBtn");
+        params.add("approval_url", "http://localhost:8080/root/success");
+        params.add("fail_url", "http://localhost:8080/root/fail");
+        params.add("cancel_url", "http://localhost:8080/root/kakaoPayBtn");
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, httpHeaders);
         ResponseEntity<String> response = restTemplate.postForEntity(readyUrl, entity, String.class);
@@ -77,9 +81,10 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			kakaoPayRequestURL = objectMapper.readTree(response.getBody()).get("next_redirect_pc_url").asText();
 			tid = objectMapper.readTree(response.getBody()).get("tid").asText();
 			
-			session.setAttribute("tid", tid);
-			session.setAttribute("memberSeq", memberSeq);
-			session.setAttribute("postSeq", postSeq);
+			kakaoPayMapper.setInfo(tid, memberSeq, postSeq);
+//			session.setAttribute("tid", tid);
+//			session.setAttribute("memberSeq", memberSeq);
+//			session.setAttribute("postSeq", postSeq);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -94,9 +99,16 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders httpHeaders = new HttpHeaders();
-		String tid = (String)session.getAttribute("tid");
-		int memberSeq = (int)session.getAttribute("memberSeq");
-		int postSeq = (int)session.getAttribute("postSeq");
+		successDTO dto = kakaoPayMapper.selInfo();
+		String tid = dto.getTid();
+		int memberSeq = dto.getPostSeq();
+		int postSeq = dto.getPostSeq();
+		System.out.println(tid);
+		System.out.println(memberSeq);
+		System.out.println(postSeq);
+//		String tid = (String)session.getAttribute("tid");
+//		int memberSeq = (int)session.getAttribute("memberSeq");
+//		int postSeq = (int)session.getAttribute("postSeq");
 		
 		httpHeaders.add("Authorization", "KakaoAK " + serviceAppAdminKey);
 		httpHeaders.add("Content-type", CONTENT_TYPE);
@@ -142,15 +154,73 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 			kakaoPayMapper.cartDelect(postSeq);
 			postMapper.postDelete(postSeq);
 			
-			session.removeAttribute("tid");
-			session.removeAttribute("memberSeq");
-			session.removeAttribute("postSeq");
+			kakaoPayMapper.delInfo();
+//			session.removeAttribute("tid");
+//			session.removeAttribute("memberSeq");
+//			session.removeAttribute("postSeq");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return 1;
 	}
+//	   // 결제 완료 승인    
+//	   @Override    
+//	    public int ApproveResponse(String pgToken, String tid, int memberSeq, int postSeq) {
+//	       
+//	      ObjectMapper objectMapper = new ObjectMapper();
+//	      RestTemplate restTemplate = new RestTemplate();
+//	      HttpHeaders httpHeaders = new HttpHeaders();
+//	      
+//	      httpHeaders.add("Authorization", "KakaoAK " + serviceAppAdminKey);
+//	      httpHeaders.add("Content-type", CONTENT_TYPE);
+//	      
+//	      MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+//	        params.add("cid", "TC0ONETIME");
+//	        params.add("tid", tid);
+//	        params.add("partner_order_id", "mateWith_Partner");
+//	        params.add("partner_user_id", "mateWith_User");
+//	        params.add("pg_token", pgToken);
+//	        
+//	        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, httpHeaders);
+//	        ResponseEntity<String> response = restTemplate.postForEntity(approveUrl, entity, String.class);
+//	      try {
+//	         JsonNode responseBody = objectMapper.readTree(response.getBody());
+//	         
+//	         String aid = responseBody.get("aid").asText();
+//	         String cid = responseBody.get("cid").asText();
+//	         String partner_order_id = responseBody.get("partner_order_id").asText();
+//	         String partner_user_id = responseBody.get("partner_user_id").asText();
+//	         String payment_method_type = responseBody.get("payment_method_type").asText();
+//	         String amount = responseBody.get("amount").toString();
+//	         String item_name = responseBody.get("item_name").asText();
+//	         String quantity = responseBody.get("quantity").asText();
+//	         String created_at = responseBody.get("created_at").asText();
+//	         String approved_at = responseBody.get("approved_at").asText();
+//	         
+//	         KakaoPaymentApproveDTO kakaoPaymentApproveDTO = new KakaoPaymentApproveDTO(); 
+//	         kakaoPaymentApproveDTO.setAid(aid);
+//	         kakaoPaymentApproveDTO.setTid(tid);
+//	         kakaoPaymentApproveDTO.setCid(cid);
+//	         kakaoPaymentApproveDTO.setPartnerOrderId(partner_order_id);
+//	         kakaoPaymentApproveDTO.setPartnerUserId(partner_user_id);
+//	         kakaoPaymentApproveDTO.setPaymentMethodType(payment_method_type);
+//	         kakaoPaymentApproveDTO.setAmount(amount);
+//	         kakaoPaymentApproveDTO.setItemName(item_name);
+//	         kakaoPaymentApproveDTO.setQuantity(quantity);
+//	         kakaoPaymentApproveDTO.setCreatedAt(created_at);
+//	         kakaoPaymentApproveDTO.setApprovedAt(approved_at);
+//	         kakaoPaymentApproveDTO.setMemberSeq(memberSeq);
+//	         kakaoPayMapper.ApproveResponse(kakaoPaymentApproveDTO);
+//	         
+//	         kakaoPayMapper.cartDelect(postSeq);
+//	         postMapper.postDelete(postSeq);
+//	         
+//	      } catch (IOException e) {
+//	         e.printStackTrace();
+//	      }
+//	      return 1;
+//	   }
 
 	// 결제내역
 	@Override

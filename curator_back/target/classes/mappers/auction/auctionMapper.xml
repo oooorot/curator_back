@@ -20,6 +20,9 @@
 		INSERT INTO auction VALUES(auc_seq.NEXTVAL, #{memberSeq}, #{artistSeq}, #{postSeq}, #{aucNickname}, #{aucPrice})
 	</insert>
 	
+	<update id="auctionBidUp">
+		UPDATE post SET post_end_price=#{aucPrice} WHERE post_seq=#{postSeq}
+	</update>
 	
 	<delete id="deleteAuction">
 		DELETE FROM auction WHERE auc_seq=#{aucSeq}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.customer.dto.CartDTO;
@@ -26,7 +27,7 @@ public interface CustomerMapper {
 	public List<CartDTO> cartList(int memberSeq);
 	
 	// 장바구니 삭제
-	public int cartDelect(int cartSeq);
+	public int cartDelect(@Param("memberSeq") int memberSeq, @Param("postSeq") int postSeq);
 
 	// 구매내역
 	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map);

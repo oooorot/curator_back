@@ -17,6 +17,7 @@
 		<result property="postExhibition" column="post_exhibition"/>	
 		<result property="postDate" column="post_date"/>	
 		<result property="exhibitionSeq" column="exhibition_seq"/>
+		<result property="postEndPrice" column="post_end_price"/>
 	</resultMap>
 	
 	<resultMap type="com.web.root.exhibition.dto.ExhibitionDTO" id="exhibition">
@@ -99,7 +100,7 @@
 	</select>
 	
 	<insert id="postWrite">
-		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, CURRENT_DATE, #{exhibitionSeq})
+		INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{exhibitionSeq}, #{postTitle}, #{postSummary}, #{postContent}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE, #{postEndPrice})
 	</insert>
 	
 	<insert id="postCart">

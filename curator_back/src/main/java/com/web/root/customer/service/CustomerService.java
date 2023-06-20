@@ -27,7 +27,7 @@ public interface CustomerService {
 	public List<CartDTO> cartList(int memberSeq);
 	
 	// 장바구니 삭제
-	public int cartDelect(int cartSeq);
+	public int cartDelect(Map<String, String> map);
 	
 	// 구매내역
 	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map);

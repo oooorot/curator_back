@@ -114,27 +114,33 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 	}
 
 	// 작품등록
-	@Override
-	public int artistPostWrite(PostDTO postDTO, MultipartFile multipartFile) {
-		if(multipartFile.getSize() != 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar calendar = Calendar.getInstance();
-			String sysFileName = sdf.format(calendar.getTime());
-			sysFileName += multipartFile.getOriginalFilename();
-			postDTO.setPostImageName(sysFileName);
-			File artistPostFile = new File(IMAGE_PATH + File.separator + sysFileName);
-			try {
-				multipartFile.transferTo(artistPostFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if(postDTO.getPostAuction()==1) {
-			artistPageMapper.artistPostWrite(postDTO);
-			auctionService.timeOver();
-		} 
-		return 1;
-	}
+	   @Override
+	   public int artistPostWrite(PostDTO postDTO, MultipartFile multipartFile) {
+	      
+	      if(multipartFile.getSize() != 0) {
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+	         Calendar calendar = Calendar.getInstance();
+	         String sysFileName = sdf.format(calendar.getTime());
+	         sysFileName += multipartFile.getOriginalFilename();
+	         postDTO.setPostImageName(sysFileName);
+	         File artistPostFile = new File(IMAGE_PATH + File.separator + sysFileName);
+	         try {
+	            multipartFile.transferTo(artistPostFile);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      if(postDTO.getPostAuction()==1) {
+	         artistPageMapper.artistPostWrite(postDTO);
+	         auctionService.timeOver();
+	         return 1;
+	      } 
+	      if(postDTO.getPostAuction()==2) {
+	         artistPageMapper.artistPostWrite(postDTO);
+	         return 1;
+	      }
+	      return 0;
+	   }
 	
 	
 	// 작품수정

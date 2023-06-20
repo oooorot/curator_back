@@ -74,7 +74,7 @@
    	</select>
    
    	<delete id="cartDelect">
-   		DELETE FROM cart WHERE cart_seq=#{cartSeq}
+   		DELETE FROM cart WHERE member_seq=#{memberSeq} AND post_seq=#{postSeq}
    	</delete>
 	
 	<select id="purchaseProduct" resultMap="purchase">
