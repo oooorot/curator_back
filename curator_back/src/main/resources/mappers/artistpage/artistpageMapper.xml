@@ -65,4 +65,8 @@
        SELECT * FROM commission WHERE artist_seq=#{artistSeq}   
     </select>
     
+    <update id="changePrice">
+    	UPDATE post SET post_price=#{aucPrice} WHERE post_Seq=#{postSeq}
+    </update>
+    
  </mapper>

@@ -19,6 +19,9 @@ public interface AuctionMapper {
 	// 경매 : 내역조회
 	public AuctionDTO getAuction(int aucSeq);
 	
+	// aucPrice 가져오기
+	public AuctionDTO getAucPrice(Map<String, Object> map);
+	
 	// 경매 : 낙찰
 	public AuctionDTO getSuccessfulBid(Map<String, Object> map);
 	

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.root.artist.dto.ArtistDTO;
+import com.web.root.auction.dto.PriceDTO;
 import com.web.root.auction.service.AuctionServiceImpl;
 import com.web.root.commission.dto.CommissionDTO;
 import com.web.root.mybatis.artistpage.ArtistPageMapper;
@@ -131,10 +132,17 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 		if(postDTO.getPostAuction()==1) {
 			artistPageMapper.artistPostWrite(postDTO);
 			auctionService.timeOver();
-		} artistPageMapper.artistPostWrite(postDTO);
+		} 
 		return 1;
 	}
 	
+	// 경매시작가를 낙찰가로 변경
+	public int changePrice(PriceDTO priceDTO) {
+		PostDTO postDTO = new PostDTO();
+		postDTO.setPostPrice(priceDTO.getAucPrice());
+		postDTO.setPostSeq(priceDTO.getPostSeq());
+		return 1;
+	}
 	
 	// 작품수정
 	@Override

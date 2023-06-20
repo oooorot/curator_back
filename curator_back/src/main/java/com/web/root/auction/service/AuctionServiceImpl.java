@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.root.auction.dto.AuctionDTO;
+import com.web.root.auction.dto.PriceDTO;
 import com.web.root.customer.dto.CartDTO;
+import com.web.root.mybatis.artistpage.ArtistPageMapper;
 import com.web.root.mybatis.auction.AuctionMapper;
 import com.web.root.mybatis.post.PostMapper;
 
@@ -27,6 +29,9 @@ public class AuctionServiceImpl implements AuctionService{
 	
 	@Autowired
 	public PostMapper postMapper;
+	
+	@Autowired
+	public ArtistPageMapper artistPageMapper;
 	 
 	
 	// 경매 : 현황
@@ -78,7 +83,7 @@ public class AuctionServiceImpl implements AuctionService{
 				LocalDateTime start = LocalDateTime.now();
 				
 				// 경매 종료 시간 (3분 뒤)
-				LocalDateTime endTime = start.plusMinutes(3);
+				LocalDateTime endTime = start.plusSeconds(35);
 				
 				@Override
 				public void run() {	
@@ -117,10 +122,14 @@ public class AuctionServiceImpl implements AuctionService{
 						System.out.println("");
 						
 					} else if(count == 0){
-						// 제일 높은 auc_price 가진 회원 데이터 넘기고
 						Map<String, Object> map = new HashMap<String, Object>();
 						CartDTO cartDTO = getSuccessfulBid(map);
+						// 낙찰된 auc_price 가진 회원 데이터 넘기고
 						postMapper.auctionCart(cartDTO);
+						// 낙찰회원 데이터를 PriceDTO에 회원번호, 글번호, 가격 담기
+						PriceDTO priceDTO = getAucPrice(map);
+						// 경매 시작가를 낙찰가로 변경
+						artistPageMapper.changePrice(priceDTO);
 						// 나머지 회원들 데이터 삭제
 						auctionMapper.deleteParticipant();
 						timer.cancel();		
@@ -131,8 +140,22 @@ public class AuctionServiceImpl implements AuctionService{
 			timer.schedule(timerTask, new Date(), 1000);	
 		}
 		
+		// 낙찰 성공한 회원 PriceDTO에 담기
+		public PriceDTO getAucPrice(Map<String, Object> map) {
+			// 제일 높은 auc_price 가진 회원 데이터 가져오기
+			AuctionDTO auctionDTO = auctionMapper.getAucPrice(map);
+			
+			// PriceDTO 객체 생성 및 값 설정
+			PriceDTO priceDTO = new PriceDTO();
+			priceDTO.setMemberSeq(auctionDTO.getMemberSeq());
+			priceDTO.setPostSeq(auctionDTO.getPostSeq());
+			priceDTO.setAucPrice(auctionDTO.getAucPrice());
+			
+			return priceDTO;
+		}
+		
 
-		// 낙찰성공한 회원 데이터 가져오기
+		// 낙찰 성공한 회원 데이터 가져오기 
 		public CartDTO getSuccessfulBid(Map<String, Object> map) {
 			// 제일 높은 auc_price 가진 회원 데이터 가져오기
 			AuctionDTO auctionDTO = auctionMapper.getSuccessfulBid(map);
@@ -142,7 +165,6 @@ public class AuctionServiceImpl implements AuctionService{
 			cartDTO.setMemberSeq(auctionDTO.getMemberSeq());
 			cartDTO.setPostSeq(auctionDTO.getPostSeq());
 			
-			return cartDTO;
-			
+			return cartDTO;	
 		}		
 }

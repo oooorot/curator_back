@@ -20,13 +20,22 @@
 		INSERT INTO auction VALUES(auc_seq.NEXTVAL, #{memberSeq}, #{artistSeq}, #{postSeq}, #{aucNickname}, #{aucPrice})
 	</insert>
 	
-	
 	<delete id="deleteAuction">
 		DELETE FROM auction WHERE auc_seq=#{aucSeq}
 	</delete>
 
 	<select id="getAuction" resultMap="auction">
 		SELECT * FROM auction WHERE auc_seq=#{aucSeq}
+	</select>
+	
+	<select id="getAucPrice" resultMap="auction">
+		SELECT member_seq, post_seq, auc_price
+		FROM (
+  		SELECT member_seq, post_seq, auc_price,
+    	ROW_NUMBER() OVER (ORDER BY post_seq ASC, auc_price DESC) AS rn
+ 		FROM auction
+		) subquery
+		WHERE rn = 1
 	</select>
 	
 	<select id="getSuccessfulBid" resultMap="auction">
