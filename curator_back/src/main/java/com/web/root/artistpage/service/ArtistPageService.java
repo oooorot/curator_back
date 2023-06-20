@@ -19,7 +19,7 @@ public interface ArtistPageService {
 	public int artistMemberUpdate(ArtistDTO artistDTO, MultipartFile multipartFile);
 	
 	// 작가회원탈퇴
-	public int artistMemberDelete(int artistSeq);
+	public int artistMemberDelete(Map<String, String> map);
 	
 	// 작품내역
 	public List<PostDTO> artistPostList(int artistSeq);

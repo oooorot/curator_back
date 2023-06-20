@@ -45,10 +45,10 @@ public class ArtistPageController {
 	}
 	
 	// 작가회원탈퇴
-	@DeleteMapping(value="artistMemberDelete", produces = "application/json; charset=utf-8")
+	@PostMapping(value="artistMemberDelete", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int artistMemberDelete(@RequestParam("artistSeq") int artistSeq) {
-		return artistPageService.artistMemberDelete(artistSeq);
+	public int artistMemberDelete(@RequestBody Map<String, String> map) {
+		return artistPageService.artistMemberDelete(map);
 	}
 	
 	// 작품내역(DB값)

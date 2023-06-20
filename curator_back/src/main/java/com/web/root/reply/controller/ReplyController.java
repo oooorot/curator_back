@@ -3,6 +3,7 @@
 
 package com.web.root.reply.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,14 @@ public class ReplyController {
 	
 	@GetMapping(value = "replyView", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ReplyDTO replyView(@RequestParam("helpSeq") int helpSeq) {
+	public List<ReplyDTO> replyView(@RequestParam("helpSeq") int helpSeq) {
 		return replyService.ReplyView(helpSeq);
 	}
 	
 	@PostMapping(value = "replyPost", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public int replyPost(@RequestBody Map<String, String> map) {
+		System.out.println(map.get("helpSeq"));
 		return replyService.ReplyPost(map);
 	}
 	

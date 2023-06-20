@@ -36,8 +36,8 @@ public class AuctionServiceImpl implements AuctionService{
 	
 	// 경매 : 현황
 	@Override
-	public List<AuctionDTO> auctionView() {
-		return auctionMapper.auctionView();
+	public List<AuctionDTO> auctionView(int postSeq) {
+		return auctionMapper.auctionView(postSeq);
 	}
 
 	// 경매 : 입찰	

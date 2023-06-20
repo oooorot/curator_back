@@ -25,8 +25,8 @@ public class AuctionController {
 	// 경매 : 현황
 	@GetMapping(value="auctionView", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<AuctionDTO> auctionView(){
-		return auctionService.auctionView();
+	public List<AuctionDTO> auctionView(@RequestParam("postSeq") int postSeq){
+		return auctionService.auctionView(postSeq);
 	}
 	
 	// 경매 : 입찰
