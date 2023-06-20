@@ -61,7 +61,7 @@ public class AdminController {
 	}
 	
 	// 임의 회원탈퇴
-	@DeleteMapping(value="adminMemberDelete", produces = "application/json; charset=utf-8")
+	@PostMapping(value="adminMemberDelete", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public int adminMemberDelete(@RequestBody Map<String, Object> map) {
 		return adminService.adminMemberDelete(map);
