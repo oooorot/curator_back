@@ -1,6 +1,7 @@
 package com.web.root.commission.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -61,10 +62,10 @@ public class CommissionController {
 
 	
 	// 의뢰 게시글 삭제
-	@GetMapping(value="commissionDelete", produces = "application/json; charset=utf8")
+	@PostMapping(value="commissionDelete", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int commissionDelete(@RequestParam("commSeq") int commSeq) {
-		return commissionService.commissionDelete(commSeq);
+	public int commissionDelete(@RequestBody Map<String, String> map) {
+		return commissionService.commissionDelete(map);
 	}
 	
 }

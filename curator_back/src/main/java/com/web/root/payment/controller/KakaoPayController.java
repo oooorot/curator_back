@@ -36,8 +36,11 @@ public class KakaoPayController {
 	// 카카오 페이 결제 승인
 	@GetMapping(value="success", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int ApproveResponse(@RequestParam("pg_token") String pg_token, HttpSession session) {
-		return paymentService.ApproveResponse(pg_token, session);
+	public RedirectView ApproveResponse(@RequestParam("pg_token") String pg_token, HttpSession session) {
+		paymentService.ApproveResponse(pg_token, session);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl("http://localhost:3000/pay/success");
+		return redirectView;
 	}
 	
 //	 // 카카오 페이 결제 승인
@@ -60,6 +63,15 @@ public class KakaoPayController {
 	@ResponseBody
 	public ResponseEntity<String> cancelResponse(@RequestParam("tid") String tid) {
 		return paymentService.cancelResponse(tid);
+	}
+	
+	// 결제 실패
+	@GetMapping(value="fail", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public RedirectView fail() {
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl("http://localhost:3000/pay/fail");
+		return redirectView;
 	}
 	
 	

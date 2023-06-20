@@ -2,6 +2,7 @@ package com.web.root.commission.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,8 +97,9 @@ public class CommissionServiceImpl implements CommissionService{
 
 	// 의뢰 게시글 삭제
 	@Override
-	public int commissionDelete(int commSeq) {
+	public int commissionDelete(Map<String, String> map) {
 		try {
+			int commSeq = Integer.parseInt(map.get("commSeq"));
 			int res = commissionMapper.commissionDelete(commSeq);
 			return res;
 		} catch (Exception e) {

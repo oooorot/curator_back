@@ -1,7 +1,7 @@
 package com.web.root.commission.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +26,6 @@ public interface CommissionService {
 	public int commissionUpdate(CommissionDTO commissionDTO);
 
 	// 의뢰 게시글 삭제
-	public int commissionDelete(int commSeq);
+	public int commissionDelete(Map<String, String> map);
 	
 }

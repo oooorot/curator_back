@@ -69,8 +69,8 @@ public class KakaoPayServiceImpl implements KakaoPayService {
         params.add("vat_amount", Integer.toString(postPrice/10));
         params.add("tax_free_amount", "0");
         params.add("approval_url", "http://localhost:8080/root/success");
-        params.add("fail_url", "http://localhost:8080/root/fail");
-        params.add("cancel_url", "http://localhost:8080/root/kakaoPayBtn");
+        params.add("fail_url", "http://localhost:8080/");
+        params.add("cancel_url", "http://localhost:8080/root/fail");
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, httpHeaders);
         ResponseEntity<String> response = restTemplate.postForEntity(readyUrl, entity, String.class);
