@@ -84,8 +84,9 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 	
 	// 작가회원탈퇴
 	@Override
-	public int artistMemberDelete(int artistSeq) {
+	public int artistMemberDelete(Map<String, String> map) {
 		try {
+			int artistSeq = Integer.parseInt(map.get("artistSeq"));
 			return artistPageMapper.artistMemberDelete(artistSeq);
 		} catch (Exception e) {
 			return 0;
@@ -131,7 +132,7 @@ public class ArtistPageServiceImpl implements ArtistPageService, ImagePath{
 		if(postDTO.getPostAuction()==1) {
 			artistPageMapper.artistPostWrite(postDTO);
 			auctionService.timeOver();
-		} artistPageMapper.artistPostWrite(postDTO);
+		} 
 		return 1;
 	}
 	

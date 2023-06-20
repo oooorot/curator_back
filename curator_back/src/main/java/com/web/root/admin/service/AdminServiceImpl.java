@@ -89,18 +89,8 @@ public class AdminServiceImpl implements AdminService, ImagePath{
 	// 임의 회원 탈퇴
 	@Override
 	public int adminMemberDelete(Map<String, Object> map) {
-		int memberGrade = Integer.parseInt(map.get("memberGrade").toString());
-		switch(memberGrade) {
-		case 1 : 
-			int customerDelete = Integer.parseInt(map.get("memberSeq").toString());
-			customerMapper.memberDelete(customerDelete);
-			return 1; 
-		case 2 : 
-			int artistDelete = Integer.parseInt(map.get("artistSeq").toString());
-			artistPageMapper.artistMemberDelete(artistDelete); 
-			return 1;
-		default : return 0;	
-		}
+		int customerDelete = Integer.parseInt(map.get("memberSeq").toString());
+		return customerMapper.memberDelete(customerDelete);
 	}
 }
 
