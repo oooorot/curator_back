@@ -17,6 +17,7 @@ public class PostDTO {
 	private int postAuction;
 	private int postExhibition;
 	private String postDate;
+	private int postEndPrice;
 	
 	
 	public PostDTO() {}
@@ -115,6 +116,14 @@ public class PostDTO {
 
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
+	}
+
+	public int getPostEndPrice() {
+		return postEndPrice;
+	}
+
+	public void setPostEndPrice(int postEndPrice) {
+		this.postEndPrice = postEndPrice;
 	}
 
 	

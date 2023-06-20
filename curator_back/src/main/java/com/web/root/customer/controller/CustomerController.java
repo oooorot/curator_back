@@ -58,10 +58,10 @@ public class CustomerController {
     }
 	
 	// 장바구니 삭제
-	@DeleteMapping(value="cartDelect", produces = "application/json; charset=utf8")
+	@PostMapping(value="cartDelete", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public int cartDelect(@RequestParam("cartSeq") int cartSeq) {
-		return customerService.cartDelect(cartSeq);
+	public int cartDelect(@RequestBody Map<String, String> map) {
+		return customerService.cartDelect(map);
 	}
 	
 	// 구매내역

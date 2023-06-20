@@ -12,7 +12,7 @@
     <mvc:cors>
         <mvc:mapping 
         path="/**" 
-        allowed-origins="http://localhost:3000"
+        allowed-origins="*"
         allowed-methods="GET, POST, PUT, PATCH, DELETE"
       	allowed-headers="*"
       	allow-credentials="true"

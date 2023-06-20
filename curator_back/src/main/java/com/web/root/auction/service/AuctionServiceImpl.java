@@ -40,6 +40,9 @@ public class AuctionServiceImpl implements AuctionService{
 	public int auctionBid(Map<String, Object> map) {
 		int res = 0;
 		try {
+			int aucPrice = Integer.parseInt(map.get("aucPrice").toString());
+			int postSeq = Integer.parseInt(map.get("postSeq").toString());
+			auctionMapper.auctionBidUp(aucPrice, postSeq);
 			res = auctionMapper.auctionBid(map);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -3,6 +3,8 @@ package com.web.root.mybatis.auction;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.web.root.auction.dto.AuctionDTO;
 
 public interface AuctionMapper {
@@ -12,6 +14,8 @@ public interface AuctionMapper {
 	
 	// 경매 : 입찰	
 	public int auctionBid(Map<String, Object> map);
+	
+	public int auctionBidUp(@Param("aucPrice") int aucPrice, @Param("postSeq") int postSeq);
 	
 	// 경매 : 글 삭제
 	public int deleteAuction(int aucSeq);

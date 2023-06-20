@@ -59,8 +59,10 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 장바구니 삭제
 	@Override
-	public int cartDelect(int cartSeq) {
-		return customerMapper.cartDelect(cartSeq);
+	public int cartDelect(Map<String, String> map) {
+		int memberSeq = Integer.parseInt(map.get("memberSeq"));
+		int postSeq = Integer.parseInt(map.get("postSeq"));
+		return customerMapper.cartDelect(memberSeq, postSeq);
 	}
 
 	// 구매내역

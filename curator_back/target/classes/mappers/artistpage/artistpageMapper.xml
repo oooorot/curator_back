@@ -25,6 +25,7 @@
       <result property="postAuction" column="post_auction"/>   
       <result property="postExhibition" column="post_exhibition"/>   
       <result property="postDate" column="post_date"/>   
+      <result property="postEndPrice" column="post_end_price"/>
    </resultMap>
    
       <resultMap type="com.web.root.commission.dto.CommissionDTO" id="comm">
@@ -54,7 +55,7 @@
     </select>
     
     <insert id="artistPostWrite">
-        INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{exhibitionSeq}, #{postTitle}, #{postContent}, #{postSummary}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE)
+        INSERT INTO post VALUES(post_seq.NEXTVAL, #{genreSeq}, #{artistSeq}, #{exhibitionSeq}, #{postTitle}, #{postContent}, #{postSummary}, #{postImageName}, #{postPrice}, #{postAuction}, #{postExhibition}, CURRENT_DATE, #{postEndPrice})
     </insert>
  
     <update id="artistPostUpdate">
