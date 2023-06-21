@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,8 +41,8 @@ public class AdminController {
 	// 작가등록
 	@PostMapping(value="adminArtistAdd", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
-	public int adminArtistAdd(@RequestBody Map<String, Object> map, @RequestPart(value="artistImage", required=false) MultipartFile multipartFile) {
-		return adminService.adminArtistAdd(map, multipartFile);
+	public int adminArtistAdd(@RequestPart(value="artistDTO") ArtistDTO artistDTO, @RequestPart(value="artistImage", required=false) MultipartFile multipartFile) {
+		return adminService.adminArtistAdd(artistDTO,multipartFile);
 	}
 	
 	// 작가관리(사진없이 DB정보만)
