@@ -19,6 +19,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Autowired
 	public CustomerMapper customerMapper;
+
+	static final String URL = "http://info.sweettracker.co.kr/";
 	
 	// 회원정보
 	@Override
@@ -67,26 +69,31 @@ public class CustomerServiceImpl implements CustomerService{
 
 	// 구매내역
 	@Override
-	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map) {
-		List<PurchaseDTO> purchaseList = customerMapper.purchaseProduct(map);
+	public List<PurchaseDTO> purchaseProduct(int memberSeq) {
+		List<PurchaseDTO> purchaseList = customerMapper.purchaseProduct(memberSeq);
 		return purchaseList;
 	}
 	
-	//배송조회
-	@Override
-	public ParcelDTO parcelSelect(int purSeq) {
-		ParcelDTO parcelDTO = new ParcelDTO(); 
-		try {
-			PurchaseDTO purchaseDTO = customerMapper.parcelSelect(purSeq);
-			parcelDTO.setPurDscode(purchaseDTO.getPurDscode());
-			parcelDTO.setPurCode(purchaseDTO.getPurCompany());
-			parcelDTO.setPurAddr("http://info.sweettracker.co.kr//tracking/2");
-			parcelDTO.setPurKey("n6UAfOSjfAtjoomyjlkscA");
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return parcelDTO;
-	}
+   //배송조회
+   @Override
+   public String parcelSelect(int purSeq) {
+      ParcelDTO parcelDTO = new ParcelDTO(); 
+      try {
+         PurchaseDTO purchaseDTO = customerMapper.parcelSelect(purSeq);
+         parcelDTO.setPurDscode(purchaseDTO.getPurDscode());
+         parcelDTO.setPurCode(purchaseDTO.getPurCompany());
+         parcelDTO.setPurAddr("http://info.sweettracker.co.kr//tracking/2");
+         parcelDTO.setPurKey("n6UAfOSjfAtjoomyjlkscA");
+         
+         String response = URL+"/tracking/2?"+"t_key="+parcelDTO.getPurKey()+"&t_code="+parcelDTO.getPurCode()+"&t_invoice="+parcelDTO.getPurDscode();
+           
+           return response;
+      }catch (Exception e) {
+         e.printStackTrace();
+         return null;
+      }
+      
+   }
 
 	// 즐겨찾기
 	@Override

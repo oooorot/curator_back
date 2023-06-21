@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.root.customer.dto.BookmarkDTO;
 import com.web.root.customer.dto.CartDTO;
 import com.web.root.customer.dto.CustomerHelpReplyDTO;
-import com.web.root.customer.dto.ParcelDTO;
 import com.web.root.customer.dto.PurchaseDTO;
 import com.web.root.customer.service.CustomerService;
 import com.web.root.member.dto.MemberDTO;
@@ -67,16 +67,19 @@ public class CustomerController {
 	// 구매내역
 	@GetMapping(value="purchaseProduct", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<PurchaseDTO> purchaseProduct(@RequestBody Map<String, Object> map) {
-		return customerService.purchaseProduct(map); 
+	public List<PurchaseDTO> purchaseProduct(@RequestParam("memberSeq") int memberSeq) {
+		return customerService.purchaseProduct(memberSeq); 
 	}
 	
 	// 배송조회
-	@GetMapping(value="parcelSelect", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public ParcelDTO parcelSelect(@RequestParam("purSeq") int purSeq) {
-		return customerService.parcelSelect(purSeq);
-	}
+	   @GetMapping(value="parcelSelect", produces = "application/json; charset=utf-8")
+	   @ResponseBody
+	   public RedirectView parcelSelect(@RequestParam("purSeq") int purSeq) {
+	      String url = customerService.parcelSelect(purSeq);
+	      RedirectView redirectView = new RedirectView();
+	      redirectView.setUrl(url);
+	      return redirectView;
+	   }
 	
 	
 	

@@ -29,6 +29,7 @@ import com.web.root.payment.dto.successDTO;
 @Service
 public class KakaoPayServiceImpl implements KakaoPayService {
 	
+	
 	static final String readyUrl = "https://kapi.kakao.com/v1/payment/ready";	
 	static final String approveUrl = "https://kapi.kakao.com/v1/payment/approve";
 	static final String cancelUrl = "https://kapi.kakao.com/v1/payment/cancel";
@@ -104,7 +105,7 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		successDTO dto = kakaoPayMapper.selInfo();
 		String tid = dto.getTid();
-		int memberSeq = dto.getPostSeq();
+		int memberSeq = dto.getMemberSeq();
 		int postSeq = dto.getPostSeq();
 		System.out.println(tid);
 		System.out.println(memberSeq);
