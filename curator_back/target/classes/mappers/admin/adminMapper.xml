@@ -29,7 +29,7 @@
 	</select>
 	
 	<insert id="adminArtistAdd">
-		INSERT INTO artist VALUES(#{artistSeq},#{artistName},#{artistProfile},#{artistSns},#{artistImage},'0')
+		INSERT INTO artist VALUES(artist_seq.nextval,#{artistName},#{artistProfile},#{artistSns},#{artistImage},#{artistHit},#{exhibitionSeq})
 	</insert>
 	
 	<select id="adminArtistList" resultMap="artist">
