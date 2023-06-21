@@ -8,7 +8,7 @@ public class HelpDTO {
 	private int memberSeq;
 	private String helpTitle;
 	private String helpContent;
-	private Timestamp helpDate;
+	private String helpDate;
 	private String helpCate;
 	
 	public HelpDTO() {}
@@ -45,11 +45,11 @@ public class HelpDTO {
 		this.helpContent = helpContent;
 	}
 
-	public Timestamp getHelpDate() {
+	public String getHelpDate() {
 		return helpDate;
 	}
 
-	public void setHelpDate(Timestamp helpDate) {
+	public void setHelpDate(String helpDate) {
 		this.helpDate = helpDate;
 	}
 
