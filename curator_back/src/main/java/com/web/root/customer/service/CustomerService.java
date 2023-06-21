@@ -30,10 +30,10 @@ public interface CustomerService {
 	public int cartDelect(Map<String, String> map);
 	
 	// 구매내역
-	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map);
+	public List<PurchaseDTO> purchaseProduct(int memberSeq);
 	
-	// 배송조회
-	public ParcelDTO parcelSelect(int purSeq);
+   // 배송조회
+   public String parcelSelect(int purSeq);
 	
 	// 즐겨찾기
 	public List<BookmarkDTO> bookmarkArtistList(int memberSeq);

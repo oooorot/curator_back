@@ -30,7 +30,7 @@ public interface CustomerMapper {
 	public int cartDelect(@Param("memberSeq") int memberSeq, @Param("postSeq") int postSeq);
 
 	// 구매내역
-	public List<PurchaseDTO> purchaseProduct(Map<String, Object> map);
+	public List<PurchaseDTO> purchaseProduct(int memberSeq);
 	
 	// 배송조회
 	public PurchaseDTO parcelSelect(int purSeq);
