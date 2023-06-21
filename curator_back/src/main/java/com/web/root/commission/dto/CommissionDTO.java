@@ -9,14 +9,14 @@ public class CommissionDTO {
 	private int memberSeq;
 	private String commTitle;
 	private String commContent;
-	private Timestamp commDate;
+	private String commDate;
 	
 	public CommissionDTO() {
 		super();
 	}
 
 	public CommissionDTO(int commSeq, int artistSeq, int memberSeq, String commTitle, String commContent,
-			Timestamp commDate) {
+			String commDate) {
 		super();
 		this.commSeq = commSeq;
 		this.artistSeq = artistSeq;
@@ -66,11 +66,11 @@ public class CommissionDTO {
 		this.commContent = commContent;
 	}
 
-	public Timestamp getCommDate() {
+	public String getCommDate() {
 		return commDate;
 	}
 
-	public void setCommDate(Timestamp commDate) {
+	public void setCommDate(String commDate) {
 		this.commDate = commDate;
 	}
 	
