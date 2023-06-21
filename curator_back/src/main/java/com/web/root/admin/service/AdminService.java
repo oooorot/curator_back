@@ -15,7 +15,7 @@ public interface AdminService {
 	public List<MemberDTO> adminCustomerList();
 	
 	// 작가등록
-	public int adminArtistAdd(Map<String, Object> map, MultipartFile multipartFile);
+	public int adminArtistAdd(ArtistDTO artistDTO, MultipartFile multipartFile);
 	
 	// 작가관리
 	public List<ArtistDTO> adminArtistList();

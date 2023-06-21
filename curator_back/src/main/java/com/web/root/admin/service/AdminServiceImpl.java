@@ -46,12 +46,7 @@ public class AdminServiceImpl implements AdminService, ImagePath{
 	
 	// 작가등록
 	@Override
-	public int adminArtistAdd(Map<String, Object> map, MultipartFile multipartFile) {
-		ArtistDTO artistDTO = new ArtistDTO();
-		artistDTO.setArtistSeq(Integer.parseInt(map.get("artistSeq").toString()));
-		artistDTO.setArtistName(map.get("artistName").toString());
-		artistDTO.setArtistProfile(map.get("artistProfile").toString());
-		artistDTO.setArtistSns(map.get("artistSns").toString());
+	public int adminArtistAdd(ArtistDTO artistDTO, MultipartFile multipartFile) {
 		if(multipartFile.getSize() != 0) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar calendar = Calendar.getInstance();
