@@ -78,6 +78,8 @@ public class CustomerController {
 		return customerService.parcelSelect(purSeq);
 	}
 	
+	
+	
 	// 즐겨찾기(북마크 등록한 작가)
 	@GetMapping(value="bookmarkArtistList", produces = "application/json; charset=utf-8")
 	@ResponseBody 

@@ -31,6 +31,11 @@
    	<delete id="cartDelect">
    		DELETE FROM cart WHERE post_seq=#{postSeq}
    	</delete>
+   	
+   	<insert id="purchaseUpdate">
+        INSERT INTO purchase VALUES(pur_seq.NEXTVAL,#{memberSeq},#{postSeq},#{purName},#{purPhone},#{purAddr},CURRENT_DATE,'08','248125316961')
+    </insert>
+   	
 	
 	<select id="paymentInfo" resultMap="pay">
 		SELECT * FROM pay WHERE member_seq=#{memberSeq}
