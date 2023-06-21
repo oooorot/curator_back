@@ -12,7 +12,6 @@ public interface KakaoPayService {
 	public String readyKakaoRequest(int memberSeq, int artistSeq, String postTitle, int postPrice, int postSeq, HttpSession session);
 
 	public int ApproveResponse(String pgToken, HttpSession session);
-//	public int ApproveResponse(String pgToken, String tid, int memberSeq, int postSeq);
 	
 	public KakaoPaymentApproveDTO paymentInfo(int memberSeq);
 	

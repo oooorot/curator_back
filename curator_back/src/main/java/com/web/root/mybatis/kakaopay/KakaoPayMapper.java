@@ -15,6 +15,8 @@ public interface KakaoPayMapper {
 	
 	public KakaoPaymentApproveDTO paymentMemberInfo(String tid);
 	
+	public void purchaseUpdate(@Param("memberSeq") int memberSeq, @Param("postSeq") int postSeq, @Param("purName") String purName, @Param("purPhone") String purPhone, @Param("purAddr") String purAddr);
+
 	public void cancelResponse(String tid);
 	
 	public void setInfo(@Param("tid") String tid, @Param("memberSeq") int memberSeq, @Param("postSeq") int postSeq);

@@ -43,14 +43,6 @@ public class KakaoPayController {
 		return redirectView;
 	}
 	
-//	 // 카카오 페이 결제 승인
-//   @GetMapping(value="success", produces = "application/json; charset=utf-8")
-//   @ResponseBody
-//   public int ApproveResponse(@RequestParam("pg_token") String pg_token, @RequestParam("tid") String tid, @RequestParam("memberSeq") int memberSeq, @RequestParam("postSeq") int postSeq) {
-//      return paymentService.ApproveResponse(pg_token, tid, memberSeq, postSeq);
-//   }
-
-	
 	// 결제 내역 확인
 	@GetMapping(value="paymentInfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
